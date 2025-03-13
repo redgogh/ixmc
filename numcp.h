@@ -144,6 +144,6 @@ float dot(const vec4 &a, const vec4 &b)
         return (a.x * b.x) + (a.y * b.y) + (a.z * b.z) + (a.w * b.w);
 }
 
-}
+} /* namespace umc */
 
 #endif /* MATH_H_ */

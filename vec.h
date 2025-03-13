@@ -143,6 +143,6 @@ FNC_VECTOR_POINTER_IMPLEMENTS(__vec2_t)
 FNC_VECTOR_POINTER_IMPLEMENTS(__vec3_t)
 FNC_VECTOR_POINTER_IMPLEMENTS(__vec4_t)
 
-}
+} /* namespace umc */
 
 #endif /* MATH_VEC_H_ */
