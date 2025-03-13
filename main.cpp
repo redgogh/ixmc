@@ -28,12 +28,17 @@ int main()
 
         printf("r = %f, sin(r) = %f, cos(r) = %f\n", angrad, sin(angrad), cos(angrad));
 
-        umc::vec2 a(1.0f, 2.0f);
-        umc::vec2 b(2.0f, 3.0f);
+        umc::vec2 a_vec2(1.0f, 2.0f);
+        umc::vec2 b_vec2(2.0f, 3.0f);
 
-        vec2 c = a * b;
+        vec2 r_vec2 = a_vec2 * b_vec2;
+        printf("c = a * b = (%f, %f)\n", r_vec2.x, r_vec2.y);
 
-        printf("c = a * b = (%f, %f)\n", c.x, c.y);
+        umc::vec3 a_vec3(1.0f, 2.0f, 1.0f);
+        umc::vec3 b_vec3(2.0f, 3.0f, 1.0f);
+
+        vec3 r_vec3 = cross(a_vec3, b_vec3);
+        printf("c = a x b = (%f, %f, %f)\n", r_vec3.x, r_vec3.y, r_vec3.z);
 
         return 0;
 }
