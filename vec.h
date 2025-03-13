@@ -57,6 +57,8 @@
                    return __vec4_t<T, N>(x op vec.x, y op vec.y, z op vec.z, w op vec.w);               \
                 }
 
+namespace umc {
+
 template<typename T, int N = 2>
 struct __vec2_t {
         static constexpr T fV = T(0.0f);
@@ -140,5 +142,7 @@ typedef __vec4_t<float> vec4;
 FNC_VECTOR_POINTER_IMPLEMENTS(__vec2_t)
 FNC_VECTOR_POINTER_IMPLEMENTS(__vec3_t)
 FNC_VECTOR_POINTER_IMPLEMENTS(__vec4_t)
+
+}
 
 #endif /* MATH_VEC_H_ */

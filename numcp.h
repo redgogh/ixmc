@@ -23,6 +23,8 @@
 #define NAN     __builtin_nanf("")
 #define PI      (3.14159265358979323846F)
 
+namespace umc {
+
 float fmod (float x, float y)
 {
         if (y == 0)
@@ -140,6 +142,8 @@ float dot(const vec3 &a, const vec3 &b)
 float dot(const vec4 &a, const vec4 &b)
 {
         return (a.x * b.x) + (a.y * b.y) + (a.z * b.z) + (a.w * b.w);
+}
+
 }
 
 #endif /* MATH_H_ */
