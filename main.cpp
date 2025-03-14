@@ -163,7 +163,7 @@ int main()
         __mat2_mul();
         __mat3_mul();
         __mat4_mul();
-        
+
         __vec2_mul();
 
         __vec3_cross();
