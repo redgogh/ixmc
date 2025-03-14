@@ -40,5 +40,23 @@ int main()
         vec3 r_vec3 = cross(a_vec3, b_vec3);
         printf("c = a x b = (%f, %f, %f)\n", r_vec3.x, r_vec3.y, r_vec3.z);
 
+        printf("matrix 3x3:\n");
+        
+        umc::mat3 a_mat3(3.5);
+        umc::mat3 b_mat3(5.0f);
+
+        umc::mat3 c_mat3 = a_mat3 * b_mat3;
+
+        printf_matrix_3x3(c_mat3);
+        
+        printf("matrix 4x4:\n");
+
+        umc::mat4 a_mat4(3.5);
+        umc::mat4 b_mat4(5.0f);
+
+        umc::mat4 c_mat4 = a_mat4 * b_mat4;
+
+        printf_matrix_4x4(c_mat4);
+        
         return 0;
 }

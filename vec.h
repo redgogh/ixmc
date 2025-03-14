@@ -15,9 +15,14 @@
 |*    limitations under the License.                                                *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "bugprone-reserved-identifier"
+#pragma ide diagnostic ignored "modernize-deprecated-headers"
+
 #ifndef MATH_VEC_H_
 #define MATH_VEC_H_
 
+#include <stdio.h>
 #include <xmmintrin.h>
 #include <pmmintrin.h>
 
@@ -146,26 +151,40 @@ FNC_VECTOR_POINTER_IMPLEMENTS(__vec2_t)
 FNC_VECTOR_POINTER_IMPLEMENTS(__vec3_t)
 FNC_VECTOR_POINTER_IMPLEMENTS(__vec4_t)
 
-template <typename T, int N = 4>
-struct __mat4_t {
+template <typename T, int N = 2>
+struct __mat2_t {
         T array[N * N];
 
-        explicit __mat4_t() : __mat4_t(1.0f) {}
-        explicit __mat4_t(T scalar)
+        explicit __mat2_t() : __mat2_t(1.0f) {}
+        explicit __mat2_t(T scalar)
         {
                 for (int i = 0; i < N * N; i++)
                         array[i] = scalar;
         }
 
-        __mat4_t<T, N>
-            operator*(const __mat4_t<T, N> &mat)
+        /*
+         * __proxy_ref_t struct for overriding the second [] operator.
+         */
+        struct __proxy_ref_t {
+                T *ref;
+                explicit __proxy_ref_t(T *p_ref) : ref(p_ref) {}
+                T& operator[](size_t i) { return ref[i]; }
+        };
+
+        __proxy_ref_t
+            operator[](size_t i)
               {
-                __mat4_t<T, N> q;
+                return __proxy_ref_t(&array[i * N]);
+              }
+
+        __mat2_t<T, N>
+            operator*(const __mat2_t<T, N> &other)
+              {
+                __mat2_t<T, N> q;
                 for (int i = 0; i < N; i++) {
                         __m128 row = _mm_loadu_ps(&array[i * N]);
                         for (int j = 0; j < N; j++) {
-                                __m128 col = _mm_set_ps(mat.array[3 * N + j], mat.array[2 * N + j],
-                                                        mat.array[1 * N + j], mat.array[0 * N + j]);
+                                __m128 col = _mm_set_ps(0.0f, 0.0f, other.array[1 * N + j], other.array[0 * N + j]);
                                 __m128 mul = _mm_mul_ps(row, col); // NOLINT(*-simd-intrinsics)
                                 mul = _mm_hadd_ps(mul, mul);
                                 mul = _mm_hadd_ps(mul, mul);
@@ -177,6 +196,122 @@ struct __mat4_t {
 
 };
 
+template <typename T, int N = 3>
+struct __mat3_t {
+        T array[N * N];
+
+        explicit __mat3_t() : __mat3_t(1.0f) {}
+        explicit __mat3_t(T scalar)
+        {
+                for (int i = 0; i < N * N; i++)
+                        array[i] = scalar;
+        }
+
+        /*
+         * __proxy_ref_t struct for overriding the second [] operator.
+         */
+        struct __proxy_ref_t {
+                T *ref;
+                explicit __proxy_ref_t(T *p_ref) : ref(p_ref) {}
+                T& operator[](size_t i) { return ref[i]; }
+        };
+
+        __proxy_ref_t
+            operator[](size_t i)
+              {
+                return __proxy_ref_t(&array[i * N]);
+              }
+
+        __mat3_t<T, N>
+            operator*(const __mat3_t<T, N> &other)
+              {
+                __mat3_t<T, N> q;
+                for (int i = 0; i < N; i++) {
+                        __m128 row = _mm_loadu_ps(&array[i * N]);
+                        for (int j = 0; j < N; j++) {
+                                __m128 col = _mm_set_ps(0.0f, other.array[2 * N + j],
+                                                        other.array[1 * N + j], other.array[0 * N + j]);
+                                __m128 mul = _mm_mul_ps(row, col); // NOLINT(*-simd-intrinsics)
+                                mul = _mm_hadd_ps(mul, mul);
+                                mul = _mm_hadd_ps(mul, mul);
+                                _mm_store_ss(&q.array[i * N + j], mul);
+                        }
+                }
+                return q;
+              }
+
+};
+
+template <typename T, int N = 4>
+struct __mat4_t {
+        T array[N * N];
+
+        explicit __mat4_t() : __mat4_t(1.0f) {}
+        explicit __mat4_t(T scalar)
+        {
+                for (int i = 0; i < N * N; i++)
+                        array[i] = scalar;
+        }
+
+        /*
+         * __proxy_ref_t struct for overriding the second [] operator.
+         */
+        struct __proxy_ref_t {
+                T *ref;
+                explicit __proxy_ref_t(T *p_ref) : ref(p_ref) {}
+                T& operator[](size_t i) { return ref[i]; }
+        };
+
+        __proxy_ref_t
+            operator[](size_t i)
+              {
+                return __proxy_ref_t(&array[i * N]);
+              }
+
+        __mat4_t<T, N>
+            operator*(const __mat4_t<T, N> &other)
+              {
+                __mat4_t<T, N> q;
+                for (int i = 0; i < N; i++) {
+                        __m128 row = _mm_loadu_ps(&array[i * N]);
+                        for (int j = 0; j < N; j++) {
+                                __m128 col = _mm_set_ps(other.array[3 * N + j], other.array[2 * N + j],
+                                                        other.array[1 * N + j], other.array[0 * N + j]);
+                                __m128 mul = _mm_mul_ps(row, col); // NOLINT(*-simd-intrinsics)
+                                mul = _mm_hadd_ps(mul, mul);
+                                mul = _mm_hadd_ps(mul, mul);
+                                _mm_store_ss(&q.array[i * N + j], mul);
+                        }
+                }
+                return q;
+              }
+
+};
+
+typedef __mat2_t<float> mat2;
+typedef __mat3_t<float> mat3;
+typedef __mat4_t<float> mat4;
+
+#define printf_matrix_2x2(mat)                                                                                  \
+        do {                                                                                                    \
+            for (int i = 0; i < 3; i++)                                                                         \
+                printf("%f        %f\n", mat[i][0], mat[i][1]);                                                 \
+        } while (0)
+
+#define printf_matrix_3x3(mat)                                                                                  \
+        do {                                                                                                    \
+            for (int i = 0; i < 3; i++)                                                                         \
+                printf("%f        %f        %f\n", mat[i][0], mat[i][1], mat[i][2]);                            \
+        } while (0)
+
+#define printf_matrix_4x4(mat)                                                                                  \
+        do {                                                                                                    \
+            for (int i = 0; i < 4; i++)                                                                         \
+                printf("%f        %f        %f        %f\n", mat[i][0], mat[i][1], mat[i][2], mat[i][3]);       \
+        } while (0)
+
 } /* namespace umc */
 
 #endif /* MATH_VEC_H_ */
+
+#pragma clang diagnostic pop
