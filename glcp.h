@@ -23,7 +23,7 @@
 #define NAN     __builtin_nanf("")
 #define PI      (3.14159265358979323846F)
 
-namespace ncp {
+namespace glcp {
 
 float fmod (float x, float y)
 {
@@ -158,6 +158,6 @@ vec3 cross(const vec3 &a, const vec3 &b)
         );
 }
 
-} /* namespace ncp */
+} /* namespace glcp */
 
 #endif /* MATH_H_ */

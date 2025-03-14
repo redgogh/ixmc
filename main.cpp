@@ -18,7 +18,7 @@
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
 
-#include "numcp.h"
+#include "glcp.h"
 // std
 #include <iostream>
 
@@ -29,14 +29,14 @@
 void __mat2_mul()
 {
         printf("MATRIX(2x2) C = A x B\n");
-        ncp::mat2 A, B, C;
+        glcp::mat2 A, B, C;
 
-        A = ncp::mat2 (
+        A = glcp::mat2 (
             1, 2,
             4, 5
         );
 
-        B = ncp::mat2(
+        B = glcp::mat2(
             9, 8,
             6, 5
         );
@@ -44,11 +44,11 @@ void __mat2_mul()
         C = A * B;
 
         printf("A = \n");
-        ncp_println_matrix2(A);
+        glcp_println_matrix2(A);
         printf("B = \n");
-        ncp_println_matrix2(B );
+        glcp_println_matrix2(B );
         printf("A x B = \n");
-        ncp_println_matrix2(C);
+        glcp_println_matrix2(C);
 
         printf("\n");
 }
@@ -60,15 +60,15 @@ void __mat2_mul()
 void __mat3_mul()
 {
         printf("MATRIX(3x3) C = A x B\n");;
-        ncp::mat3 A, B, C;
+        glcp::mat3 A, B, C;
         
-        A = ncp::mat3(
+        A = glcp::mat3(
             1, 2, 3,
             4, 5, 6,
             7, 8, 9
         );
         
-        B = ncp::mat3(
+        B = glcp::mat3(
             9, 8, 7,
             6, 5, 4,
             3, 2, 1
@@ -77,11 +77,11 @@ void __mat3_mul()
         C = A * B;
 
         printf("A = \n");
-        ncp_println_matrix3(A);
+        glcp_println_matrix3(A);
         printf("B = \n");
-        ncp_println_matrix3(B );
+        glcp_println_matrix3(B );
         printf("A x B = \n");
-        ncp_println_matrix3(C);
+        glcp_println_matrix3(C);
 
         printf("\n");
 }
@@ -93,16 +93,16 @@ void __mat3_mul()
 void __mat4_mul()
 {
         printf("MATRIX(4x4) C = A x B\n");
-        ncp::mat4 A, B, C;
+        glcp::mat4 A, B, C;
 
-        A = ncp::mat4(
+        A = glcp::mat4(
             1, 2, 3, 5,
             4, 5, 6, 6,
             7, 8, 9, 7,
             7, 8, 9, 7
         );
         
-        B = ncp::mat4(
+        B = glcp::mat4(
             9, 8, 7, 2,
             6, 5, 4, 4,
             3, 2, 1, 6,
@@ -112,11 +112,11 @@ void __mat4_mul()
         C = A * B;
 
         printf("A = \n");
-        ncp_println_matrix3(A);
+        glcp_println_matrix3(A);
         printf("B = \n");
-        ncp_println_matrix3(B);
+        glcp_println_matrix3(B);
         printf("A x B = \n");
-        ncp_println_matrix4(C);
+        glcp_println_matrix4(C);
 
         printf("\n");
 }
@@ -124,18 +124,18 @@ void __mat4_mul()
 void __vec2_mul()
 {
         printf("VECTOR(2) C = A x B\n");
-        ncp::vec2 A, B, C;
+        glcp::vec2 A, B, C;
         
-        A = ncp::vec2(1.0f, 2.0f);
-        B = ncp::vec2(3.0f, 4.0f);
+        A = glcp::vec2(1.0f, 2.0f);
+        B = glcp::vec2(3.0f, 4.0f);
         C = A * B;
 
         printf("    A = ");
-        ncp_println_vector2(A);
+        glcp_println_vector2(A);
         printf("    B = ");
-        ncp_println_vector2(B);
+        glcp_println_vector2(B);
         printf("A x B = ");
-        ncp_println_vector2(C);
+        glcp_println_vector2(C);
         
         printf("\n");
 }
@@ -143,18 +143,18 @@ void __vec2_mul()
 void __vec3_cross()
 {
         printf("VECTOR(3) C = A x(cross) B\n");
-        ncp::vec3 A, B, C;
+        glcp::vec3 A, B, C;
 
-        A = ncp::vec3(1.0f, 2.0f, 3.0f);
-        B = ncp::vec3(3.0f, 2.0f, 1.0f);
-        C = ncp::cross(A, B);
+        A = glcp::vec3(1.0f, 2.0f, 3.0f);
+        B = glcp::vec3(3.0f, 2.0f, 1.0f);
+        C = glcp::cross(A, B);
 
         printf("    A = ");
-        ncp_println_vector3(A);
+        glcp_println_vector3(A);
         printf("    B = ");
-        ncp_println_vector3(B);
+        glcp_println_vector3(B);
         printf("A x B = ");
-        ncp_println_vector3(C);
+        glcp_println_vector3(C);
 
         printf("\n");
 }
