@@ -18,6 +18,9 @@
 #ifndef MATH_VEC_H_
 #define MATH_VEC_H_
 
+#include <xmmintrin.h>
+#include <pmmintrin.h>
+
 #define FNC_OPERATOR_VEC2_IMPLEMENTS(op)                                                                \
         __vec2_t<T, N>                                                                                  \
             operator op (T scalar)                                                                      \
@@ -142,6 +145,37 @@ typedef __vec4_t<float> vec4;
 FNC_VECTOR_POINTER_IMPLEMENTS(__vec2_t)
 FNC_VECTOR_POINTER_IMPLEMENTS(__vec3_t)
 FNC_VECTOR_POINTER_IMPLEMENTS(__vec4_t)
+
+template <typename T, int N = 4>
+struct __mat4_t {
+        T array[N * N];
+
+        explicit __mat4_t() : __mat4_t(1.0f) {}
+        explicit __mat4_t(T scalar)
+        {
+                for (int i = 0; i < N * N; i++)
+                        array[i] = scalar;
+        }
+
+        __mat4_t<T, N>
+            operator*(const __mat4_t<T, N> &mat)
+              {
+                __mat4_t<T, N> q;
+                for (int i = 0; i < N; i++) {
+                        __m128 row = _mm_loadu_ps(&array[i * N]);
+                        for (int j = 0; j < N; j++) {
+                                __m128 col = _mm_set_ps(mat.array[3 * N + j], mat.array[2 * N + j],
+                                                        mat.array[1 * N + j], mat.array[0 * N + j]);
+                                __m128 mul = _mm_mul_ps(row, col); // NOLINT(*-simd-intrinsics)
+                                mul = _mm_hadd_ps(mul, mul);
+                                mul = _mm_hadd_ps(mul, mul);
+                                _mm_store_ss(&q.array[i * N + j], mul);
+                        }
+                }
+                return q;
+              }
+
+};
 
 } /* namespace umc */
 
