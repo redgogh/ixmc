@@ -44,11 +44,11 @@ void __mat2_mul()
         C = A * B;
 
         printf("A = \n");
-        sci_println_matrix2(A);
+        sci_write_matrix2(A);
         printf("B = \n");
-        sci_println_matrix2(B );
+        sci_write_matrix2(B );
         printf("A x B = \n");
-        sci_println_matrix2(C);
+        sci_write_matrix2(C);
 
         printf("\n");
 }
@@ -77,11 +77,11 @@ void __mat3_mul()
         C = A * B;
 
         printf("A = \n");
-        sci_println_matrix3(A);
+        sci_write_matrix3(A);
         printf("B = \n");
-        sci_println_matrix3(B );
+        sci_write_matrix3(B );
         printf("A x B = \n");
-        sci_println_matrix3(C);
+        sci_write_matrix3(C);
 
         printf("\n");
 }
@@ -112,11 +112,11 @@ void __mat4_mul()
         C = A * B;
 
         printf("A = \n");
-        sci_println_matrix3(A);
+        sci_write_matrix3(A);
         printf("B = \n");
-        sci_println_matrix3(B);
+        sci_write_matrix3(B);
         printf("A x B = \n");
-        sci_println_matrix4(C);
+        sci_write_matrix4(C);
 
         printf("\n");
 }
@@ -131,11 +131,11 @@ void __vec2_mul()
         C = A * B;
 
         printf("    A = ");
-        sci_println_vector2(A);
+        sci_write_vector2(A);
         printf("    B = ");
-        sci_println_vector2(B);
+        sci_write_vector2(B);
         printf("A x B = ");
-        sci_println_vector2(C);
+        sci_write_vector2(C);
         
         printf("\n");
 }
@@ -149,11 +149,11 @@ void __vec3_cross()
         C = sci::cross(A, B);
         
         printf("    A = ");
-        sci_println_vector3(A);
+        sci_write_vector3(A);
         printf("    B = ");
-        sci_println_vector3(B);
+        sci_write_vector3(B);
         printf("A x B = ");
-        sci_println_vector3(C);
+        sci_write_vector3(C);
 
         printf("\n");
 }
