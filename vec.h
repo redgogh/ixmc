@@ -397,12 +397,12 @@ typedef __mat2_t<float, 2> mat2;
 typedef __mat3_t<float, 3> mat3;
 typedef __mat4_t<float, 4> mat4;
 
-#define ump_println_vector2(vec)                                                                                  \
+#define umc_println_vector2(vec)                                                                                  \
          do {                                                                                                     \
                 printf("[ %f        %f ]\n", vec[0], vec[1]);                                                     \
          } while(0)
 
-#define ump_println_vector3(vec)                                                                                  \
+#define umc_println_vector3(vec)                                                                                  \
          do {                                                                                                     \
                 printf("[ %f        %f        %f ]\n", vec[0], vec[1], vec[2]);                                   \
          } while(0)                                                                                     
@@ -412,19 +412,19 @@ typedef __mat4_t<float, 4> mat4;
                 printf("[ %f        %f        %f        %f ]\n", vec[0], vec[1], vec[2], vec[3]);                 \
          } while(0)
 
-#define ump_println_matrix2(mat)                                                                                  \
+#define umc_println_matrix2(mat)                                                                                  \
         do {                                                                                                      \
             for (int i = 0; i < 3; i++)                                                                           \
                 printf("| %f        %f |\n", mat[i][0], mat[i][1]);                                               \
         } while (0)
 
-#define ump_println_matrix3(mat)                                                                                  \
+#define umc_println_matrix3(mat)                                                                                  \
         do {                                                                                                      \
             for (int i = 0; i < 3; i++)                                                                           \
                 printf("| %f        %f        %f |\n", mat[i][0], mat[i][1], mat[i][2]);                          \
         } while (0)
 
-#define ump_println_matrix4(mat)                                                                                  \
+#define umc_println_matrix4(mat)                                                                                  \
         do {                                                                                                      \
             for (int i = 0; i < 4; i++)                                                                           \
                 printf("| %f        %f        %f        %f |\n", mat[i][0], mat[i][1], mat[i][2], mat[i][3]);     \
