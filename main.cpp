@@ -38,7 +38,7 @@ void __mat2_mul()
         );
 
         printf("A = :\n");
-        matprint2(A);
+        ump_println_matrix2(A);
 
         B = umc::mat2(
             9, 8,
@@ -46,12 +46,12 @@ void __mat2_mul()
         );
 
         printf("B = :\n");
-        matprint2(B );
+        ump_println_matrix2(B );
 
         C = A * B;
 
         printf("A x B = :\n");
-        matprint2(C);
+        ump_println_matrix2(C);
 
         printf("\n");
 }
@@ -73,7 +73,7 @@ void __mat3_mul()
         );
 
         printf("A = :\n");
-        matprint3(A);
+        ump_println_matrix3(A);
         
         B = umc::mat3(
             9, 8, 7,
@@ -82,12 +82,12 @@ void __mat3_mul()
         );
 
         printf("B = :\n");
-        matprint3(B );
+        ump_println_matrix3(B );
 
         C = A * B;
 
         printf("A x B = :\n");
-        matprint3(C);
+        ump_println_matrix3(C);
 
         printf("\n");
 }
@@ -110,7 +110,7 @@ void __mat4_mul()
         );
 
         printf("A = :\n");
-        matprint4(A);
+        ump_println_matrix4(A);
 
         B = umc::mat4(
             9, 8, 7, 2,
@@ -120,12 +120,12 @@ void __mat4_mul()
         );
 
         printf("B = :\n");
-        matprint4(B );
+        ump_println_matrix4(B );
 
         C = A * B;
 
         printf("A x B = :\n");
-        matprint4(C);
+        ump_println_matrix4(C);
 
         printf("\n");
 }
