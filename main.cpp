@@ -57,9 +57,16 @@ void testing(const std::vector<float> &numbers, const char *title, FN_SQRT _sqrt
 
 int main()
 {
-        std::vector<float> numbers = random_numbers();
-        testing(numbers, "xmc::sqrt", xmc::sqrt);
-        testing(numbers, "std::sqrt", std::sqrt);
+        xmc_write_matrix2(xmc::mat2(2.0f));
+        std::cout << std::endl;
+        xmc_write_matrix3(xmc::mat3(3.0f));
+        std::cout << std::endl;
+        xmc_write_matrix4(xmc::mat4(4.0f));
+        std::cout << std::endl;
+        
+        // std::vector<float> numbers = random_numbers();
+        // testing(numbers, "xmc::sqrt", xmc::sqrt);
+        // testing(numbers, "std::sqrt", std::sqrt);
 }
 
 #pragma clang diagnostic pop

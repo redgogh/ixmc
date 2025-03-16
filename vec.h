@@ -173,13 +173,13 @@ FNC_VECTOR_POINTER_IMPLEMENTS(__vec4_t)
 
 template <typename T, int N = 2>
 struct __mat2_t {
-        std::array<T, N * N> array;
+        std::array<T, N * N> array = {};
 
         explicit __mat2_t() : __mat2_t(1.0f) {}
         explicit __mat2_t(T scalar)
           {
-            for (int i = 0; i < N * N; i++)
-                    array[i] = scalar;
+            for (int i = 0; i < N; i++)
+                    array[i * N + i] = scalar;
           }
         
         explicit __mat2_t
@@ -244,13 +244,13 @@ struct __mat2_t {
 
 template <typename T, int N = 3>
 struct __mat3_t {
-        std::array<T, N * N> array;
+        std::array<T, N * N> array = {};
 
         explicit __mat3_t() : __mat3_t(1.0f) {}
         explicit __mat3_t(T scalar)
           {
-            for (int i = 0; i < N * N; i++)
-                    array[i] = scalar;
+            for (int i = 0; i < N; i++)
+                    array[i * N + i] = scalar;
           }
 
         explicit __mat3_t
@@ -319,13 +319,13 @@ struct __mat3_t {
 
 template <typename T, int N = 4>
 struct __mat4_t {
-        std::array<T, N * N> array;
+        std::array<T, N * N> array = {};
 
         explicit __mat4_t() : __mat4_t(1.0f) {}
         explicit __mat4_t(T scalar)
           {
-            for (int i = 0; i < N * N; i++)
-                    array[i] = scalar;
+            for (int i = 0; i < N; i++)
+                    array[i * N + i] = scalar;
           }
 
         explicit __mat4_t
@@ -416,7 +416,7 @@ FNC_VECTOR_POINTER_IMPLEMENTS(__mat4_t);
 
 #define xmc_write_matrix2(mat)                                                                                    \
         do {                                                                                                      \
-            for (int i = 0; i < 3; i++)                                                                           \
+            for (int i = 0; i < 2; i++)                                                                           \
                 printf("| %f        %f |\n", mat[i][0], mat[i][1]);                                               \
         } while (0)
 
