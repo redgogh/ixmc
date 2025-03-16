@@ -152,6 +152,15 @@ vec3 cross(const vec3 &a, const vec3 &b)
         );
 }
 
+vec2 rotate(float angrad, const vec2 &vec)
+{
+        mat2 a(
+          cos(angrad), -sin(angrad),
+          sin(angrad),  cos(angrad)
+        );
+        return a * vec;
+}
+
 } /* namespace xmc */
 
 #endif /* MATH_H_ */

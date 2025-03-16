@@ -181,6 +181,11 @@ struct __mat2_t {
             for (int i = 0; i < N; i++)
                     array[i * N + i] = scalar;
           }
+          
+        explicit __mat2_t(T x, T y) : __mat2_t(
+           x, 0,
+           0, y
+        ) {}
         
         explicit __mat2_t
           (
@@ -252,7 +257,13 @@ struct __mat3_t {
             for (int i = 0; i < N; i++)
                     array[i * N + i] = scalar;
           }
-
+          
+        explicit __mat3_t(T x, T y, T z) : __mat3_t(
+            x, 0, 0,
+            0, y, 0,
+            0, 0, z
+        ) {}
+          
         explicit __mat3_t
           (
             T a1, T b1, T c1,
@@ -328,6 +339,13 @@ struct __mat4_t {
                     array[i * N + i] = scalar;
           }
 
+        explicit __mat4_t(T x, T y, T z, T w) : __mat4_t(
+            x, 0, 0, 0,
+            0, y, 0, 0,
+            0, 0, z, 0,
+            0, 0, 0, w
+        ) {}
+          
         explicit __mat4_t
           (
             T a1, T b1, T c1, T d1,

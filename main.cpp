@@ -57,12 +57,9 @@ void testing(const std::vector<float> &numbers, const char *title, FN_SQRT _sqrt
 
 int main()
 {
-        xmc_write_matrix2(xmc::mat2(2.0f));
-        std::cout << std::endl;
-        xmc_write_matrix3(xmc::mat3(3.0f));
-        std::cout << std::endl;
-        xmc_write_matrix4(xmc::mat4(4.0f));
-        std::cout << std::endl;
+        xmc::vec2 a(4.0f, 8.0f);
+
+        xmc_write_vector2(xmc::rotate(xmc::radians(180), a));
         
         // std::vector<float> numbers = random_numbers();
         // testing(numbers, "xmc::sqrt", xmc::sqrt);
