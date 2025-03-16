@@ -21,8 +21,9 @@
 #include "vec.h"
 // SIMD(__SSE__)
 #include <immintrin.h>
+// std
+#include <cmath>
 
-#define NAN     __builtin_nanf("")
 #define PI      (3.14159265358979323846F)
 
 namespace xmc {
@@ -63,38 +64,13 @@ float radians(int angdeg)
         return (float) angdeg * (PI / 180.0f);
 }
 
-float sin(float a)
+float sin(float x)
 {
-        a = fmod(a, 2 * PI);
-
-        float q = a;
-        float t = a;
-        int sign = 1;
-        int limit = a < 1.0f ? 16 : 32;
-
-        for (int n = 3; n <= limit; n += 2) {
-                t *= (a * a) / (float) (n * (n - 1));
-                q += (float) (sign *= -1) * t;
-        }
-
-        return q;
+        return std::sin(x);
 }
 
-float cos(float a)
-{
-        a = fmod(a, 2 * PI);
-
-        float q = 1.0f;
-        float t = 1.0f;
-        int sign = 1;
-        int limit = a < 1.0f ? 16 : 32;
-
-        for (int n = 2; n <= limit; n += 2) {
-                t *= (a * a) / (float) (n * (n - 1));
-                q += (float) (sign *= -1) * t;
-        }
-
-        return q;
+float cos(float x) {
+        return std::cos(x);
 }
 
 float sqrt(float x)
@@ -104,7 +80,7 @@ float sqrt(float x)
 
         __m128 vec = _mm_set_ss(x);
         vec = _mm_sqrt_ss(vec);
-        
+
         return _mm_cvtss_f32(vec);
 }
 
