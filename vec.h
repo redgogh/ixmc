@@ -118,9 +118,10 @@ struct __vec3_t {
                 T array[N];
         };
 
-        explicit __vec3_t()              : __vec3_t(fV) {}
-        explicit __vec3_t(T scalar)      : __vec3_t(scalar, scalar, scalar) {}
-        explicit __vec3_t(T x, T y, T z) : r(x), g(y), b(z) {}
+        explicit __vec3_t()                             : __vec3_t(fV) {}
+        explicit __vec3_t(T scalar)                     : __vec3_t(scalar, scalar, scalar) {}
+        explicit __vec3_t(const __vec2_t<T> &vec, T z)  : __vec3_t(vec.x, vec,y, z) {}
+        explicit __vec3_t(T x, T y, T z)                : r(x), g(y), b(z) {}
 
         FNC_OPERATOR_INDEX_GET_IMPLEMENTS();
         
@@ -143,9 +144,10 @@ struct __vec4_t {
                 T array[N];
         };
 
-        explicit __vec4_t()                   : __vec4_t(fV) {}
-        explicit __vec4_t(T scalar)           : __vec4_t(scalar, scalar, scalar, scalar) {}
-        explicit __vec4_t(T x, T y, T z, T w) : r(x), g(y), b(z), a(w) {}
+        explicit __vec4_t()                             : __vec4_t(fV) {}
+        explicit __vec4_t(T scalar)                     : __vec4_t(scalar, scalar, scalar, scalar) {}
+        explicit __vec4_t(const __vec3_t<T> &vec, T w)  : __vec4_t(vec.x, vec,y, vec.z, w) {}
+        explicit __vec4_t(T x, T y, T z, T w)           : r(x), g(y), b(z), a(w) {}
 
         FNC_OPERATOR_INDEX_GET_IMPLEMENTS();
         

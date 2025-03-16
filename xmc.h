@@ -51,6 +51,7 @@ float pow(float x, int a)
         while ((a--) > 0)
                 q *= x;
 
+
         return q;
 }
 
@@ -126,15 +127,6 @@ vec3 cross(const vec3 &a, const vec3 &b)
             (a.z * b.x) - (a.x * b.z),
             (a.x * b.y) - (a.y * b.x)
         );
-}
-
-vec2 rotate(float angrad, const vec2 &vec)
-{
-        mat2 a(
-          cos(angrad), -sin(angrad),
-          sin(angrad),  cos(angrad)
-        );
-        return a * vec;
 }
 
 } /* namespace xmc */
