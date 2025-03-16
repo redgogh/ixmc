@@ -19,11 +19,13 @@
 #define MATH_H_
 
 #include "vec.h"
+// SIMD(__SSE__)
+#include <immintrin.h>
 
 #define NAN     __builtin_nanf("")
 #define PI      (3.14159265358979323846F)
 
-namespace sci {
+namespace xmc {
 
 float fmod (float x, float y)
 {
@@ -95,23 +97,15 @@ float cos(float a)
         return q;
 }
 
-float sqrt(float x, float tol = 1e-10, int max = 1024)
+float sqrt(float x)
 {
         if (x < 0)
                 return NAN;
 
-        float fx = x;
-
-        for (int i = 0; i < max; i++) {
-                float n = 0.5f * (fx + x / fx);
-
-                if (abs(n - fx) < tol)
-                        return n;
-
-                fx = n;
-        }
-
-        return fx;
+        __m128 vec = _mm_set_ss(x);
+        vec = _mm_sqrt_ss(vec);
+        
+        return _mm_cvtss_f32(vec);
 }
 
 float len(const vec2 &vec)
@@ -158,6 +152,6 @@ vec3 cross(const vec3 &a, const vec3 &b)
         );
 }
 
-} /* namespace sci */
+} /* namespace xmc */
 
 #endif /* MATH_H_ */

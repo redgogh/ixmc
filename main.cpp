@@ -18,157 +18,48 @@
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
 
-#include "sci.h"
+#include "xmc.h"
 // std
 #include <iostream>
+#include <chrono>
+#include <vector>
+#include <random>
 
-/**
- * this method for test and validation Matrix2x2 multiply result
- * is correct.
- */
-void __mat2_mul()
+typedef float (*FN_SQRT) (float);
+
+std::vector<float> random_numbers(unsigned int count = 10000)
 {
-        printf("MATRIX(2x2) C = A x B\n");
-        sci::mat2 A, B, C;
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<float> dist(0.0f, 1000000.0f);
 
-        A = sci::mat2 (
-            1, 2,
-            4, 5
-        );
+        std::vector<float> numbers(count);
+        for (size_t i = 0; i < count; i++)
+                numbers[i] = dist(gen);
 
-        B = sci::mat2(
-            9, 8,
-            6, 5
-        );
-        
-        C = A * B;
-
-        printf("A = \n");
-        sci_write_matrix2(A);
-        printf("B = \n");
-        sci_write_matrix2(B );
-        printf("A x B = \n");
-        sci_write_matrix2(C);
-
-        printf("\n");
+        return numbers; 
 }
 
-/**
- * this method for test and validation Matrix3x3 multiply result
- * is correct.
- */
-void __mat3_mul()
+void testing(const std::vector<float> &numbers, const char *title, FN_SQRT _sqrt)
 {
-        printf("MATRIX(3x3) C = A x B\n");;
-        sci::mat3 A, B, C;
+        auto start = std::chrono::high_resolution_clock::now();
         
-        A = sci::mat3(
-            1, 2, 3,
-            4, 5, 6,
-            7, 8, 9
-        );
+        float a = 0.0f;
+        for (const auto &number : numbers)
+                a += _sqrt(number);
+
+        auto end = std::chrono::high_resolution_clock::now();
+
+        auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
         
-        B = sci::mat3(
-            9, 8, 7,
-            6, 5, 4,
-            3, 2, 1
-        );
-        
-        C = A * B;
-
-        printf("A = \n");
-        sci_write_matrix3(A);
-        printf("B = \n");
-        sci_write_matrix3(B );
-        printf("A x B = \n");
-        sci_write_matrix3(C);
-
-        printf("\n");
-}
-
-/**
- * this method for test and validation Matrix3x3 multiply result
- * is correct.
- */
-void __mat4_mul()
-{
-        printf("MATRIX(4x4) C = A x B\n");
-        sci::mat4 A, B, C;
-
-        A = sci::mat4(
-            1, 2, 3, 5,
-            4, 5, 6, 6,
-            7, 8, 9, 7,
-            7, 8, 9, 7
-        );
-        
-        B = sci::mat4(
-            9, 8, 7, 2,
-            6, 5, 4, 4,
-            3, 2, 1, 6,
-            6, 5, 4, 4
-        );
-        
-        C = A * B;
-
-        printf("A = \n");
-        sci_write_matrix3(A);
-        printf("B = \n");
-        sci_write_matrix3(B);
-        printf("A x B = \n");
-        sci_write_matrix4(C);
-
-        printf("\n");
-}
-
-void __vec2_mul()
-{
-        printf("VECTOR(2) C = A x B\n");
-        sci::vec2 A, B, C;
-        
-        A = sci::vec2(1.0f, 2.0f);
-        B = sci::vec2(3.0f, 4.0f);
-        C = A * B;
-
-        printf("    A = ");
-        sci_write_vector2(A);
-        printf("    B = ");
-        sci_write_vector2(B);
-        printf("A x B = ");
-        sci_write_vector2(C);
-        
-        printf("\n");
-}
-
-void __vec3_cross()
-{
-        printf("VECTOR(3) C = A x(cross) B\n");
-        sci::vec3 A, B, C;
-        A = sci::vec3(1.0f, 2.0f, 3.0f);
-        B = sci::vec3(3.0f, 2.0f, 1.0f);
-        C = sci::cross(A, B);
-        
-        printf("    A = ");
-        sci_write_vector3(A);
-        printf("    B = ");
-        sci_write_vector3(B);
-        printf("A x B = ");
-        sci_write_vector3(C);
-
-        printf("\n");
+        std::cout << title << ", time: " << duration.count() << "ns" << std::endl;
 }
 
 int main()
 {
-        __mat2_mul();
-        __mat3_mul();
-        __mat4_mul();
-
-        __vec2_mul();
-
-        __vec3_cross();
-
-        return 0;
+        std::vector<float> numbers = random_numbers();
+        testing(numbers, "xmc::sqrt", xmc::sqrt);
+        testing(numbers, "std::sqrt", std::sqrt);
 }
 
 #pragma clang diagnostic pop
