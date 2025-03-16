@@ -59,8 +59,6 @@ int main()
 {
         xmc::vec2 a(4.0f, 8.0f);
 
-        xmc_write_vector2(xmc::rotate(xmc::radians(180), a));
-        
         // std::vector<float> numbers = random_numbers();
         // testing(numbers, "xmc::sqrt", xmc::sqrt);
         // testing(numbers, "std::sqrt", std::sqrt);
