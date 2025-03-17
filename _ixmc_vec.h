@@ -101,7 +101,6 @@ struct __vec_t {
           {
             return this->data[index];
           }
-
 };
 
 template<typename T, size_t N = 2>
@@ -123,7 +122,7 @@ struct __vec2_t : private __vec_t<T, N> {
         IXMC_MACRO_CONSTRACTOR(__vec2_t);
 
         explicit __vec2_t(const T& scalar)
-          : __vec2_t(static_cast<T>(scalar), static_cast<T>(scalar))
+          : __vec2_t(scalar, scalar)
             { /* do nothing... */ }
 
         __vec2_t(T x, T y)
@@ -161,11 +160,11 @@ struct __vec3_t : private __vec_t<T, N> {
         IXMC_MACRO_CONSTRACTOR(__vec3_t);
 
         explicit __vec3_t(const T& scalar)
-          : __vec3_t(static_cast<T>(scalar), static_cast<T>(scalar), static_cast<T>(scalar))
+          : __vec3_t(scalar, scalar, scalar)
             { /* do nothing... */ }
 
         explicit __vec3_t(const __vec2_t<T> &vec, T z)
-          : __vec3_t(vec.x, vec.y, static_cast<T>(z))
+          : __vec3_t(vec.x, vec.y, z)
             { /* do nothing... */ }
 
         __vec3_t(T x, T y, T z)
@@ -209,12 +208,11 @@ struct __vec4_t : private __vec_t<T, N> {
         IXMC_MACRO_CONSTRACTOR(__vec4_t);
 
         explicit __vec4_t(const T& scalar)
-          : __vec4_t(static_cast<T>(scalar), static_cast<T>(scalar), static_cast<T>(scalar),
-                     static_cast<T>(scalar))
+          : __vec4_t(scalar, scalar, scalar, scalar)
             { /* do nothing... */ }
 
         explicit __vec4_t(const __vec3_t<T> &vec, T w)
-          : __vec4_t(vec.x, vec.y, vec.z, static_cast<T>(w))
+          : __vec4_t(vec.x, vec.y, vec.z, w)
             { /* do nothing... */ }
 
         __vec4_t(T x, T y, T z, T w)
@@ -249,13 +247,13 @@ IXMC_VALUE_PTR_IMPLEMENTS(__vec4_t)
 
 template <typename T, int N = 2>
 struct __mat2_t {
-        std::array<T, N * N> array = {};
+        std::array<T, N * N> data = {};
 
         explicit __mat2_t() : __mat2_t(1.0f) {}
         explicit __mat2_t(T scalar)
           {
             for (int i = 0; i < N; i++)
-                    array[i * N + i] = scalar;
+                    data[i * N + i] = scalar;
           }
 
         explicit __mat2_t(T x, T y) : __mat2_t(
@@ -267,38 +265,29 @@ struct __mat2_t {
           (
             T a1, T b1,
             T a2, T b2
-          ) : array {
+          ) : data {
             a1, b1,
             a2, b2
           } {}
 
-        /*
-         * __proxy_ref_t struct for overriding the second [] operator.
-         */
-        struct __proxy_ref_t {
-                T *ref;
-                explicit __proxy_ref_t(T *p_ref) : ref(p_ref) {}
-                T& operator[](size_t i) { return ref[i]; }
-        };
+        const T* operator[](size_t index) const
+          { return data[index]; }
 
-        __proxy_ref_t
-            operator[](size_t i) const
-              {
-                return __proxy_ref_t(&array[i * N]);
-              }
+        T* operator[](size_t index)
+          { return data[index]; }
 
         __mat2_t<T, N>
             operator*(const __mat2_t<T, N> &other) const
               {
                 __mat2_t<T, N> q;
                 for (int i = 0; i < N; i++) {
-                        __m128 row = _mm_loadu_ps(&array[i * N]);
+                        __m128 row = _mm_loadu_ps(&data[i * N]);
                         for (int j = 0; j < N; j++) {
-                                __m128 col = _mm_set_ps(0.0f, 0.0f, other.array[1 * N + j], other.array[0 * N + j]);
+                                __m128 col = _mm_set_ps(0.0f, 0.0f, other.data[1 * N + j], other.data[0 * N + j]);
                                 __m128 mul = _mm_mul_ps(row, col); // NOLINT(*-simd-intrinsics)
                                 mul = _mm_hadd_ps(mul, mul);
                                 mul = _mm_hadd_ps(mul, mul);
-                                _mm_store_ss(&q.array[i * N + j], mul);
+                                _mm_store_ss(&q.data[i * N + j], mul);
                         }
                 }
                 return q;
@@ -310,7 +299,7 @@ struct __mat2_t {
                 __vec2_t<T, N> vec;
                 for (int i = 0; i < N; i++) {
                         __m128 vec128 = _mm_set_ps(other[1], other[0], 0.0f, 0.0f);
-                        __m128 row128 = _mm_set_ps(array[i * N + 1], array[i * N + 0], 0.0f, 0.0f);
+                        __m128 row128 = _mm_set_ps(data[i * N + 1], data[i * N + 0], 0.0f, 0.0f);
                         __m128 mul128 = _mm_mul_ps(vec128, row128);
 
                         mul128 = _mm_hadd_ps(mul128, mul128);
@@ -325,13 +314,13 @@ struct __mat2_t {
 
 template <typename T, int N = 3>
 struct __mat3_t {
-        std::array<T, N * N> array = {};
+        std::array<T, N * N> data = {};
 
         explicit __mat3_t() : __mat3_t(1.0f) {}
         explicit __mat3_t(T scalar)
           {
             for (int i = 0; i < N; i++)
-                    array[i * N + i] = scalar;
+                    data[i * N + i] = scalar;
           }
           
         explicit __mat3_t(T x, T y, T z) : __mat3_t(
@@ -345,41 +334,31 @@ struct __mat3_t {
             T a1, T b1, T c1,
             T a2, T b2, T c2,
             T a3, T b3, T c3
-          ) : array {
+          ) : data {
             a1, b1, c1,
             a2, b2, c2,
             a3, b3, c3
           } {}
-          
-        /*
-         * __proxy_ref_t struct for overriding the second [] operator.
-         */
-        struct __proxy_ref_t {
-                T *ref;
-                explicit __proxy_ref_t(T *p_ref) : ref(p_ref) {}
-                T& operator[](size_t i) { return ref[i]; }
-                
-        };
 
-        __proxy_ref_t
-            operator[](size_t i) const
-              {
-                return __proxy_ref_t(&array[i * N]);
-              }
+        const T* operator[](size_t index) const
+          { return data[index]; }
+
+        T* operator[](size_t index)
+          { return data[index]; }
 
         __mat3_t<T, N>
             operator*(const __mat3_t<T, N> &other) const
               {
                 __mat3_t<T, N> mat;
                 for (int i = 0; i < N; i++) {
-                        __m128 row = _mm_loadu_ps(&array[i * N]);
+                        __m128 row = _mm_loadu_ps(&data[i * N]);
                         for (int j = 0; j < N; j++) {
-                                __m128 col = _mm_set_ps(0.0f, other.array[2 * N + j],
-                                                        other.array[1 * N + j], other.array[0 * N + j]);
+                                __m128 col = _mm_set_ps(0.0f, other.data[2 * N + j],
+                                                        other.data[1 * N + j], other.data[0 * N + j]);
                                 __m128 mul = _mm_mul_ps(row, col); // NOLINT(*-simd-intrinsics)
                                 mul = _mm_hadd_ps(mul, mul);
                                 mul = _mm_hadd_ps(mul, mul);
-                                _mm_store_ss(&mat.array[i * N + j], mul);
+                                _mm_store_ss(&mat.data[i * N + j], mul);
                         }
                 }
                 return mat;
@@ -391,7 +370,7 @@ struct __mat3_t {
                 __vec3_t<T, N> vec;
                 for (int i = 0; i < N; i++) {
                         __m128 vec128 = _mm_set_ps(other[2], other[1], other[0], 0.0f);
-                        __m128 row128 = _mm_set_ps(array[i * N + 2], array[i * N + 1], array[i * N + 0], 0.0f);
+                        __m128 row128 = _mm_set_ps(data[i * N + 2], data[i * N + 1], data[i * N + 0], 0.0f);
                         __m128 mul128 = _mm_mul_ps(vec128, row128);
 
                         mul128 = _mm_hadd_ps(mul128, mul128);
@@ -406,13 +385,13 @@ struct __mat3_t {
 
 template <typename T, int N = 4>
 struct __mat4_t {
-        std::array<T, N * N> array = {};
+        std::array<T, N * N> data = {};
 
         explicit __mat4_t() : __mat4_t(1.0f) {}
         explicit __mat4_t(T scalar)
           {
             for (int i = 0; i < N; i++)
-                    array[i * N + i] = scalar;
+                    data[i * N + i] = scalar;
           }
 
         explicit __mat4_t(T x, T y, T z, T w) : __mat4_t(
@@ -428,41 +407,32 @@ struct __mat4_t {
             T a2, T b2, T c2, T d2,
             T a3, T b3, T c3, T d3,
             T a4, T b4, T c4, T d4
-          ) : array {
+          ) : data {
             a1, b1, c1, d1,
             a2, b2, c2, d2,
             a3, b3, c3, d3,
             a4, b4, c4, d4,
           } {}
 
-        /*
-         * __proxy_ref_t struct for overriding the second [] operator.
-         */
-        struct __proxy_ref_t {
-                T *ref;
-                explicit __proxy_ref_t(T *p_ref) : ref(p_ref) {}
-                T& operator[](size_t i) { return ref[i]; }
-        };
+        const T* operator[](size_t index) const
+          { return data[index]; }
 
-        __proxy_ref_t
-            operator[](size_t i) const
-              {
-                return __proxy_ref_t(&array[i * N]);
-              }
+        T* operator[](size_t index)
+          { return data[index]; }
 
         __mat4_t<T, N>
             operator*(const __mat4_t<T, N> &other) const
               {
                 __mat4_t<T, N> q;
                 for (int i = 0; i < N; i++) {
-                        __m128 row = _mm_loadu_ps(&array[i * N]);
+                        __m128 row = _mm_loadu_ps(&data[i * N]);
                         for (int j = 0; j < N; j++) {
-                                __m128 col = _mm_set_ps(other.array[3 * N + j], other.array[2 * N + j],
-                                                        other.array[1 * N + j], other.array[0 * N + j]);
+                                __m128 col = _mm_set_ps(other.data[3 * N + j], other.data[2 * N + j],
+                                                        other.data[1 * N + j], other.data[0 * N + j]);
                                 __m128 mul = _mm_mul_ps(row, col); // NOLINT(*-simd-intrinsics)
                                 mul = _mm_hadd_ps(mul, mul);
                                 mul = _mm_hadd_ps(mul, mul);
-                                _mm_store_ss(&q.array[i * N + j], mul);
+                                _mm_store_ss(&q.data[i * N + j], mul);
                         }
                 }
                 return q;
@@ -474,7 +444,7 @@ struct __mat4_t {
                 __vec4_t<T, N> vec;
                 for (int i = 0; i < N; i++) {
                         __m128 vec128 = _mm_set_ps(other[3], other[2], other[1], other[0]);
-                        __m128 row128 = _mm_set_ps(array[i * N + 3], array[i * N + 2], array[i * N + 1], array[i * N + 0]);
+                        __m128 row128 = _mm_set_ps(data[i * N + 3], data[i * N + 2], data[i * N + 1], data[i * N + 0]);
                         __m128 mul128 = _mm_mul_ps(vec128, row128);
 
                         mul128 = _mm_hadd_ps(mul128, mul128);

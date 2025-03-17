@@ -92,8 +92,8 @@ void performance(const char *title, FN_TEST_PFM fn_performance_ptr)
 
 int main()
 {
-        performance("glm_calc_trs_matrix", glm_calc_trs_matrix);
-        performance("ixmc_calc_trs_matrix", ixmc_calc_trs_matrix);
+        // performance("glm_calc_trs_matrix", glm_calc_trs_matrix);
+        // performance("ixmc_calc_trs_matrix", ixmc_calc_trs_matrix);
 }
 
 #pragma clang diagnostic pop
