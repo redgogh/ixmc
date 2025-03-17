@@ -271,10 +271,10 @@ struct __mat2_t {
           } {}
 
         const T* operator[](size_t index) const
-          { return data[index]; }
+          { return &data[index * N]; }
 
         T* operator[](size_t index)
-          { return data[index]; }
+          { return &data[index * N]; }
 
         __mat2_t<T, N>
             operator*(const __mat2_t<T, N> &other) const
@@ -341,10 +341,10 @@ struct __mat3_t {
           } {}
 
         const T* operator[](size_t index) const
-          { return data[index]; }
+          { return &data[index * N]; }
 
         T* operator[](size_t index)
-          { return data[index]; }
+          { return &data[index * N]; }
 
         __mat3_t<T, N>
             operator*(const __mat3_t<T, N> &other) const
@@ -390,8 +390,8 @@ struct __mat4_t {
         explicit __mat4_t() : __mat4_t(1.0f) {}
         explicit __mat4_t(T scalar)
           {
-            for (int i = 0; i < N; i++)
-                    data[i * N + i] = scalar;
+                    for (int i = 0; i < N; i++)
+                        data[i * N + i] = scalar;
           }
 
         explicit __mat4_t(T x, T y, T z, T w) : __mat4_t(
@@ -415,10 +415,10 @@ struct __mat4_t {
           } {}
 
         const T* operator[](size_t index) const
-          { return data[index]; }
+          { return &data[index * N]; }
 
         T* operator[](size_t index)
-          { return data[index]; }
+          { return &data[index * N]; }
 
         __mat4_t<T, N>
             operator*(const __mat4_t<T, N> &other) const
