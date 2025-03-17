@@ -29,37 +29,13 @@
 #include <array>
 #include <initializer_list>
 
-template<typename T, size_t N>
-struct __vec_t {
-        union {
-                std::array<T, N> data;
-                struct { T x, y, z, w; };
-                struct { T r, g, b, a; };
-        };
-};
+// Default constructor for vec type.
+#define IXMC_MACRO_CONSTRACTOR(vec)                                                                     \
+        vec()                         = default;                                                        \
+        vec(const vec&)               = default;                                                        \
+        vec& operator=(const vec&)    = default;
 
-template<typename T, size_t N = 2>
-struct __vec2_t : private __vec_t<T, N> {
-        // using x, y members
-        using __vec_t<T, N>::x;
-        using __vec_t<T, N>::y;
-        
-        // using r, g members
-        using __vec_t<T, N>::r;
-        using __vec_t<T, N>::g;
-        
-        __vec2_t()                              = default;
-        __vec2_t(const __vec2_t&)               = default;
-        __vec2_t& operator=(const __vec2_t&)    = default;
-        
-        __vec2_t(T x, T y)
-          {
-            this->data[0] = static_cast<T>(x);
-            this->data[1] = static_cast<T>(y);
-          }
-};
-
-#define FNC_OPERATOR_VEC2_IMPLEMENTS(op)                                                                \
+#define IXMC_OPERATION_VEC2_IMPLEMENTS(op)                                                              \
         __vec2_t<T, N>                                                                                  \
             operator op (T scalar)                                                                      \
                 {                                                                                       \
@@ -72,7 +48,7 @@ struct __vec2_t : private __vec_t<T, N> {
                    return __vec2_t<T, N>(x op vec.x, y op vec.y);                                       \
                 }
 
-#define FNC_OPERATOR_VEC3_IMPLEMENTS(op)                                                                \
+#define IXMC_OPERATION_VEC3_IMPLEMENTS(op)                                                              \
         __vec3_t<T, N>                                                                                  \
             operator op (T scalar)                                                                      \
                 {                                                                                       \
@@ -85,7 +61,7 @@ struct __vec2_t : private __vec_t<T, N> {
                    return __vec3_t<T, N>(x op vec.x, y op vec.y, z op vec.z);                           \
                 }
 
-#define FNC_OPERATOR_VEC4_IMPLEMENTS(op)                                                                \
+#define IXMC_OPERATION_VEC4_IMPLEMENTS(op)                                                              \
         __vec4_t<T, N>                                                                                  \
             operator op (T scalar)                                                                      \
                 {                                                                                       \
@@ -98,126 +74,178 @@ struct __vec2_t : private __vec_t<T, N> {
                    return __vec4_t<T, N>(x op vec.x, y op vec.y, z op vec.z, w op vec.w);               \
                 }
 
-#define FNC_OPERATOR_INDEX_GET_IMPLEMENTS()                                                             \
-        T& operator[](size_t i)                                                                         \
+#define IXMC_VALUE_PTR_IMPLEMENTS(type)                                                                 \
+    template<typename T>                                                                                \
+        inline static T* value_ptr(type<T> &tp)                                                         \
           {                                                                                             \
-            return array[i];                                                                            \
-          }                                                                                             \
-                                                                                                        \
-        const T&                                                                                        \
-            operator[](size_t i) const                                                                  \
-            {                                                                                           \
-              return array[i];                                                                          \
-            }
+            return &tp.data[0];                                                                         \
+          }
 
+/* namespace ixmc */
 namespace ixmc {
 
-template<typename T, int N = 2>
-struct __vec2_t {
-        static constexpr T fV = T(0.0f);
-
+template<typename T, size_t N>
+struct __vec_t {
         union {
-                struct { T x, y; };
-                struct { T r, g; };
-
-                /* data pointer */
-                T array[N];
-        };
-
-        explicit __vec2_t()         : __vec2_t(fV) {}
-        explicit __vec2_t(T scalar) : __vec2_t(scalar, scalar) {}
-        explicit __vec2_t(T x, T y) : r(x), g(y) {}
-
-        FNC_OPERATOR_INDEX_GET_IMPLEMENTS();
-        
-        FNC_OPERATOR_VEC2_IMPLEMENTS(+);
-        FNC_OPERATOR_VEC2_IMPLEMENTS(-);
-        FNC_OPERATOR_VEC2_IMPLEMENTS(*);
-        FNC_OPERATOR_VEC2_IMPLEMENTS(/);
-        
-};
-
-template<typename T, int N = 3>
-struct __vec3_t {
-        static constexpr T fV = T(0.0f);
-
-        union {
-                struct { T x, y, z; };
-                struct { T r, g, b; };
-
-                /* data pointer */
-                T array[N];
-        };
-
-        explicit __vec3_t()                             : __vec3_t(fV) {}
-        explicit __vec3_t(T scalar)                     : __vec3_t(scalar, scalar, scalar) {}
-        explicit __vec3_t(const __vec2_t<T> &vec, T z)  : __vec3_t(vec.x, vec.y, z) {}
-        explicit __vec3_t(T x, T y, T z)                : r(x), g(y), b(z) {}
-
-        FNC_OPERATOR_INDEX_GET_IMPLEMENTS();
-        
-        FNC_OPERATOR_VEC3_IMPLEMENTS(+);
-        FNC_OPERATOR_VEC3_IMPLEMENTS(-);
-        FNC_OPERATOR_VEC3_IMPLEMENTS(*);
-        FNC_OPERATOR_VEC3_IMPLEMENTS(/);
-
-        __vec2_t<T> xy() const
-          {
-            return __vec_2<T>(x, y);
-          }
-        
-};
-
-template<typename T, int N = 4>
-struct __vec4_t {
-        static constexpr T fV = T(0.0f);
-
-        union {
+                std::array<T, N> data;
                 struct { T x, y, z, w; };
                 struct { T r, g, b, a; };
-
-                /* data pointer */
-                T array[N];
         };
 
-        explicit __vec4_t()                             : __vec4_t(fV) {}
-        explicit __vec4_t(T scalar)                     : __vec4_t(scalar, scalar, scalar, scalar) {}
-        explicit __vec4_t(const __vec3_t<T> &vec, T w)  : __vec4_t(vec.x, vec.y, vec.z, w) {}
-        explicit __vec4_t(T x, T y, T z, T w)           : r(x), g(y), b(z), a(w) {}
-
-        FNC_OPERATOR_INDEX_GET_IMPLEMENTS();
-        
-        FNC_OPERATOR_VEC4_IMPLEMENTS(+);
-        FNC_OPERATOR_VEC4_IMPLEMENTS(-);
-        FNC_OPERATOR_VEC4_IMPLEMENTS(*);
-        FNC_OPERATOR_VEC4_IMPLEMENTS(/);
-
-        __vec2_t<T> xy() const
+        T& operator[](size_t index)
           {
-            return __vec2_t(x, y);
+            return this->data[index];
           }
-        
-        __vec3_t<T> xyz() const 
+
+        const T& operator[](size_t index) const
           {
-            return __vec3_t(x, y ,z);
+            return this->data[index];
           }
-          
+
+};
+
+template<typename T, size_t N = 2>
+struct __vec2_t : private __vec_t<T, N> {
+        // using x, y members
+        using __vec_t<T, N>::x;
+        using __vec_t<T, N>::y;
+
+        // using r, g members
+        using __vec_t<T, N>::r;
+        using __vec_t<T, N>::g;
+
+        // using data
+        using __vec_t<T, N>::data;
+
+        // using operator
+        using __vec_t<T, N>::operator[];
+
+        IXMC_MACRO_CONSTRACTOR(__vec2_t);
+
+        explicit __vec2_t(const T& scalar)
+          : __vec2_t(static_cast<T>(scalar), static_cast<T>(scalar))
+            { /* do nothing... */ }
+
+        __vec2_t(T x, T y)
+          {
+            this->data[0] = static_cast<T>(x);
+            this->data[1] = static_cast<T>(y);
+          }
+
+        // operation for __vec2_t<T, N>
+        IXMC_OPERATION_VEC2_IMPLEMENTS(+);
+        IXMC_OPERATION_VEC2_IMPLEMENTS(-);
+        IXMC_OPERATION_VEC2_IMPLEMENTS(*);
+        IXMC_OPERATION_VEC2_IMPLEMENTS(/);
+
+};
+
+template<typename T, size_t N = 3>
+struct __vec3_t : private __vec_t<T, N> {
+        // using x, y, z members
+        using __vec_t<T, N>::x;
+        using __vec_t<T, N>::y;
+        using __vec_t<T, N>::z;
+
+        // using r, g, b members
+        using __vec_t<T, N>::r;
+        using __vec_t<T, N>::g;
+        using __vec_t<T, N>::b;
+
+        // using data
+        using __vec_t<T, N>::data;
+
+        // using operator
+        using __vec_t<T, N>::operator[];
+
+        IXMC_MACRO_CONSTRACTOR(__vec3_t);
+
+        explicit __vec3_t(const T& scalar)
+          : __vec3_t(static_cast<T>(scalar), static_cast<T>(scalar), static_cast<T>(scalar))
+            { /* do nothing... */ }
+
+        explicit __vec3_t(const __vec2_t<T> &vec, T z)
+          : __vec3_t(vec.x, vec.y, static_cast<T>(z))
+            { /* do nothing... */ }
+
+        __vec3_t(T x, T y, T z)
+          {
+            this->data[0] = static_cast<T>(x);
+            this->data[1] = static_cast<T>(y);
+            this->data[2] = static_cast<T>(z);
+          }
+
+        __vec2_t<T> xy()
+          { return __vec2_t<T>(x, y); }
+
+        // operation for __vec3_t<T, N>
+        IXMC_OPERATION_VEC3_IMPLEMENTS(+);
+        IXMC_OPERATION_VEC3_IMPLEMENTS(-);
+        IXMC_OPERATION_VEC3_IMPLEMENTS(*);
+        IXMC_OPERATION_VEC3_IMPLEMENTS(/);
+
+};
+
+template<typename T, size_t N = 4>
+struct __vec4_t : private __vec_t<T, N> {
+        // using x, y, z members
+        using __vec_t<T, N>::x;
+        using __vec_t<T, N>::y;
+        using __vec_t<T, N>::z;
+        using __vec_t<T, N>::w;
+
+        // using r, g, b members
+        using __vec_t<T, N>::r;
+        using __vec_t<T, N>::g;
+        using __vec_t<T, N>::b;
+        using __vec_t<T, N>::a;
+
+        // using data
+        using __vec_t<T, N>::data;
+
+        // using operator
+        using __vec_t<T, N>::operator[];
+
+        IXMC_MACRO_CONSTRACTOR(__vec4_t);
+
+        explicit __vec4_t(const T& scalar)
+          : __vec4_t(static_cast<T>(scalar), static_cast<T>(scalar), static_cast<T>(scalar),
+                     static_cast<T>(scalar))
+            { /* do nothing... */ }
+
+        explicit __vec4_t(const __vec3_t<T> &vec, T w)
+          : __vec4_t(vec.x, vec.y, vec.z, static_cast<T>(w))
+            { /* do nothing... */ }
+
+        __vec4_t(T x, T y, T z, T w)
+          {
+            this->data[0] = static_cast<T>(x);
+            this->data[1] = static_cast<T>(y);
+            this->data[2] = static_cast<T>(z);
+            this->data[3] = static_cast<T>(w);
+          }
+
+        __vec2_t<T> xy()
+          { return __vec2_t<T>(x, y); }
+
+        __vec3_t<T> xyz()
+          { return __vec3_t<T>(x, y, z); }
+
+        // operation for __vec4_t<T, N>
+        IXMC_OPERATION_VEC4_IMPLEMENTS(+);
+        IXMC_OPERATION_VEC4_IMPLEMENTS(-);
+        IXMC_OPERATION_VEC4_IMPLEMENTS(*);
+        IXMC_OPERATION_VEC4_IMPLEMENTS(/);
+
 };
 
 typedef __vec2_t<float, 2> vec2;
 typedef __vec3_t<float, 3> vec3;
 typedef __vec4_t<float, 4> vec4;
 
-#define FNC_VECTOR_POINTER_IMPLEMENTS(tp)               \
-    template<typename T>                                \
-        inline static T* value_ptr(tp<T> &vec)          \
-          {                                             \
-            return &vec.array[0];                       \
-          }
-
-FNC_VECTOR_POINTER_IMPLEMENTS(__vec2_t)
-FNC_VECTOR_POINTER_IMPLEMENTS(__vec3_t)
-FNC_VECTOR_POINTER_IMPLEMENTS(__vec4_t)
+IXMC_VALUE_PTR_IMPLEMENTS(__vec2_t)
+IXMC_VALUE_PTR_IMPLEMENTS(__vec3_t)
+IXMC_VALUE_PTR_IMPLEMENTS(__vec4_t)
 
 template <typename T, int N = 2>
 struct __mat2_t {
@@ -229,13 +257,13 @@ struct __mat2_t {
             for (int i = 0; i < N; i++)
                     array[i * N + i] = scalar;
           }
-          
+
         explicit __mat2_t(T x, T y) : __mat2_t(
            x, 0,
            0, y
         ) {}
         
-        explicit __mat2_t
+        __mat2_t
           (
             T a1, T b1,
             T a2, T b2
@@ -312,7 +340,7 @@ struct __mat3_t {
             0, 0, z
         ) {}
           
-        explicit __mat3_t
+        __mat3_t
           (
             T a1, T b1, T c1,
             T a2, T b2, T c2,
@@ -394,7 +422,7 @@ struct __mat4_t {
             0, 0, 0, w
         ) {}
           
-        explicit __mat4_t
+        __mat4_t
           (
             T a1, T b1, T c1, T d1,
             T a2, T b2, T c2, T d2,
@@ -463,7 +491,9 @@ typedef __mat2_t<float, 2> mat2;
 typedef __mat3_t<float, 3> mat3;
 typedef __mat4_t<float, 4> mat4;
 
-FNC_VECTOR_POINTER_IMPLEMENTS(__mat4_t);
+IXMC_VALUE_PTR_IMPLEMENTS(__mat2_t);
+IXMC_VALUE_PTR_IMPLEMENTS(__mat3_t);
+IXMC_VALUE_PTR_IMPLEMENTS(__mat4_t);
 
 #define IXMC_WRITE_VECTOR2(vec)                                                                                   \
          do {                                                                                                     \

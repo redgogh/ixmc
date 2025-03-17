@@ -92,8 +92,34 @@ void performance(const char *title, FN_TEST_PFM fn_performance_ptr)
 
 int main()
 {
-        __vec2_t<float> a = { 1.0f, 2.0f };
-        printf("x=%f, y=%f, r=%f, g=%f\n", a.x, a.y, a.r, a.g);
+
+        ixmc::mat2 a = {
+          1.0f, 0.0f,
+          1.0f, -0.5f
+        };
+
+        ixmc::vec3 fvec(3.0f, 4.6f, 6.3f);
+
+        {
+                ixmc::vec3 _;
+                ixmc::vec3 P(fvec[0], fvec[1], fvec[2]);
+                ixmc::mat4 T = ixmc::translate(ixmc::mat4(1.0f), ixmc::vec3(5.0f, 5.0f, 0.0f));
+                ixmc::mat4 R = ixmc::rotate(ixmc::mat4(1.0f), ixmc::radians(90), ixmc::vec3(1.0f, 1.0f, 1.0f));
+                ixmc::mat4 S = ixmc::scale(ixmc::mat4(1.0f), ixmc::vec3(5.0f));
+                _ = (P = (T * R * S * ixmc::vec4(P, 1.0f)).xyz());
+                IXMC_WRITE_VECTOR3(_);
+        }
+
+        {
+                glm::vec3 _;
+                glm::vec3 P(fvec[0], fvec[1], fvec[2]);
+                glm::mat4 T = glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, 5.0f, 0.0f));
+                glm::mat4 R = glm::rotate(glm::mat4(1.0f), glm::radians((float) 90), glm::vec3(1.0f, 1.0f, 1.0f));
+                glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(5.0f));
+                _ = (P = glm::vec3((T * R * S * glm::vec4(P, 1.0f))));
+                IXMC_WRITE_VECTOR3(_);
+        }
+
         // performance("glm_calc_trs_matrix", glm_calc_trs_matrix);
         // performance("ixmc_calc_trs_matrix", ixmc_calc_trs_matrix);
 }
