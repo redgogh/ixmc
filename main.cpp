@@ -27,6 +27,7 @@
 #include <cmath>
 // glm
 #include <glm/glm.hpp>
+#include <glm/gtx/string_cast.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -95,12 +96,17 @@ int main()
         {
                 using namespace ixmc;
 
+                vec4 V(1.0f);
                 mat4 M(1.0f);
                 M = translate(M, vec3(3, 6, 9));
-                // M = rotate(M, radians(90), vec3(1.0f, 0.0f, 0.0f));
-                // M = scale(M, vec3(-0.5, 1.0f, 3.0f));
+                M = rotate(M, radians(90), vec3(1.0f, 5.0f, 6.0f));
+                M = scale(M, vec3(-0.5, 1.0f, 3.0f));
 
                 IXMC_WRITE_MATRIX4(M);
+
+                V = M * vec4(5.0f, 3.0f, 4.0f, 1.0f);
+
+                IXMC_WRITE_VECTOR4(V);
         }
 
         printf("\n");
@@ -108,13 +114,17 @@ int main()
         {
                 using namespace glm;
 
+                vec4 V(1.0f);
                 mat4 M(1.0f);
-
                 M = translate(M, vec3(3, 6, 9));
-                // M = rotate(M, radians(90), vec3(1.0f, 0.0f, 0.0f));
-                // M = scale(M, vec3(-0.5, 1.0f, 3.0f));
+                M = rotate(M, radians((float) 90), vec3(1.0f, 5.0f, 6.0f));
+                M = scale(M, vec3(-0.5, 1.0f, 3.0f));
 
                 IXMC_WRITE_MATRIX4(M);
+
+                V = M * vec4(5.0f, 3.0f, 4.0f, 1.0f);
+
+                IXMC_WRITE_VECTOR4(V);
         }
 
         // performance("glm_calc_trs_matrix", glm_calc_trs_matrix);
