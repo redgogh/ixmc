@@ -18,7 +18,7 @@
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
 
-#include "xne.h"
+#include "xmc.h"
 // std
 #include <iostream>
 #include <chrono>
