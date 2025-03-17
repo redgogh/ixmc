@@ -168,7 +168,7 @@ struct __vec4_t {
         
         __vec3_t<T> xyz() const 
           {
-            return __vec3_t(x, y ,z);      
+            return __vec3_t(x, y ,z);
           }
           
 };
@@ -434,34 +434,34 @@ typedef __mat4_t<float, 4> mat4;
 
 FNC_VECTOR_POINTER_IMPLEMENTS(__mat4_t);
 
-#define ixmc_write_vector2(vec)                                                                                    \
+#define IXMC_WRITE_VECTOR2(vec)                                                                                   \
          do {                                                                                                     \
                 printf("[ %f        %f ]\n", vec[0], vec[1]);                                                     \
          } while(0)
 
-#define ixmc_write_vector3(vec)                                                                                    \
+#define IXMC_WRITE_VECTOR3(vec)                                                                                   \
          do {                                                                                                     \
                 printf("[ %f        %f        %f ]\n", vec[0], vec[1], vec[2]);                                   \
          } while(0)                                                                                     
 
-#define ixmc_write_vector4(vec)                                                                                    \
+#define IXMC_WRITE_VECTOR4(vec)                                                                                   \
          do {                                                                                                     \
                 printf("[ %f        %f        %f        %f ]\n", vec[0], vec[1], vec[2], vec[3]);                 \
          } while(0)
 
-#define ixmc_write_matrix2(mat)                                                                                    \
+#define IXMC_WRITE_MATRIX2(mat)                                                                                   \
         do {                                                                                                      \
             for (int i = 0; i < 2; i++)                                                                           \
                 printf("| %f        %f |\n", mat[i][0], mat[i][1]);                                               \
         } while (0)
 
-#define ixmc_write_matrix3(mat)                                                                                    \
+#define IXMC_WRITE_MATRIX3(mat)                                                                                   \
         do {                                                                                                      \
             for (int i = 0; i < 3; i++)                                                                           \
                 printf("| %f        %f        %f |\n", mat[i][0], mat[i][1], mat[i][2]);                          \
         } while (0)
 
-#define ixmc_write_matrix4(mat)                                                                                    \
+#define IXMC_WRITE_MATRIX4(mat)                                                                                   \
         do {                                                                                                      \
             for (int i = 0; i < 4; i++)                                                                           \
                 printf("| %f        %f        %f        %f |\n", mat[i][0], mat[i][1], mat[i][2], mat[i][3]);     \
