@@ -129,6 +129,53 @@ vec3 cross(const vec3 &a, const vec3 &b)
         );
 }
 
+vec3 normalize(const vec3 &vec)
+{
+        float l = len(vec);
+        return l == 0 ? vec3(0.0f) : vec3(vec.x / l, vec.y / l, vec.z / l);
+}
+
+mat4 rotate(const mat4 &matrix, float angrad, const vec3 &vec)
+{
+        vec3 n = normalize(vec);
+        
+        float c = cos(angrad), s = sin(angrad);
+        float t = 1 - c, x = n.x, y = n.y, z = n.z;
+        
+        mat4 rotation(
+            (t * x * x + c),      (t * x * y - s * z),   (t * x * z + s * y), 0.0f,
+            (t * x * y + s * z),  (t * y * y + c),       (t * y * z - s * x), 0.0f,
+            (t * x * z - s * y),  (t * y * z + s * x),   (t * z * z + c),     0.0f,
+            0.0f,                 0.0f,                  0.0f,                1.0f
+        );
+        
+        return matrix * rotation;
+}
+
+mat4 translate(const mat4 &matrix, const vec3 &vec)
+{
+        mat4 translation(
+            1.0f, 0.0f, 0.0f, vec.x,
+            0.0f, 1.0f, 0.0f, vec.y,
+            0.0f, 0.0f, 1.0f, vec.z,
+            0.0f, 0.0f, 0.0f, 1.0f
+        );
+
+        return matrix * translation;
+}
+
+mat4 scale(const mat4 &matrix, const vec3 &vec)
+{
+        mat4 scaling(
+            vec.x, 0.0f,  0.0f,  0.0f,
+            0.0f,  vec.y, 0.0f,  0.0f,
+            0.0f,  0.0f,  vec.z, 0.0f,
+            0.0f,  0.0f,  0.0f,  1.0f
+        );
+
+        return matrix * scaling;
+}
+
 } /* namespace xmc */
 
 #endif /* MATH_H_ */

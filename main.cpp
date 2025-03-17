@@ -18,7 +18,7 @@
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
 
-#include "xmc.h"
+#include "xne.h"
 // std
 #include <iostream>
 #include <chrono>
@@ -57,8 +57,13 @@ void testing(const std::vector<float> &numbers, const char *title, FN_SQRT _sqrt
 
 int main()
 {
-        xmc::vec2 a(4.0f, 8.0f);
-
+        xmc::vec3 P(5.0f, 10.0f, 32.0f);
+        xmc::mat4 T = xmc::translate(xmc::mat4(1.0f), xmc::vec3(5.0f, 5.0f, 0.0f));
+        xmc::mat4 R = xmc::rotate(xmc::mat4(1.0f), xmc::radians(90), xmc::vec3(1.0f, 1.0f, 1.0f));
+        xmc::mat4 S = xmc::scale(xmc::mat4(1.0f), xmc::vec3(5.0f));
+        P = (T * R * S * xmc::vec4(P, 1.0f)).xyz();
+        xmc_write_vector3(P);
+        
         // std::vector<float> numbers = random_numbers();
         // testing(numbers, "xmc::sqrt", xmc::sqrt);
         // testing(numbers, "std::sqrt", std::sqrt);

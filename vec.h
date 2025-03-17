@@ -130,6 +130,11 @@ struct __vec3_t {
         FNC_OPERATOR_VEC3_IMPLEMENTS(*);
         FNC_OPERATOR_VEC3_IMPLEMENTS(/);
 
+        __vec2_t<T> xy() const
+          {
+            return __vec_2<T>(x, y);
+          }
+        
 };
 
 template<typename T, int N = 4>
@@ -156,6 +161,16 @@ struct __vec4_t {
         FNC_OPERATOR_VEC4_IMPLEMENTS(*);
         FNC_OPERATOR_VEC4_IMPLEMENTS(/);
 
+        __vec2_t<T> xy() const
+          {
+            return __vec2_t(x, y);
+          }
+        
+        __vec3_t<T> xyz() const 
+          {
+            return __vec3_t(x, y ,z);      
+          }
+          
 };
 
 typedef __vec2_t<float, 2> vec2;
@@ -208,13 +223,13 @@ struct __mat2_t {
         };
 
         __proxy_ref_t
-            operator[](size_t i)
+            operator[](size_t i) const
               {
                 return __proxy_ref_t(&array[i * N]);
               }
 
         __mat2_t<T, N>
-            operator*(const __mat2_t<T, N> &other)
+            operator*(const __mat2_t<T, N> &other) const
               {
                 __mat2_t<T, N> q;
                 for (int i = 0; i < N; i++) {
@@ -231,7 +246,7 @@ struct __mat2_t {
               }
 
         __vec2_t<T, N>
-            operator*(const __vec2_t<T, N> &other)
+            operator*(const __vec2_t<T, N> &other) const
               {
                 __vec2_t<T, N> vec;
                 for (int i = 0; i < N; i++) {
@@ -288,13 +303,13 @@ struct __mat3_t {
         };
 
         __proxy_ref_t
-            operator[](size_t i)
+            operator[](size_t i) const
               {
                 return __proxy_ref_t(&array[i * N]);
               }
 
         __mat3_t<T, N>
-            operator*(const __mat3_t<T, N> &other)
+            operator*(const __mat3_t<T, N> &other) const
               {
                 __mat3_t<T, N> mat;
                 for (int i = 0; i < N; i++) {
@@ -312,7 +327,7 @@ struct __mat3_t {
               }
 
         __vec3_t<T, N>
-            operator*(const __vec3_t<T, N> &other)
+            operator*(const __vec3_t<T, N> &other) const
               {
                 __vec3_t<T, N> vec;
                 for (int i = 0; i < N; i++) {
@@ -371,13 +386,13 @@ struct __mat4_t {
         };
 
         __proxy_ref_t
-            operator[](size_t i)
+            operator[](size_t i) const
               {
                 return __proxy_ref_t(&array[i * N]);
               }
 
         __mat4_t<T, N>
-            operator*(const __mat4_t<T, N> &other)
+            operator*(const __mat4_t<T, N> &other) const
               {
                 __mat4_t<T, N> q;
                 for (int i = 0; i < N; i++) {
@@ -395,7 +410,7 @@ struct __mat4_t {
               }
 
         __vec4_t<T, N>
-            operator*(const __vec4_t<T, N> &other)
+            operator*(const __vec4_t<T, N> &other) const
               {
                 __vec4_t<T, N> vec;
                 for (int i = 0; i < N; i++) {
@@ -429,7 +444,7 @@ FNC_VECTOR_POINTER_IMPLEMENTS(__mat4_t);
                 printf("[ %f        %f        %f ]\n", vec[0], vec[1], vec[2]);                                   \
          } while(0)                                                                                     
 
-#define write_vector4(vec)                                                                                        \
+#define xmc_write_vector4(vec)                                                                                    \
          do {                                                                                                     \
                 printf("[ %f        %f        %f        %f ]\n", vec[0], vec[1], vec[2], vec[3]);                 \
          } while(0)
