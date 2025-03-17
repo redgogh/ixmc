@@ -18,7 +18,7 @@
 #ifndef IXMC_H_
 #define IXMC_H_
 
-#include "vec.h"
+#include "_ixmc_vec.h"
 
 #define PI      (3.14159265358979323846F)
 
@@ -421,6 +421,6 @@ mat4 scale(const mat4 &matrix, const vec3 &vec);
 
 } /* namespace ixmc */
 
-#include "ixmc.inl"
+#include "_ixmc.inl"
 
 #endif /* IXMC_H_ */
