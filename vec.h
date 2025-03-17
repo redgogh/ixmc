@@ -179,7 +179,7 @@ typedef __vec4_t<float, 4> vec4;
 
 #define FNC_VECTOR_POINTER_IMPLEMENTS(tp)               \
     template<typename T>                                \
-        inline static T* getptr(tp<T> &vec)             \
+        inline static T* value_ptr(tp<T> &vec)          \
           {                                             \
             return &vec.array[0];                       \
           }
