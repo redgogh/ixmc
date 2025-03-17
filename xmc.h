@@ -85,17 +85,17 @@ float sqrt(float x)
         return _mm_cvtss_f32(vec);
 }
 
-float len(const vec2 &vec)
+float length(const vec2 &vec)
 {
         return sqrt((vec.x * vec.x) + (vec.y * vec.y));
 }
 
-float len(const vec3 &vec)
+float length(const vec3 &vec)
 {
         return sqrt((vec.x * vec.x) + (vec.y * vec.y) + (vec.z * vec.z));
 }
 
-float len(const vec4 &vec)
+float length(const vec4 &vec)
 {
         return sqrt((vec.x * vec.x) + (vec.y * vec.y) + (vec.z * vec.z) + (vec.w * vec.w));
 }
@@ -131,7 +131,7 @@ vec3 cross(const vec3 &a, const vec3 &b)
 
 vec3 normalize(const vec3 &vec)
 {
-        float l = len(vec);
+        float l = length(vec);
         return l == 0 ? vec3(0.0f) : vec3(vec.x / l, vec.y / l, vec.z / l);
 }
 
