@@ -20,8 +20,8 @@
 #pragma ide diagnostic ignored "modernize-deprecated-headers"
 #pragma ide diagnostic ignored "portability-simd-intrinsics"
 
-#ifndef MATH_VEC_H_
-#define MATH_VEC_H_
+#ifndef IXMC_VEC_H_
+#define IXMC_VEC_H_
 
 #include <stdio.h>
 #include <xmmintrin.h>
@@ -79,7 +79,7 @@
               return array[i];                                                                          \
             }
 
-namespace xmc {
+namespace ixmc {
 
 template<typename T, int N = 2>
 struct __vec2_t {
@@ -434,41 +434,41 @@ typedef __mat4_t<float, 4> mat4;
 
 FNC_VECTOR_POINTER_IMPLEMENTS(__mat4_t);
 
-#define xmc_write_vector2(vec)                                                                                    \
+#define ixmc_write_vector2(vec)                                                                                    \
          do {                                                                                                     \
                 printf("[ %f        %f ]\n", vec[0], vec[1]);                                                     \
          } while(0)
 
-#define xmc_write_vector3(vec)                                                                                    \
+#define ixmc_write_vector3(vec)                                                                                    \
          do {                                                                                                     \
                 printf("[ %f        %f        %f ]\n", vec[0], vec[1], vec[2]);                                   \
          } while(0)                                                                                     
 
-#define xmc_write_vector4(vec)                                                                                    \
+#define ixmc_write_vector4(vec)                                                                                    \
          do {                                                                                                     \
                 printf("[ %f        %f        %f        %f ]\n", vec[0], vec[1], vec[2], vec[3]);                 \
          } while(0)
 
-#define xmc_write_matrix2(mat)                                                                                    \
+#define ixmc_write_matrix2(mat)                                                                                    \
         do {                                                                                                      \
             for (int i = 0; i < 2; i++)                                                                           \
                 printf("| %f        %f |\n", mat[i][0], mat[i][1]);                                               \
         } while (0)
 
-#define xmc_write_matrix3(mat)                                                                                    \
+#define ixmc_write_matrix3(mat)                                                                                    \
         do {                                                                                                      \
             for (int i = 0; i < 3; i++)                                                                           \
                 printf("| %f        %f        %f |\n", mat[i][0], mat[i][1], mat[i][2]);                          \
         } while (0)
 
-#define xmc_write_matrix4(mat)                                                                                    \
+#define ixmc_write_matrix4(mat)                                                                                    \
         do {                                                                                                      \
             for (int i = 0; i < 4; i++)                                                                           \
                 printf("| %f        %f        %f        %f |\n", mat[i][0], mat[i][1], mat[i][2], mat[i][3]);     \
         } while (0)
 
-} /* namespace xmc */
+} /* namespace ixmc */
 
-#endif /* MATH_VEC_H_ */
+#endif /* IXMC_VEC_H_ */
 
 #pragma clang diagnostic pop

@@ -18,7 +18,7 @@
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
 
-#include "xmc.h"
+#include "ixmc.h"
 // std
 #include <iostream>
 #include <chrono>
@@ -32,7 +32,7 @@
 typedef float (*FN_SQRT) (float);
 typedef void* (*FN_TEST_PFM) ();
 
-std::vector<float[3]> random_numbers(unsigned int count = 10000000)
+std::vector<float[3]> random_numbers(unsigned int count = 100000)
 {
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -50,17 +50,17 @@ std::vector<float[3]> random_numbers(unsigned int count = 10000000)
 
 static std::vector<float[3]> s_numbers = random_numbers();
 
-void* xmc_calc_trs_matrix()
+void* ixmc_calc_trs_matrix()
 {
-        xmc::vec3 _;
+        ixmc::vec3 _;
         for (const auto &fvec : s_numbers) {
-                xmc::vec3 P(fvec[0], fvec[1], fvec[2]);
-                xmc::mat4 T = xmc::translate(xmc::mat4(1.0f), xmc::vec3(5.0f, 5.0f, 0.0f));
-                xmc::mat4 R = xmc::rotate(xmc::mat4(1.0f), xmc::radians(90), xmc::vec3(1.0f, 1.0f, 1.0f));
-                xmc::mat4 S = xmc::scale(xmc::mat4(1.0f), xmc::vec3(5.0f));
-                _ = (P = (T * R * S * xmc::vec4(P, 1.0f)).xyz());
+                ixmc::vec3 P(fvec[0], fvec[1], fvec[2]);
+                ixmc::mat4 T = ixmc::translate(ixmc::mat4(1.0f), ixmc::vec3(5.0f, 5.0f, 0.0f));
+                ixmc::mat4 R = ixmc::rotate(ixmc::mat4(1.0f), ixmc::radians(90), ixmc::vec3(1.0f, 1.0f, 1.0f));
+                ixmc::mat4 S = ixmc::scale(ixmc::mat4(1.0f), ixmc::vec3(5.0f));
+                _ = (P = (T * R * S * ixmc::vec4(P, 1.0f)).xyz());
         }
-        return xmc::value_ptr(_);
+        return ixmc::value_ptr(_);
 }
 
 void* glm_calc_trs_matrix()
@@ -89,7 +89,7 @@ void performance(const char *title, FN_TEST_PFM fn_performance_ptr)
 int main()
 {
         performance("glm_calc_trs_matrix", glm_calc_trs_matrix);
-        performance("xmc_calc_trs_matrix", xmc_calc_trs_matrix);
+        performance("ixmc_calc_trs_matrix", ixmc_calc_trs_matrix);
 }
 
 #pragma clang diagnostic pop

@@ -15,8 +15,8 @@
 |*    limitations under the License.                                                *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
-#ifndef MATH_H_
-#define MATH_H_
+#ifndef IXMC_H_
+#define IXMC_H_
 
 #include "vec.h"
 // SIMD(__SSE__)
@@ -26,7 +26,7 @@
 
 #define PI      (3.14159265358979323846F)
 
-namespace xmc {
+namespace ixmc {
 
 float fmod (float x, float y)
 {
@@ -176,6 +176,6 @@ mat4 scale(const mat4 &matrix, const vec3 &vec)
         return matrix * scaling;
 }
 
-} /* namespace xmc */
+} /* namespace ixmc */
 
-#endif /* MATH_H_ */
+#endif /* IXMC_H_ */
