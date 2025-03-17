@@ -27,6 +27,37 @@
 #include <xmmintrin.h>
 #include <pmmintrin.h>
 #include <array>
+#include <initializer_list>
+
+template<typename T, size_t N>
+struct __vec_t {
+        union {
+                std::array<T, N> data;
+                struct { T x, y, z, w; };
+                struct { T r, g, b, a; };
+        };
+};
+
+template<typename T, size_t N = 2>
+struct __vec2_t : private __vec_t<T, N> {
+        // using x, y members
+        using __vec_t<T, N>::x;
+        using __vec_t<T, N>::y;
+        
+        // using r, g members
+        using __vec_t<T, N>::r;
+        using __vec_t<T, N>::g;
+        
+        __vec2_t()                              = default;
+        __vec2_t(const __vec2_t&)               = default;
+        __vec2_t& operator=(const __vec2_t&)    = default;
+        
+        __vec2_t(T x, T y)
+          {
+            this->data[0] = static_cast<T>(x);
+            this->data[1] = static_cast<T>(y);
+          }
+};
 
 #define FNC_OPERATOR_VEC2_IMPLEMENTS(op)                                                                \
         __vec2_t<T, N>                                                                                  \

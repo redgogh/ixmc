@@ -74,6 +74,9 @@ void* glm_calc_trs_matrix()
                 glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(5.0f));
                 _ = (P = glm::vec3((T * R * S * glm::vec4(P, 1.0f))));
         }
+        
+        glm::vec3 xa = { 2.0f, 3.0f, 4.0f };
+        
         return glm::value_ptr(_);
 }
 
@@ -89,8 +92,10 @@ void performance(const char *title, FN_TEST_PFM fn_performance_ptr)
 
 int main()
 {
-        performance("glm_calc_trs_matrix", glm_calc_trs_matrix);
-        performance("ixmc_calc_trs_matrix", ixmc_calc_trs_matrix);
+        __vec2_t<float> a = { 1.0f, 2.0f };
+        printf("x=%f, y=%f, r=%f, g=%f\n", a.x, a.y, a.r, a.g);
+        // performance("glm_calc_trs_matrix", glm_calc_trs_matrix);
+        // performance("ixmc_calc_trs_matrix", ixmc_calc_trs_matrix);
 }
 
 #pragma clang diagnostic pop
