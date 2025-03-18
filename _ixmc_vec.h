@@ -1,6 +1,6 @@
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 RedGogh All rights reserved.                          *|
+|*    Copyright (K) 2019-2024 RedGogh All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -24,7 +24,7 @@
 #define IXMC_VEC_H_
 
 #include <stdio.h>
-#include <xmmintrin.h>
+#include <immintrin.h>
 #include <pmmintrin.h>
 #include <array>
 #include <initializer_list>
@@ -241,263 +241,193 @@ typedef __vec2_t<float, 2> vec2;
 typedef __vec3_t<float, 3> vec3;
 typedef __vec4_t<float, 4> vec4;
 
-IXMC_VALUE_PTR_IMPLEMENTS(__vec2_t)
-IXMC_VALUE_PTR_IMPLEMENTS(__vec3_t)
-IXMC_VALUE_PTR_IMPLEMENTS(__vec4_t)
+template<typename T, size_t N>
+  inline static T *value_ptr(__vec2_t<T, N> &tp)
+    { return &tp.data[0]; }
 
-template <typename T, int N = 2>
+template<typename T, size_t N>
+  inline static T *value_ptr(__vec3_t<T, N> &tp)
+    { return &tp.data[0]; }
+
+template<typename T, size_t N>
+  inline static T *value_ptr(__vec4_t<T, N> &tp)
+    { return &tp.data[0]; }
+  
+template<typename T, size_t N = 2, size_t K = 2>
 struct __mat2_t {
-        std::array<T, N * N> data = {};
+        __mat2_t<T, N> data[K];
 
-        explicit __mat2_t() : __mat2_t(1.0f) {}
-        explicit __mat2_t(T scalar)
-          {
-            for (int i = 0; i < N; i++)
-                    data[i * N + i] = scalar;
-          }
+        IXMC_MACRO_CONSTRACTOR(__mat2_t);
 
-        explicit __mat2_t(T x, T y) : __mat2_t(
-           x, 0,
-           0, y
-        ) {}
-        
-        __mat2_t
-          (
-            T a1, T b1,
-            T a2, T b2
-          ) : data {
-            a1, b1,
-            a2, b2
-          } {}
+        explicit __mat2_t(T s)
+        {
+                data[0] = __vec2_t<T>(s, 0);
+                data[1] = __vec2_t<T>(0, s);
+        }
 
-        const T* operator[](size_t index) const
-          { return &data[index * N]; }
+        __mat2_t(
+            T x0, T y0,
+            T x1, T y1)
+        {
+                data[0] = __vec2_t<T>(x0, y0);
+                data[1] = __vec2_t<T>(x1, y1);
+        }
 
-        T* operator[](size_t index)
-          { return &data[index * N]; }
+        const __vec2_t<T> &operator[](size_t i) const
+          { return data[i]; }
 
-        __mat2_t<T, N>
-            operator*(const __mat2_t<T, N> &other) const
-              {
-                __mat2_t<T, N> q;
-                for (int i = 0; i < N; i++) {
-                        __m128 row = _mm_loadu_ps(&data[i * N]);
-                        for (int j = 0; j < N; j++) {
-                                __m128 col = _mm_set_ps(0.0f, 0.0f, other.data[1 * N + j], other.data[0 * N + j]);
-                                __m128 mul = _mm_mul_ps(row, col); // NOLINT(*-simd-intrinsics)
-                                mul = _mm_hadd_ps(mul, mul);
-                                mul = _mm_hadd_ps(mul, mul);
-                                _mm_store_ss(&q.data[i * N + j], mul);
-                        }
-                }
-                return q;
-              }
-
-        __vec2_t<T, N>
-            operator*(const __vec2_t<T, N> &other) const
-              {
-                __vec2_t<T, N> vec;
-                for (int i = 0; i < N; i++) {
-                        __m128 vec128 = _mm_set_ps(other[1], other[0], 0.0f, 0.0f);
-                        __m128 row128 = _mm_set_ps(data[i * N + 1], data[i * N + 0], 0.0f, 0.0f);
-                        __m128 mul128 = _mm_mul_ps(vec128, row128);
-
-                        mul128 = _mm_hadd_ps(mul128, mul128);
-                        mul128 = _mm_hadd_ps(mul128, mul128);
-
-                        vec[i] = mul128[0];
-                }
-                return vec;
-              }
-              
+        __vec2_t<T> &operator[](size_t i)
+          { return data[i]; }
 };
 
-template <typename T, int N = 3>
+template<typename T, size_t N = 3, size_t K = 3>
 struct __mat3_t {
-        std::array<T, N * N> data = {};
+        __mat3_t<T, N> data[K];
 
-        explicit __mat3_t() : __mat3_t(1.0f) {}
-        explicit __mat3_t(T scalar)
-          {
-            for (int i = 0; i < N; i++)
-                    data[i * N + i] = scalar;
-          }
-          
-        explicit __mat3_t(T x, T y, T z) : __mat3_t(
-            x, 0, 0,
-            0, y, 0,
-            0, 0, z
-        ) {}
-          
-        __mat3_t
-          (
-            T a1, T b1, T c1,
-            T a2, T b2, T c2,
-            T a3, T b3, T c3
-          ) : data {
-            a1, b1, c1,
-            a2, b2, c2,
-            a3, b3, c3
-          } {}
+        IXMC_MACRO_CONSTRACTOR(__mat3_t);
 
-        const T* operator[](size_t index) const
-          { return &data[index * N]; }
+        explicit __mat3_t(T s)
+        {
+                data[0] = __vec3_t<T>(s, 0, 0);
+                data[1] = __vec3_t<T>(0, s, 0);
+                data[2] = __vec3_t<T>(0, 0, s);
+        }
 
-        T* operator[](size_t index)
-          { return &data[index * N]; }
+        __mat3_t(
+            T x0, T y0, T z0,
+            T x1, T y1, T z1,
+            T x2, T y2, T z2)
+        {
+                data[0] = __vec3_t<T>(x0, y0, z0);
+                data[1] = __vec3_t<T>(x1, y1, z1);
+                data[2] = __vec3_t<T>(x2, y2, z2);
+        }
 
-        __mat3_t<T, N>
-            operator*(const __mat3_t<T, N> &other) const
-              {
-                __mat3_t<T, N> mat;
-                for (int i = 0; i < N; i++) {
-                        __m128 row = _mm_loadu_ps(&data[i * N]);
-                        for (int j = 0; j < N; j++) {
-                                __m128 col = _mm_set_ps(0.0f, other.data[2 * N + j],
-                                                        other.data[1 * N + j], other.data[0 * N + j]);
-                                __m128 mul = _mm_mul_ps(row, col); // NOLINT(*-simd-intrinsics)
-                                mul = _mm_hadd_ps(mul, mul);
-                                mul = _mm_hadd_ps(mul, mul);
-                                _mm_store_ss(&mat.data[i * N + j], mul);
-                        }
-                }
-                return mat;
-              }
+        const __vec3_t<T> &operator[](size_t i) const
+          { return data[i]; }
 
-        __vec3_t<T, N>
-            operator*(const __vec3_t<T, N> &other) const
-              {
-                __vec3_t<T, N> vec;
-                for (int i = 0; i < N; i++) {
-                        __m128 vec128 = _mm_set_ps(other[2], other[1], other[0], 0.0f);
-                        __m128 row128 = _mm_set_ps(data[i * N + 2], data[i * N + 1], data[i * N + 0], 0.0f);
-                        __m128 mul128 = _mm_mul_ps(vec128, row128);
-
-                        mul128 = _mm_hadd_ps(mul128, mul128);
-                        mul128 = _mm_hadd_ps(mul128, mul128);
-                        
-                        vec[i] = mul128[0];
-                }
-                return vec;
-              }
-              
+        __vec3_t<T> &operator[](size_t i)
+          { return data[i]; }
 };
 
-template <typename T, int N = 4>
+template<typename T, size_t N = 4, size_t K = 4>
 struct __mat4_t {
-        std::array<T, N * N> data = {};
-
-        explicit __mat4_t() : __mat4_t(1.0f) {}
-        explicit __mat4_t(T scalar)
+        __vec4_t<T, N> data[K];
+        
+        IXMC_MACRO_CONSTRACTOR(__mat4_t);
+        
+        explicit __mat4_t(T s)
           {
-                    for (int i = 0; i < N; i++)
-                        data[i * N + i] = scalar;
+                data[0] = __vec4_t<T>(s, 0, 0, 0);
+                data[1] = __vec4_t<T>(0, s, 0, 0);
+                data[2] = __vec4_t<T>(0, 0, s, 0);
+                data[3] = __vec4_t<T>(0, 0, 0, s);
           }
-
-        explicit __mat4_t(T x, T y, T z, T w) : __mat4_t(
-            x, 0, 0, 0,
-            0, y, 0, 0,
-            0, 0, z, 0,
-            0, 0, 0, w
-        ) {}
+        
+        __mat4_t(
+            T x0, T y0, T z0, T w0,    
+            T x1, T y1, T z1, T w1,    
+            T x2, T y2, T z2, T w2,    
+            T x3, T y3, T z3, T w3) 
+          {
+                data[0] = __vec4_t<T>(x0, y0, z0, w0);
+                data[1] = __vec4_t<T>(x1, y1, z1, w1);
+                data[2] = __vec4_t<T>(x2, y2, z2, w2);
+                data[3] = __vec4_t<T>(x3, y3, z3, w3);
+          }
           
-        __mat4_t
-          (
-            T a1, T b1, T c1, T d1,
-            T a2, T b2, T c2, T d2,
-            T a3, T b3, T c3, T d3,
-            T a4, T b4, T c4, T d4
-          ) : data {
-            a1, b1, c1, d1,
-            a2, b2, c2, d2,
-            a3, b3, c3, d3,
-            a4, b4, c4, d4,
-          } {}
+        const __vec4_t<T> &operator[](size_t i) const
+          { return data[i]; }
 
-        const T* operator[](size_t index) const
-          { return &data[index * N]; }
-
-        T* operator[](size_t index)
-          { return &data[index * N]; }
-
-        __mat4_t<T, N>
-            operator*(const __mat4_t<T, N> &other) const
-              {
-                __mat4_t<T, N> q;
-                for (int i = 0; i < N; i++) {
-                        __m128 row = _mm_loadu_ps(&data[i * N]);
-                        for (int j = 0; j < N; j++) {
-                                __m128 col = _mm_set_ps(other.data[3 * N + j], other.data[2 * N + j],
-                                                        other.data[1 * N + j], other.data[0 * N + j]);
-                                __m128 mul = _mm_mul_ps(row, col); // NOLINT(*-simd-intrinsics)
-                                mul = _mm_hadd_ps(mul, mul);
-                                mul = _mm_hadd_ps(mul, mul);
-                                _mm_store_ss(&q.data[i * N + j], mul);
-                        }
-                }
-                return q;
-              }
-
-        __vec4_t<T, N>
-            operator*(const __vec4_t<T, N> &other) const
-              {
-                __vec4_t<T, N> vec;
-                for (int i = 0; i < N; i++) {
-                        __m128 vec128 = _mm_set_ps(other[3], other[2], other[1], other[0]);
-                        __m128 row128 = _mm_set_ps(data[i * N + 3], data[i * N + 2], data[i * N + 1], data[i * N + 0]);
-                        __m128 mul128 = _mm_mul_ps(vec128, row128);
-
-                        mul128 = _mm_hadd_ps(mul128, mul128);
-                        mul128 = _mm_hadd_ps(mul128, mul128);
-
-                        vec[i] = mul128[0];
-                }
-                return vec;
-              }
-
+        __vec4_t<T> &operator[](size_t i)
+          { return data[i]; }
 };
 
-typedef __mat2_t<float, 2> mat2;
-typedef __mat3_t<float, 3> mat3;
-typedef __mat4_t<float, 4> mat4;
+typedef __mat2_t<float, 2, 2> mat2;
+typedef __mat3_t<float, 3, 3> mat3;
+typedef __mat4_t<float, 4, 4> mat4;
 
-IXMC_VALUE_PTR_IMPLEMENTS(__mat2_t);
-IXMC_VALUE_PTR_IMPLEMENTS(__mat3_t);
-IXMC_VALUE_PTR_IMPLEMENTS(__mat4_t);
+template<typename T, size_t N, size_t K>
+  inline static T *value_ptr(__mat2_t<T, N, K> &tp)
+    { return value_ptr(tp.data[0]); }
 
-#define IXMC_WRITE_VECTOR2(vec)                                                                                   \
-         do {                                                                                                     \
-                printf("[ %f        %f ]\n", vec[0], vec[1]);                                                     \
-         } while(0)
+template<typename T, size_t N, size_t K>
+  inline static T *value_ptr(__mat3_t<T, N, K> &tp)
+    { return value_ptr(tp.data[0]); }
 
-#define IXMC_WRITE_VECTOR3(vec)                                                                                   \
-         do {                                                                                                     \
-                printf("[ %f        %f        %f ]\n", vec[0], vec[1], vec[2]);                                   \
-         } while(0)                                                                                     
+template<typename T, size_t N, size_t K>
+  inline static T *value_ptr(__mat4_t<T, N, K> &tp)
+    { return value_ptr(tp.data[0]); }
 
-#define IXMC_WRITE_VECTOR4(vec)                                                                                   \
-         do {                                                                                                     \
-                printf("[ %f        %f        %f        %f ]\n", vec[0], vec[1], vec[2], vec[3]);                 \
-         } while(0)
+template<typename T, size_t N, size_t K>
+__mat2_t<T, N, K> operator*(const __mat2_t<T, N, K> &m1, const __mat2_t<T, N, K> &m2)
+{
+        __mat2_t<T, N, K> result;
 
-#define IXMC_WRITE_MATRIX2(mat)                                                                                   \
-        do {                                                                                                      \
-            for (int i = 0; i < 2; i++)                                                                           \
-                printf("| %f        %f |\n", mat[i][0], mat[i][1]);                                               \
-        } while (0)
+        for (int i = 0; i < N; i++) {
+                __m128 row = _mm_set_ps(0, 0, m1[1][i], m1[0][i]);
+                for (int k = 0; k < K; k++) {
+                        __m128 col = _mm_set_ps(0, 0, m2[k][1], m2[k][0]);
 
-#define IXMC_WRITE_MATRIX3(mat)                                                                                   \
-        do {                                                                                                      \
-            for (int i = 0; i < 3; i++)                                                                           \
-                printf("| %f        %f        %f |\n", mat[i][0], mat[i][1], mat[i][2]);                          \
-        } while (0)
+                        __m128 mul;
 
-#define IXMC_WRITE_MATRIX4(mat)                                                                                   \
-        do {                                                                                                      \
-            for (int i = 0; i < 4; i++)                                                                           \
-                printf("| %f        %f        %f        %f |\n", mat[i][0], mat[i][1], mat[i][2], mat[i][3]);     \
-        } while (0)
+                        mul = _mm_mul_ps(row, col);
+                        mul = _mm_hadd_ps(mul, mul);
+                        mul = _mm_hadd_ps(mul, mul);
 
+                        _mm_store_ss(&result.data[k][i], mul);
+                }
+        }
+
+        return result;
+}
+
+template<typename T, size_t N, size_t K>
+__mat3_t<T, N, K> operator*(const __mat3_t<T, N, K> &m1, const __mat3_t<T, N, K> &m2)
+{
+        __mat3_t<T, N, K> result;
+
+        for (int i = 0; i < N; i++) {
+                __m128 row = _mm_set_ps(0, m1[2][i], m1[1][i], m1[0][i]);
+                for (int k = 0; k < K; k++) {
+                        __m128 col = _mm_set_ps(0, m2[k][2], m2[k][1], m2[k][0]);
+
+                        __m128 mul;
+
+                        mul = _mm_mul_ps(row, col);
+                        mul = _mm_hadd_ps(mul, mul);
+                        mul = _mm_hadd_ps(mul, mul);
+
+                        _mm_store_ss(&result.data[k][i], mul);
+                }
+        }
+
+        return result;
+}
+
+template<typename T, size_t N, size_t K>
+__mat4_t<T, N, K> operator*(const __mat4_t<T, N, K> &m1, const __mat4_t<T, N, K> &m2)
+{
+        __mat4_t<T, N, K> result;
+
+        for (int i = 0; i < N; i++) {
+                __m128 row = _mm_set_ps(m1[3][i], m1[2][i], m1[1][i], m1[0][i]);
+                for (int k = 0; k < K; k++) {
+                        __m128 col = _mm_set_ps(m2[k][3], m2[k][2], m2[k][1], m2[k][0]);
+
+                        __m128 mul;
+
+                        mul = _mm_mul_ps(row, col);
+                        mul = _mm_hadd_ps(mul, mul);
+                        mul = _mm_hadd_ps(mul, mul);
+
+                        _mm_store_ss(&result.data[k][i], mul);
+                }
+        }
+
+        return result;
+}
+  
 } /* namespace ixmc */
 
 #endif /* IXMC_VEC_H_ */

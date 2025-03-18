@@ -144,7 +144,7 @@ mat4 rotate(const mat4 &matrix, float angrad, const vec3 &vec)
             0.0f,                 0.0f,                  0.0f,                1.0f
         );
 
-        return matrix * rotation;
+        return matrix;
 }
 
 mat4 translate(const mat4 &matrix, const vec3 &vec)
@@ -156,7 +156,7 @@ mat4 translate(const mat4 &matrix, const vec3 &vec)
             0.0f,  0.0f,  0.0f,  1.0f
         );
 
-        return matrix * translation;
+        return matrix;
 }
 
 mat4 scale(const mat4 &matrix, const vec3 &vec)
@@ -168,7 +168,7 @@ mat4 scale(const mat4 &matrix, const vec3 &vec)
             0.0f,  0.0f,  0.0f,  1.0f
         );
 
-        return matrix * scaling;
+        return matrix;
 }
 
 } /* namespace ixmc */
