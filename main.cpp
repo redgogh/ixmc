@@ -18,30 +18,14 @@
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
 
-#include "ixmc.h"
-// std
-#include <iostream>
-#include <chrono>
-#include <vector>
-#include <random>
-#include <cmath>
-// glm
-#include <glm/glm.hpp>
-#include <glm/gtx/string_cast.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include "vec.h"
 
 int main()
 {
-        {
-                using namespace ixmc;
-                
-                mat2 M = {
-                    1.0f,  0.0f,
-                    0.0f, -1.0f
-                };
-        }
-        
+        bra::vec<2, float> vec(1.0f, 2.0f);
+
+        bra::println((vec + vec) * 5);
+
         return 0;
 }
 

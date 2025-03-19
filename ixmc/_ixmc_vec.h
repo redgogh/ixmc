@@ -255,7 +255,7 @@ template<typename T, size_t N>
   
 template<typename T, size_t N = 2, size_t K = 2>
 struct __mat2_t {
-        __mat2_t<T, N> data[K];
+        __vec2_t<T, N> data[K];
 
         IXMC_MACRO_CONSTRACTOR(__mat2_t);
 
@@ -378,6 +378,25 @@ __mat2_t<T, N, K> operator*(const __mat2_t<T, N, K> &m1, const __mat2_t<T, N, K>
                         _mm_store_ss(&result.data[k][i], mul);
                 }
         }
+
+        return result;
+}
+
+template<typename T, size_t N, size_t K>
+__vec2_t<T, N> operator         *(const __mat2_t<T, N, K> &m, const __vec2_t<T, N> &v)
+{
+        __vec2_t<T, N> result;
+
+       for (int i = 0; i < N; i++) {
+               __m128 row = _mm_set_ps(0, 0, m[i + 1][0], m[i + 0][0]);
+               __m128 vec = _mm_set_ps(0, 0, v[1], v[0]);
+               __m128 mul = _mm_mul_ps(row, vec);
+
+               mul = _mm_hadd_ps(mul, mul);
+               mul = _mm_hadd_ps(mul, mul);
+
+               _mm_store_ss(&result[i], mul);
+       }
 
         return result;
 }
