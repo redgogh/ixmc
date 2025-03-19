@@ -19,12 +19,22 @@
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
 
 #include "vec.h"
+#include <glm/glm.hpp>
 
 int main()
 {
-        bra::vec<2, float> vec(1.0f, 2.0f);
+        {
+                printf("+:\n");
+                bra::vec3f32 vec2(5.0f);
+                bra::vec3f32((vec2 + vec2) + 5);
 
-        bra::println((vec + vec) * 5);
+                bra::vec2f64 vec3(5.0f);
+                bra::println((vec3 + vec3) + 5);
+
+                bra::vec2f64 vec4(5.0f);
+                bra::println((vec4 + vec4) + 5);
+                printf("\n");
+        }
 
         return 0;
 }
