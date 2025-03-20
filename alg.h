@@ -15,50 +15,9 @@
 |*    limitations under the License.                                                *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "bugprone-reserved-identifier"
+#ifndef ALG_H_
+#define ALG_H_
 
-#include "alg.h"
-#include <glm/glm.hpp>
+#include "vec.h"
 
-int main()
-{
-
-        {
-                using namespace alg;
-
-                mat4 M, R;
-
-                R = {
-                        1, 2, 3, 8,
-                        4, 5, 6, 8,
-                        7, 8, 9, 7,
-                        3, 2, 1, 7
-                };
-
-                M = R * 5.0f;
-
-                ALG_PRINT_FORMAT_MATRIX4(M);
-        }
-
-        printf("\n");
-
-        {
-                using namespace glm;
-
-                mat4 M, R;
-
-                R = {
-                        1, 2, 3, 8,
-                        4, 5, 6, 8,
-                        7, 8, 9, 7,
-                        3, 2, 1, 7
-                };
-
-                M = R * 5.0f;
-
-                ALG_PRINT_FORMAT_MATRIX4(M);
-        }
-}
-
-#pragma clang diagnostic pop
+#endif /* ALG_H_ */

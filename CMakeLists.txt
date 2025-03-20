@@ -9,5 +9,4 @@ file(GLOB SOURCES
   "*.cpp"
 )
 
-add_executable(${PROJECT_NAME} ${SOURCES}
-        vec.h)
+add_executable(${PROJECT_NAME} ${SOURCES})

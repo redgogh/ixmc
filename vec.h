@@ -1,16 +1,33 @@
-#ifndef XEQ_VEC_H_
-#define XEQ_VEC_H_
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|*    Copyright (C) 2019-2024 RedGogh All rights reserved.                          *|
+|*                                                                                  *|
+|*    Licensed under the Apache License, Version 2.0 (the "License");               *|
+|*    you may not use this file except in compliance with the License.              *|
+|*    You may obtain a copy of the License at                                       *|
+|*                                                                                  *|
+|*        http://www.apache.org/licenses/LICENSE-2.0                                *|
+|*                                                                                  *|
+|*    Unless required by applicable law or agreed to in writing, software           *|
+|*    distributed under the License is distributed on an "AS IS" BASIS,             *|
+|*    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.      *|
+|*    See the License for the specific language governing permissions and           *|
+|*    limitations under the License.                                                *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
+#ifndef ALG_VEC_H_
+#define ALG_VEC_H_
 
 #include <cstdio>
 #include <cmath>
 #include <stdexcept>
 #include <experimental/simd>
 
-#define XEQ_FUNC_DECL          /* UNDEF */
-#define XEQ_INLINE             inline
-#define XEQ_CONSTEXPR          constexpr
+#define ALG_FUNC_DECL          /* UNDEF */
+#define ALG_INLINE             inline
+#define ALG_CONSTEXPR          constexpr
 
-namespace xeq {
+namespace alg {
         // -- Constant Variables --
         
         static constexpr unsigned int ZERO_VALUE = 0U;
@@ -87,34 +104,34 @@ namespace xeq {
 
                 // -- Constructor for vec2 --
 
-                XEQ_FUNC_DECL vec();
-                XEQ_FUNC_DECL explicit vec(T scalar);
-                XEQ_FUNC_DECL XEQ_INLINE XEQ_CONSTEXPR vec(T x, T y);
+                ALG_FUNC_DECL vec();
+                ALG_FUNC_DECL explicit vec(T scalar);
+                ALG_FUNC_DECL ALG_INLINE ALG_CONSTEXPR vec(T x, T y);
 
                 // -- Operator override --
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR T& operator[](size_t n);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR T const& operator[](size_t n) const;
+                ALG_FUNC_DECL ALG_CONSTEXPR T& operator[](size_t n);
+                ALG_FUNC_DECL ALG_CONSTEXPR T const& operator[](size_t n) const;
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T> operator+(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T> operator-(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T> operator*(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T> operator/(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T> operator+(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T> operator-(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T> operator*(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T> operator/(T const &scalar);
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T> operator+(vec<2, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T> operator-(vec<2, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T> operator*(vec<2, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T> operator/(vec<2, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T> operator+(vec<2, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T> operator-(vec<2, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T> operator*(vec<2, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T> operator/(vec<2, T> const &v);
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T>& operator+=(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T>& operator-=(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T>& operator*=(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T>& operator/=(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T>& operator+=(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T>& operator-=(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T>& operator*=(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T>& operator/=(T const &scalar);
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T>& operator+=(vec<2, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T>& operator-=(vec<2, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T>& operator*=(vec<2, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T>& operator/=(vec<2, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T>& operator+=(vec<2, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T>& operator-=(vec<2, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T>& operator*=(vec<2, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<2, T>& operator/=(vec<2, T> const &v);
 
         };
 
@@ -133,38 +150,38 @@ namespace xeq {
 
                 // -- Constructor for vec3 --
 
-                XEQ_FUNC_DECL vec();
-                XEQ_FUNC_DECL explicit vec(T scalar);
-                XEQ_FUNC_DECL explicit vec(vec<2, T> const& v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec(vec<2, T> const& v, T z);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec(T x, T y, T z);
+                ALG_FUNC_DECL vec();
+                ALG_FUNC_DECL explicit vec(T scalar);
+                ALG_FUNC_DECL explicit vec(vec<2, T> const& v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec(vec<2, T> const& v, T z);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec(T x, T y, T z);
 
                 // -- Operator override --
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR T& operator[](size_t n);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR T const& operator[](size_t n) const;
+                ALG_FUNC_DECL ALG_CONSTEXPR T& operator[](size_t n);
+                ALG_FUNC_DECL ALG_CONSTEXPR T const& operator[](size_t n) const;
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T> operator+(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T> operator-(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T> operator*(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T> operator/(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T> operator+(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T> operator-(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T> operator*(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T> operator/(T const &scalar);
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T> operator+(vec<3, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T> operator-(vec<3, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T> operator*(vec<3, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T> operator/(vec<3, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T> operator+(vec<3, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T> operator-(vec<3, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T> operator*(vec<3, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T> operator/(vec<3, T> const &v);
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T>& operator+=(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T>& operator-=(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T>& operator*=(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T>& operator/=(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T>& operator+=(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T>& operator-=(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T>& operator*=(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T>& operator/=(T const &scalar);
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T>& operator+=(vec<3, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T>& operator-=(vec<3, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T>& operator*=(vec<3, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<3, T>& operator/=(vec<3, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T>& operator+=(vec<3, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T>& operator-=(vec<3, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T>& operator*=(vec<3, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<3, T>& operator/=(vec<3, T> const &v);
 
-                XEQ_FUNC_DECL vec<2, T> xy();
+                ALG_FUNC_DECL vec<2, T> xy();
                 
         };
 
@@ -181,41 +198,41 @@ namespace xeq {
 
                 // -- Constructor for vec4 --
 
-                XEQ_FUNC_DECL vec();
-                XEQ_FUNC_DECL explicit vec(T scalar);
-                XEQ_FUNC_DECL explicit vec(vec<2, T> const& v);
-                XEQ_FUNC_DECL explicit vec(vec<3, T> const& v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec(vec<2, T> const& v, T z, T w);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec(vec<3, T> const& v, T w);
-                XEQ_FUNC_DECL XEQ_INLINE XEQ_CONSTEXPR vec(T x, T y, T z, T w);
+                ALG_FUNC_DECL vec();
+                ALG_FUNC_DECL explicit vec(T scalar);
+                ALG_FUNC_DECL explicit vec(vec<2, T> const& v);
+                ALG_FUNC_DECL explicit vec(vec<3, T> const& v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec(vec<2, T> const& v, T z, T w);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec(vec<3, T> const& v, T w);
+                ALG_FUNC_DECL ALG_INLINE ALG_CONSTEXPR vec(T x, T y, T z, T w);
 
                 // -- Operator override --
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR T& operator[](size_t n);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR T const& operator[](size_t n) const;
+                ALG_FUNC_DECL ALG_CONSTEXPR T& operator[](size_t n);
+                ALG_FUNC_DECL ALG_CONSTEXPR T const& operator[](size_t n) const;
                 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> operator+(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> operator-(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> operator*(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> operator/(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T> operator+(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T> operator-(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T> operator*(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T> operator/(T const &scalar);
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> operator+(vec<4, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> operator-(vec<4, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> operator*(vec<4, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> operator/(vec<4, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T> operator+(vec<4, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T> operator-(vec<4, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T> operator*(vec<4, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T> operator/(vec<4, T> const &v);
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T>& operator+=(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T>& operator-=(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T>& operator*=(T const &scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T>& operator/=(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T>& operator+=(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T>& operator-=(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T>& operator*=(T const &scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T>& operator/=(T const &scalar);
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T>& operator+=(vec<4, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T>& operator-=(vec<4, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T>& operator*=(vec<4, T> const &v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T>& operator/=(vec<4, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T>& operator+=(vec<4, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T>& operator-=(vec<4, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T>& operator*=(vec<4, T> const &v);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T>& operator/=(vec<4, T> const &v);
 
-                XEQ_FUNC_DECL XEQ_INLINE vec<2, T> xy();
-                XEQ_FUNC_DECL XEQ_INLINE vec<3, T> xyz();
+                ALG_FUNC_DECL ALG_INLINE vec<2, T> xy();
+                ALG_FUNC_DECL ALG_INLINE vec<3, T> xyz();
                 
         };
         
@@ -229,14 +246,14 @@ namespace xeq {
                 
                 // -- Constructor --
                 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>();
-                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>(T const& scalar);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>(
+                ALG_FUNC_DECL ALG_CONSTEXPR mat<4, T>();
+                ALG_FUNC_DECL ALG_CONSTEXPR mat<4, T>(T const& scalar);
+                ALG_FUNC_DECL ALG_CONSTEXPR mat<4, T>(
                         T const& x1, T y1, T const& z1, T const& w1,
                         T const& x2, T y2, T const& z2, T const& w2,
                         T const& x3, T y3, T const& z3, T const& w3,
                         T const& x4, T y4, T const& z4, T const& w4);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>(
+                ALG_FUNC_DECL ALG_CONSTEXPR mat<4, T>(
                         vec<4, T> const &c1, 
                         vec<4, T> const &c2, 
                         vec<4, T> const &c3, 
@@ -244,15 +261,43 @@ namespace xeq {
                 
                 // -- Operator overrides --
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T>& operator[](size_t n);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> const& operator[](size_t n) const;
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T>& operator[](size_t n);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T> const& operator[](size_t n) const;
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T> operator*(T const& v);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T> operator*(mat<4, T> const& m);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v);
+                ALG_FUNC_DECL ALG_CONSTEXPR mat<4, T> operator*(T const& v);
+                ALG_FUNC_DECL ALG_CONSTEXPR mat<4, T> operator*(mat<4, T> const& m);
+                ALG_FUNC_DECL ALG_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v);
                 
         };
-        
+
+        // -- data --
+
+        template<typename T>
+        ALG_INLINE ALG_CONSTEXPR T* value_ptr(vec<2, T> &v);
+
+        template<typename T>
+        ALG_INLINE ALG_CONSTEXPR T* value_ptr(vec<3, T> &v);
+
+        template<typename T>
+        ALG_INLINE ALG_CONSTEXPR T* value_ptr(vec<4, T> &v);
+
+        template<typename T>
+        ALG_INLINE ALG_CONSTEXPR T* value_ptr(mat<4, T> &v);
+
+        // -- debug --
+
+        template<typename T>
+        ALG_INLINE void println(vec<2, T> const &v);
+
+        template<typename T>
+        ALG_INLINE void println(vec<3, T> const &v);
+
+        template<typename T>
+        ALG_INLINE void println(vec<4, T> const &v);
+
+        template<typename T>
+        ALG_INLINE void println(mat<4, T> const &m);
+
         // -- struct vec<2, T>: implements --
 
         template<typename T>
@@ -260,22 +305,12 @@ namespace xeq {
 
         template<typename T>
         vec<2, T>::vec(T scalar) : vec(scalar, scalar) {}
-        
-        template<typename T>
-        XEQ_CONSTEXPR vec<2, T>::vec(T x, T y) : r(static_cast<T>(x)), g(static_cast<T>(y)) {}
-        
-        template<typename T>
-        XEQ_CONSTEXPR T& vec<2, T>::operator[](size_t n)
-        {
-                switch (n) {
-                        case 0: return x;
-                        case 1: return y;
-                        default: throw std::runtime_error("no index");
-                }   
-        }
 
         template<typename T>
-        XEQ_CONSTEXPR T const& vec<2, T>::operator[](size_t n) const
+        ALG_CONSTEXPR vec<2, T>::vec(T x, T y) : r(static_cast<T>(x)), g(static_cast<T>(y)) {}
+
+        template<typename T>
+        ALG_CONSTEXPR T& vec<2, T>::operator[](size_t n)
         {
                 switch (n) {
                         case 0: return x;
@@ -283,57 +318,67 @@ namespace xeq {
                         default: throw std::runtime_error("no index");
                 }
         }
-        
+
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> vec<2, T>::operator+(T const &scalar)
+        ALG_CONSTEXPR T const& vec<2, T>::operator[](size_t n) const
+        {
+                switch (n) {
+                        case 0: return x;
+                        case 1: return y;
+                        default: throw std::runtime_error("no index");
+                }
+        }
+
+        template<typename T>
+        ALG_CONSTEXPR vec<2, T> vec<2, T>::operator+(T const &scalar)
         {
                 return vec<2, T>(x + scalar, y + scalar);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> vec<2, T>::operator-(T const &scalar)
+        ALG_CONSTEXPR vec<2, T> vec<2, T>::operator-(T const &scalar)
         {
                 return vec<2, T>(x - scalar, y - scalar);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> vec<2, T>::operator*(T const &scalar)
+        ALG_CONSTEXPR vec<2, T> vec<2, T>::operator*(T const &scalar)
         {
                 return vec<2, T>(x * scalar, y * scalar);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> vec<2, T>::operator/(T const &scalar)
+        ALG_CONSTEXPR vec<2, T> vec<2, T>::operator/(T const &scalar)
         {
                 return vec<2, T>(x / scalar, y / scalar);
         }
-        
+
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> vec<2, T>::operator+(const vec<2, T> &v)
+        ALG_CONSTEXPR vec<2, T> vec<2, T>::operator+(const vec<2, T> &v)
         {
                 return vec<2, T>(x + v.x, y + v.y);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> vec<2, T>::operator-(const vec<2, T> &v)
+        ALG_CONSTEXPR vec<2, T> vec<2, T>::operator-(const vec<2, T> &v)
         {
                 return vec<2, T>(x - v.x, y - v.y);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> vec<2, T>::operator*(const vec<2, T> &v)
+        ALG_CONSTEXPR vec<2, T> vec<2, T>::operator*(const vec<2, T> &v)
         {
                 return vec<2, T>(x * v.x, y * v.y);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> vec<2, T>::operator/(const vec<2, T> &v)
+        ALG_CONSTEXPR vec<2, T> vec<2, T>::operator/(const vec<2, T> &v)
         {
                 return vec<2, T>(x / v.x, y / v.y);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> &vec<2, T>::operator+=(T const &scalar)
+        ALG_CONSTEXPR vec<2, T> &vec<2, T>::operator+=(T const &scalar)
         {
                 this->x = this->x + scalar;
                 this->y = this->y + scalar;
@@ -341,7 +386,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> &vec<2, T>::operator-=(T const &scalar)
+        ALG_CONSTEXPR vec<2, T> &vec<2, T>::operator-=(T const &scalar)
         {
                 this->x = this->x - scalar;
                 this->y = this->y - scalar;
@@ -349,7 +394,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> &vec<2, T>::operator*=(T const &scalar)
+        ALG_CONSTEXPR vec<2, T> &vec<2, T>::operator*=(T const &scalar)
         {
                 this->x = this->x * scalar;
                 this->y = this->y * scalar;
@@ -357,15 +402,15 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> &vec<2, T>::operator/=(T const &scalar)
+        ALG_CONSTEXPR vec<2, T> &vec<2, T>::operator/=(T const &scalar)
         {
                 this->x = this->x / scalar;
                 this->y = this->y / scalar;
                 return *this;
         }
-        
+
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> &vec<2, T>::operator+=(const vec<2, T> &v)
+        ALG_CONSTEXPR vec<2, T> &vec<2, T>::operator+=(const vec<2, T> &v)
         {
                 this->x = this->x + v.x;
                 this->y = this->y + v.y;
@@ -373,7 +418,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> &vec<2, T>::operator-=(const vec<2, T> &v)
+        ALG_CONSTEXPR vec<2, T> &vec<2, T>::operator-=(const vec<2, T> &v)
         {
                 this->x = this->x - v.x;
                 this->y = this->y - v.y;
@@ -381,7 +426,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> &vec<2, T>::operator*=(const vec<2, T> &v)
+        ALG_CONSTEXPR vec<2, T> &vec<2, T>::operator*=(const vec<2, T> &v)
         {
                 this->x = this->x * v.x;
                 this->y = this->y * v.y;
@@ -389,7 +434,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<2, T> &vec<2, T>::operator/=(const vec<2, T> &v)
+        ALG_CONSTEXPR vec<2, T> &vec<2, T>::operator/=(const vec<2, T> &v)
         {
                 this->x = this->x / v.x;
                 this->y = this->y / v.y;
@@ -406,15 +451,15 @@ namespace xeq {
 
         template<typename T>
         vec<3, T>::vec(vec<2, T> const& v) : vec(v, ZERO_VALUE) {}
-        
-        template<typename T>
-        XEQ_CONSTEXPR vec<3, T>::vec(vec<2, T> const& v, T z) : vec(v.x, v.y, z) {}
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T>::vec(T x, T y, T z) : r(static_cast<T>(x)), g(static_cast<T>(y)), b(static_cast<T>(z)) {}
-        
+        ALG_CONSTEXPR vec<3, T>::vec(vec<2, T> const& v, T z) : vec(v.x, v.y, z) {}
+
         template<typename T>
-        XEQ_CONSTEXPR T& vec<3, T>::operator[](size_t n)
+        ALG_CONSTEXPR vec<3, T>::vec(T x, T y, T z) : r(static_cast<T>(x)), g(static_cast<T>(y)), b(static_cast<T>(z)) {}
+
+        template<typename T>
+        ALG_CONSTEXPR T& vec<3, T>::operator[](size_t n)
         {
                 switch (n) {
                         case 0: return x;
@@ -425,7 +470,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR T const& vec<3, T>::operator[](size_t n) const
+        ALG_CONSTEXPR T const& vec<3, T>::operator[](size_t n) const
         {
                 switch (n) {
                         case 0: return x;
@@ -434,57 +479,57 @@ namespace xeq {
                         default: throw std::runtime_error("no index");
                 }
         }
-        
+
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> vec<3, T>::operator+(T const &scalar)
+        ALG_CONSTEXPR vec<3, T> vec<3, T>::operator+(T const &scalar)
         {
                 return vec<3, T>(x + scalar, y + scalar, z + scalar);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> vec<3, T>::operator-(T const &scalar)
+        ALG_CONSTEXPR vec<3, T> vec<3, T>::operator-(T const &scalar)
         {
                 return vec<3, T>(x - scalar, y - scalar, z - scalar);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> vec<3, T>::operator*(T const &scalar)
+        ALG_CONSTEXPR vec<3, T> vec<3, T>::operator*(T const &scalar)
         {
                 return vec<3, T>(x * scalar, y * scalar, z * scalar);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> vec<3, T>::operator/(T const &scalar)
+        ALG_CONSTEXPR vec<3, T> vec<3, T>::operator/(T const &scalar)
         {
                 return vec<3, T>(x / scalar, y / scalar, z / scalar);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> vec<3, T>::operator+(const vec<3, T> &v)
+        ALG_CONSTEXPR vec<3, T> vec<3, T>::operator+(const vec<3, T> &v)
         {
                 return vec<3, T>(x + v.x, y + v.y, z + v.z);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> vec<3, T>::operator-(const vec<3, T> &v)
+        ALG_CONSTEXPR vec<3, T> vec<3, T>::operator-(const vec<3, T> &v)
         {
                 return vec<3, T>(x - v.x, y - v.y, z - v.z);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> vec<3, T>::operator*(const vec<3, T> &v)
+        ALG_CONSTEXPR vec<3, T> vec<3, T>::operator*(const vec<3, T> &v)
         {
                 return vec<3, T>(x * v.x, y * v.y, z * v.z);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> vec<3, T>::operator/(const vec<3, T> &v)
+        ALG_CONSTEXPR vec<3, T> vec<3, T>::operator/(const vec<3, T> &v)
         {
                 return vec<3, T>(x / v.x, y / v.y, z / v.z);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> &vec<3, T>::operator+=(T const &scalar)
+        ALG_CONSTEXPR vec<3, T> &vec<3, T>::operator+=(T const &scalar)
         {
                 this->x = this->x + scalar;
                 this->y = this->y + scalar;
@@ -493,7 +538,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> &vec<3, T>::operator-=(T const &scalar)
+        ALG_CONSTEXPR vec<3, T> &vec<3, T>::operator-=(T const &scalar)
         {
                 this->x = this->x - scalar;
                 this->y = this->y - scalar;
@@ -502,7 +547,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> &vec<3, T>::operator*=(T const &scalar)
+        ALG_CONSTEXPR vec<3, T> &vec<3, T>::operator*=(T const &scalar)
         {
                 this->x = this->x * scalar;
                 this->y = this->y * scalar;
@@ -511,7 +556,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> &vec<3, T>::operator/=(T const &scalar)
+        ALG_CONSTEXPR vec<3, T> &vec<3, T>::operator/=(T const &scalar)
         {
                 this->x = this->x / scalar;
                 this->y = this->y / scalar;
@@ -520,7 +565,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> &vec<3, T>::operator+=(const vec<3, T> &v)
+        ALG_CONSTEXPR vec<3, T> &vec<3, T>::operator+=(const vec<3, T> &v)
         {
                 this->x = this->x + v.x;
                 this->y = this->y + v.y;
@@ -529,7 +574,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> &vec<3, T>::operator-=(const vec<3, T> &v)
+        ALG_CONSTEXPR vec<3, T> &vec<3, T>::operator-=(const vec<3, T> &v)
         {
                 this->x = this->x - v.x;
                 this->y = this->y - v.y;
@@ -538,7 +583,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> &vec<3, T>::operator*=(const vec<3, T> &v)
+        ALG_CONSTEXPR vec<3, T> &vec<3, T>::operator*=(const vec<3, T> &v)
         {
                 this->x = this->x * v.x;
                 this->y = this->y * v.y;
@@ -547,7 +592,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<3, T> &vec<3, T>::operator/=(const vec<3, T> &v)
+        ALG_CONSTEXPR vec<3, T> &vec<3, T>::operator/=(const vec<3, T> &v)
         {
                 this->x = this->x / v.x;
                 this->y = this->y / v.y;
@@ -560,7 +605,7 @@ namespace xeq {
         {
                 return vec<2, T>(x, y);
         }
-        
+
         // -- struct vec<4, T>: implements --
 
         template<typename T>
@@ -576,17 +621,17 @@ namespace xeq {
         vec<4, T>::vec(vec<3, T> const& v) : vec(v.x, v.y, v.z, ZERO_VALUE) {}
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T>::vec(vec<2, T> const& v, T z, T w) : vec(v.x, v.y, z, w) {}
+        ALG_CONSTEXPR vec<4, T>::vec(vec<2, T> const& v, T z, T w) : vec(v.x, v.y, z, w) {}
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T>::vec(vec<3, T> const& v, T w) : vec(v.x, v.y, v.z, w) {}
-        
-        template<typename T>
-        XEQ_CONSTEXPR vec<4, T>::vec(T x, T y, T z, T w) : r(static_cast<T>(x)), g(static_cast<T>(y))
-                                                         , b(static_cast<T>(z)), a(static_cast<T>(w)) {}
+        ALG_CONSTEXPR vec<4, T>::vec(vec<3, T> const& v, T w) : vec(v.x, v.y, v.z, w) {}
 
         template<typename T>
-        XEQ_CONSTEXPR T& vec<4, T>::operator[](size_t n)
+        ALG_CONSTEXPR vec<4, T>::vec(T x, T y, T z, T w) : r(static_cast<T>(x)), g(static_cast<T>(y))
+                , b(static_cast<T>(z)), a(static_cast<T>(w)) {}
+
+        template<typename T>
+        ALG_CONSTEXPR T& vec<4, T>::operator[](size_t n)
         {
                 switch (n) {
                         case 0: return x;
@@ -598,7 +643,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR T const& vec<4, T>::operator[](size_t n) const
+        ALG_CONSTEXPR T const& vec<4, T>::operator[](size_t n) const
         {
                 switch (n) {
                         case 0: return x;
@@ -608,57 +653,57 @@ namespace xeq {
                         default: throw std::runtime_error("no index");
                 }
         }
-                                                         
+
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> vec<4, T>::operator+(T const &scalar)
+        ALG_CONSTEXPR vec<4, T> vec<4, T>::operator+(T const &scalar)
         {
                 return vec<4, T>(x + scalar, y + scalar, z + scalar, w + scalar);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> vec<4, T>::operator-(T const &scalar)
+        ALG_CONSTEXPR vec<4, T> vec<4, T>::operator-(T const &scalar)
         {
                 return vec<4, T>(x - scalar, y - scalar, z - scalar, w - scalar);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> vec<4, T>::operator*(T const &scalar)
+        ALG_CONSTEXPR vec<4, T> vec<4, T>::operator*(T const &scalar)
         {
                 return vec<4, T>(x * scalar, y * scalar, z * scalar, w * scalar);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> vec<4, T>::operator/(T const &scalar)
+        ALG_CONSTEXPR vec<4, T> vec<4, T>::operator/(T const &scalar)
         {
                 return vec<4, T>(x / scalar, y / scalar, z / scalar, w / scalar);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> vec<4, T>::operator+(const vec<4, T> &v)
+        ALG_CONSTEXPR vec<4, T> vec<4, T>::operator+(const vec<4, T> &v)
         {
                 return vec<4, T>(x + v.x, y + v.y, z + v.z, w + v.w);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> vec<4, T>::operator-(const vec<4, T> &v)
+        ALG_CONSTEXPR vec<4, T> vec<4, T>::operator-(const vec<4, T> &v)
         {
                 return vec<4, T>(x - v.x, y - v.y, z - v.z, w - v.w);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> vec<4, T>::operator*(const vec<4, T> &v)
+        ALG_CONSTEXPR vec<4, T> vec<4, T>::operator*(const vec<4, T> &v)
         {
                 return vec<4, T>(x * v.x, y * v.y, z * v.z, w * v.w);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> vec<4, T>::operator/(const vec<4, T> &v)
+        ALG_CONSTEXPR vec<4, T> vec<4, T>::operator/(const vec<4, T> &v)
         {
                 return vec<4, T>(x / v.x, y / v.y, z / v.z, w / w.w);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> &vec<4, T>::operator+=(T const &scalar)
+        ALG_CONSTEXPR vec<4, T> &vec<4, T>::operator+=(T const &scalar)
         {
                 this->x = this->x + scalar;
                 this->y = this->y + scalar;
@@ -668,7 +713,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> &vec<4, T>::operator-=(T const &scalar)
+        ALG_CONSTEXPR vec<4, T> &vec<4, T>::operator-=(T const &scalar)
         {
                 this->x = this->x - scalar;
                 this->y = this->y - scalar;
@@ -678,7 +723,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> &vec<4, T>::operator*=(T const &scalar)
+        ALG_CONSTEXPR vec<4, T> &vec<4, T>::operator*=(T const &scalar)
         {
                 this->x = this->x * scalar;
                 this->y = this->y * scalar;
@@ -688,7 +733,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> &vec<4, T>::operator/=(T const &scalar)
+        ALG_CONSTEXPR vec<4, T> &vec<4, T>::operator/=(T const &scalar)
         {
                 this->x = this->x / scalar;
                 this->y = this->y / scalar;
@@ -698,7 +743,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> &vec<4, T>::operator+=(const vec<4, T> &v)
+        ALG_CONSTEXPR vec<4, T> &vec<4, T>::operator+=(const vec<4, T> &v)
         {
                 this->x = this->x + v.x;
                 this->y = this->y + v.y;
@@ -708,7 +753,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> &vec<4, T>::operator-=(const vec<4, T> &v)
+        ALG_CONSTEXPR vec<4, T> &vec<4, T>::operator-=(const vec<4, T> &v)
         {
                 this->x = this->x - v.x;
                 this->y = this->y - v.y;
@@ -718,7 +763,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> &vec<4, T>::operator*=(const vec<4, T> &v)
+        ALG_CONSTEXPR vec<4, T> &vec<4, T>::operator*=(const vec<4, T> &v)
         {
                 this->x = this->x * v.x;
                 this->y = this->y * v.y;
@@ -728,7 +773,7 @@ namespace xeq {
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> &vec<4, T>::operator/=(const vec<4, T> &v)
+        ALG_CONSTEXPR vec<4, T> &vec<4, T>::operator/=(const vec<4, T> &v)
         {
                 this->x = this->x / v.x;
                 this->y = this->y / v.y;
@@ -748,14 +793,14 @@ namespace xeq {
         {
                 return vec<3, T>(x, y, z);
         }
-        
+
         // -- struct mat<4, T> --
 
         template<typename T>
-        XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>::mat() : mat(ONE_VALUE) {}
+        ALG_FUNC_DECL ALG_CONSTEXPR mat<4, T>::mat() : mat(ONE_VALUE) {}
 
         template<typename T>
-        XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>::mat(T const& s) 
+        ALG_FUNC_DECL ALG_CONSTEXPR mat<4, T>::mat(T const& s)
                 : mat(vec<4, T>(s, 0, 0, 0),
                       vec<4, T>(0, s, 0, 0),
                       vec<4, T>(0, 0, s, 0),
@@ -763,11 +808,11 @@ namespace xeq {
         {}
 
         template<typename T>
-        XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>::mat(
-            T const& x1, T y1, T const& z1, T const& w1,
-            T const& x2, T y2, T const& z2, T const& w2,
-            T const& x3, T y3, T const& z3, T const& w3,
-            T const& x4, T y4, T const& z4, T const& w4)
+        ALG_FUNC_DECL ALG_CONSTEXPR mat<4, T>::mat(
+                T const& x1, T y1, T const& z1, T const& w1,
+                T const& x2, T y2, T const& z2, T const& w2,
+                T const& x3, T y3, T const& z3, T const& w3,
+                T const& x4, T y4, T const& z4, T const& w4)
                 : mat(vec<4, T>(x1, y1, z1, w1),
                       vec<4, T>(x2, y2, z2, w2),
                       vec<4, T>(x3, y3, z3, w3),
@@ -775,32 +820,32 @@ namespace xeq {
         {}
 
         template<typename T>
-        XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>::mat(
-            vec<4, T> const &c1,
-            vec<4, T> const &c2,
-            vec<4, T> const &c3,
-            vec<4, T> const &c4)
+        ALG_FUNC_DECL ALG_CONSTEXPR mat<4, T>::mat(
+                vec<4, T> const &c1,
+                vec<4, T> const &c2,
+                vec<4, T> const &c3,
+                vec<4, T> const &c4)
         {
                 data[0] = c1;
                 data[1] = c2;
                 data[2] = c3;
                 data[3] = c4;
         }
-        
+
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T>& mat<4, T>::operator[](size_t n)
+        ALG_CONSTEXPR vec<4, T>& mat<4, T>::operator[](size_t n)
         {
                 return data[n];
         }
 
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> const& mat<4, T>::operator[](size_t n) const
+        ALG_CONSTEXPR vec<4, T> const& mat<4, T>::operator[](size_t n) const
         {
                 return data[n];
         }
 
         template<typename T>
-        XEQ_CONSTEXPR mat<4, T> mat<4, T>::operator*(T const& v)
+        ALG_CONSTEXPR mat<4, T> mat<4, T>::operator*(T const& v)
         {
                 mat<4, T> Result;
 
@@ -809,9 +854,9 @@ namespace xeq {
 
                 return Result;
         }
-        
+
         template<typename T>
-        XEQ_CONSTEXPR mat<4, T> mat<4, T>::operator*(mat<4, T> const& m)
+        ALG_CONSTEXPR mat<4, T> mat<4, T>::operator*(mat<4, T> const& m)
         {
                 using namespace std::experimental;
 
@@ -829,9 +874,9 @@ namespace xeq {
 
                 return Result;
         }
-        
+
         template<typename T>
-        XEQ_CONSTEXPR vec<4, T> mat<4, T>::operator*(vec<4, T> const& v)
+        ALG_CONSTEXPR vec<4, T> mat<4, T>::operator*(vec<4, T> const& v)
         {
                 using namespace std::experimental;
 
@@ -847,95 +892,55 @@ namespace xeq {
 
                 return Result;
         }
-        
-        // -- data --
-        
-        template<typename T>
-        XEQ_INLINE XEQ_CONSTEXPR T* value_ptr(vec<2, T> &v);
-
-        template<typename T>
-        XEQ_INLINE XEQ_CONSTEXPR T* value_ptr(vec<3, T> &v);
-
-        template<typename T>
-        XEQ_INLINE XEQ_CONSTEXPR T* value_ptr(vec<4, T> &v);
-
-        template<typename T>
-        XEQ_INLINE XEQ_CONSTEXPR T* value_ptr(mat<4, T> &v);
-        
-        // -- debug --
-
-        template<typename T>
-        XEQ_INLINE void println(vec<2, T> const &v);
-
-        template<typename T>
-        XEQ_INLINE void println(vec<3, T> const &v);
-
-        template<typename T>
-        XEQ_INLINE void println(vec<4, T> const &v);
-
-        template<typename T>
-        XEQ_INLINE void println(mat<4, T> const &m);
 
         // -- implements --
-        
+
         template<typename T>
-        XEQ_CONSTEXPR T* value_ptr(vec<2, T> &v)
+        ALG_CONSTEXPR T* value_ptr(vec<2, T> &v)
         {
                 return &v.x;
         }
 
         template<typename T>
-        XEQ_CONSTEXPR T* value_ptr(vec<3, T> &v)
+        ALG_CONSTEXPR T* value_ptr(vec<3, T> &v)
         {
                 return static_cast<T*>(&v.x);
         }
 
         template<typename T>
-        XEQ_CONSTEXPR T* value_ptr(vec<4, T> &v)
+        ALG_CONSTEXPR T* value_ptr(vec<4, T> &v)
         {
                 return &v.x;
         }
 
         template<typename T>
-        XEQ_CONSTEXPR T* value_ptr(mat<4, T> &m)
+        ALG_CONSTEXPR T* value_ptr(mat<4, T> &m)
         {
                 return &m.data[0].x;
         }
-        
-        template<typename T>
-        void println(vec<2, T> const &v)
-        {
-                printf("(%.2f, %.2f)\n", v.x, v.y);
-        }
 
-        template<typename T>
-        void println(vec<3, T> const &v)
-        {
-                printf("(%.2f, %.2f, %.2f)\n", v.x, v.y, v.z);
-        }
-
-        template<typename T>
-        void println(vec<4, T> const &v)
-        {
-                printf("(%.2f, %.2f, %.2f, %.2f)\n", v.x, v.y, v.z, v.w);
-        }
-
-        template<typename T>
-        void println(mat<4, T> const &m)
-        {
-                printf("(%.2f, %.2f, %.2f, %.2f)\n", m[0][0], m[1][0], m[2][0], m[3][0]);
-                printf("(%.2f, %.2f, %.2f, %.2f)\n", m[0][1], m[1][1], m[2][1], m[3][1]);
-                printf("(%.2f, %.2f, %.2f, %.2f)\n", m[0][2], m[1][2], m[2][2], m[3][2]);
-                printf("(%.2f, %.2f, %.2f, %.2f)\n", m[0][3], m[1][3], m[2][3], m[3][3]);
-        }
 }
 
+#define ALG_PRINT_FORMAT_VECTOR2(v)                                                             \
+        do {                                                                                    \
+            printf("[%.2f, %.2f]\n", v[0], v[1]);                                               \
+        } while(0)
 
-#define XEQ_COMMON_PRINTLN_MATRIX4(m)                                                           \
-        printf("(%.2f, %.2f, %.2f, %.2f)\n", m[0][0], m[1][0], m[2][0], m[3][0]);               \
-        printf("(%.2f, %.2f, %.2f, %.2f)\n", m[0][1], m[1][1], m[2][1], m[3][1]);               \
-        printf("(%.2f, %.2f, %.2f, %.2f)\n", m[0][2], m[1][2], m[2][2], m[3][2]);               \
-        printf("(%.2f, %.2f, %.2f, %.2f)\n", m[0][3], m[1][3], m[2][3], m[3][3])
+#define ALG_PRINT_FORMAT_VECTOR3(v)                                                             \
+        do {                                                                                    \
+            printf("[%.2f, %.2f, %.2f]\n", v[0], v[1], v[2]);                                   \
+        } while(0)
+
+#define ALG_PRINT_FORMAT_VECTOR4(v)                                                             \
+        do {                                                                                    \
+            printf("[%.2f, %.2f]\n", v[0], v[1], v[2], v[3]);                                   \
+        } while(0)
+
+#define ALG_PRINT_FORMAT_MATRIX4(m)                                                             \
+        do {                                                                                    \
+            for (int i = 0; i < 4; i++)                                                         \
+                printf("(%.2f, %.2f, %.2f, %.2f)\n", m[0][i], m[1][i], m[2][i], m[3][i]);       \
+        } while(0)
 
 
-#endif /* XEQ_VEC_H_ */
+#endif /* ALG_VEC_H_ */
