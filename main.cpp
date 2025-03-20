@@ -30,12 +30,10 @@ int main()
             0, 0, 0, 1
         };
 
-        xeq::mat4 mat1 = {
-            xeq::vec4(1, 0, 0, 0),
-            xeq::vec4(0, 1, 0, 0),
-            xeq::vec4(0, 0, 1, 0),
-            xeq::vec4(0, 0, 0, 1)
-        };
+        xeq::vec4 V;
+        xeq::vec3 vec(3.0f, 0.5f, 1.1f);
+        
+        V = mat * xeq::vec4(vec, 1.0f);
 
 }
 
