@@ -23,18 +23,41 @@
 
 int main()
 {
-        xeq::mat4 mat = {
-            1, 0, 0, 0,
-            0, 1, 0, 0,
-            0, 0, 1, 0,
-            0, 0, 0, 1
-        };
+        {
+                using namespace xeq;
 
-        xeq::vec4 V;
-        xeq::vec3 vec(3.0f, 0.5f, 1.1f);
-        
-        V = mat * xeq::vec4(vec, 1.0f);
+                mat4 M, R;
 
+                R = {
+                        1, 2, 3, 8,
+                        4, 5, 6, 8,
+                        7, 8, 9, 7,
+                        3, 2, 1, 7
+                };
+
+                M = R * 5.0f;
+
+                XEQ_PRINTLN_MATRIX4(M);
+        }
+
+        printf("\n");
+
+        {
+                using namespace glm;
+
+                mat4 M, R;
+
+                R = {
+                        1, 2, 3, 8,
+                        4, 5, 6, 8,
+                        7, 8, 9, 7,
+                        3, 2, 1, 7
+                };
+
+                M = R * 5.0f;
+
+                XEQ_PRINTLN_MATRIX4(M);
+        }
 }
 
 #pragma clang diagnostic pop

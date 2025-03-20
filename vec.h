@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <cmath>
 #include <stdexcept>
-#include <immintrin.h>
+#include <experimental/simd>
 
 #define XEQ_FUNC_DECL          /* UNDEF */
 #define XEQ_INLINE             inline
@@ -790,31 +790,62 @@ namespace xeq {
         template<typename T>
         XEQ_CONSTEXPR vec<4, T>& mat<4, T>::operator[](size_t n)
         {
-                return data[0];
+                return data[n];
         }
 
         template<typename T>
         XEQ_CONSTEXPR vec<4, T> const& mat<4, T>::operator[](size_t n) const
         {
-                return data[0];
+                return data[n];
         }
 
         template<typename T>
         XEQ_CONSTEXPR mat<4, T> mat<4, T>::operator*(T const& v)
         {
-                
+                mat<4, T> Result;
+
+                for (int i = 0; i < 4; i++)
+                        Result[i] = data[i] * v;
+
+                return Result;
         }
         
         template<typename T>
         XEQ_CONSTEXPR mat<4, T> mat<4, T>::operator*(mat<4, T> const& m)
         {
-                
+                using namespace std::experimental;
+
+                mat<4, T> Result;
+
+                for (int j = 0; j < 4; j++) {
+                        simd<T, simd_abi::fixed_size<4>> col(&m[j].x, element_aligned);
+                        for (int i = 0; i < 4; i++) {
+                                T row_data[] = { data[0][i], data[1][i], data[2][i], data[3][i] };
+                                simd<T, simd_abi::fixed_size<4>> row;
+                                row.copy_from(row_data, element_aligned);
+                                Result[j][i] = std::experimental::reduce(row * col);
+                        }
+                }
+
+                return Result;
         }
         
         template<typename T>
         XEQ_CONSTEXPR vec<4, T> mat<4, T>::operator*(vec<4, T> const& v)
         {
-                
+                using namespace std::experimental;
+
+                vec<4, T> Result;
+
+                simd<T, simd_abi::fixed_size<4>> col(&v.x, element_aligned);
+                for (int i = 0; i < 4; i++) {
+                        T row_data[] = { data[0][i], data[1][i], data[2][i], data[3][i] };
+                        simd<T, simd_abi::fixed_size<4>> row;
+                        row.copy_from(row_data, element_aligned);
+                        Result[i] = std::experimental::reduce(row * col);
+                }
+
+                return Result;
         }
         
         // -- data --
@@ -841,6 +872,9 @@ namespace xeq {
 
         template<typename T>
         XEQ_INLINE void println(vec<4, T> const &v);
+
+        template<typename T>
+        XEQ_INLINE void println(mat<4, T> const &m);
 
         // -- implements --
         
@@ -885,6 +919,23 @@ namespace xeq {
         {
                 printf("(%f, %f, %f, %f)\n", v.x, v.y, v.z, v.w);
         }
+
+        template<typename T>
+        void println(mat<4, T> const &m)
+        {
+                printf("(%f, %f, %f, %f)\n", m[0][0], m[1][0], m[2][0], m[3][0]);
+                printf("(%f, %f, %f, %f)\n", m[0][1], m[1][1], m[2][1], m[3][1]);
+                printf("(%f, %f, %f, %f)\n", m[0][2], m[1][2], m[2][2], m[3][2]);
+                printf("(%f, %f, %f, %f)\n", m[0][3], m[1][3], m[2][3], m[3][3]);
+        }
 }
+
+
+#define XEQ_PRINTLN_MATRIX4(m)                                                          \
+        printf("(%f, %f, %f, %f)\n", m[0][0], m[1][0], m[2][0], m[3][0]);               \
+        printf("(%f, %f, %f, %f)\n", m[0][1], m[1][1], m[2][1], m[3][1]);               \
+        printf("(%f, %f, %f, %f)\n", m[0][2], m[1][2], m[2][2], m[3][2]);               \
+        printf("(%f, %f, %f, %f)\n", m[0][3], m[1][3], m[2][3], m[3][3])
+
 
 #endif /* XEQ_VEC_H_ */
