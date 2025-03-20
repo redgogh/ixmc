@@ -1,14 +1,14 @@
-#ifndef BRA_VEC_H_
-#define BRA_VEC_H_
+#ifndef EQU_VEC_H_
+#define EQU_VEC_H_
 
 #include <cstdio>
 #include <cmath>
 
-#define BRA_FUNC_DECL          /* UNDEF */
-#define BRA_INLINE             inline
-#define BRA_CONSTEXPR          constexpr
+#define EQU_FUNC_DECL          /* UNDEF */
+#define EQU_INLINE             inline
+#define EQU_CONSTEXPR          constexpr
 
-namespace bra {
+namespace equ {
 
         // -- Vector & Matrix --
         
@@ -80,31 +80,31 @@ namespace bra {
 
                 // -- Constructor for vec2 --
 
-                BRA_FUNC_DECL vec();
-                BRA_FUNC_DECL explicit vec(T scalar);
-                BRA_FUNC_DECL BRA_INLINE BRA_CONSTEXPR vec(T x, T y);
+                EQU_FUNC_DECL vec();
+                EQU_FUNC_DECL explicit vec(T scalar);
+                EQU_FUNC_DECL EQU_INLINE EQU_CONSTEXPR vec(T x, T y);
 
                 // -- Operator override --
 
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T> operator+(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T> operator-(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T> operator*(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T> operator/(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T> operator+(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T> operator-(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T> operator*(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T> operator/(T const &scalar);
 
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T> operator+(vec<2, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T> operator-(vec<2, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T> operator*(vec<2, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T> operator/(vec<2, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T> operator+(vec<2, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T> operator-(vec<2, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T> operator*(vec<2, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T> operator/(vec<2, T> const &v);
 
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T>& operator+=(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T>& operator-=(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T>& operator*=(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T>& operator/=(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T>& operator+=(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T>& operator-=(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T>& operator*=(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T>& operator/=(T const &scalar);
 
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T>& operator+=(vec<2, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T>& operator-=(vec<2, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T>& operator*=(vec<2, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<2, T>& operator/=(vec<2, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T>& operator+=(vec<2, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T>& operator-=(vec<2, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T>& operator*=(vec<2, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<2, T>& operator/=(vec<2, T> const &v);
 
         };
 
@@ -123,31 +123,31 @@ namespace bra {
 
                 // -- Constructor for vec3 --
 
-                BRA_FUNC_DECL vec();
-                BRA_FUNC_DECL explicit vec(T scalar);
-                BRA_FUNC_DECL BRA_INLINE BRA_CONSTEXPR vec(T x, T y, T z);
+                EQU_FUNC_DECL vec();
+                EQU_FUNC_DECL explicit vec(T scalar);
+                EQU_FUNC_DECL EQU_INLINE EQU_CONSTEXPR vec(T x, T y, T z);
 
                 // -- Operator override --
 
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T> operator+(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T> operator-(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T> operator*(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T> operator/(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T> operator+(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T> operator-(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T> operator*(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T> operator/(T const &scalar);
 
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T> operator+(vec<3, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T> operator-(vec<3, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T> operator*(vec<3, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T> operator/(vec<3, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T> operator+(vec<3, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T> operator-(vec<3, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T> operator*(vec<3, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T> operator/(vec<3, T> const &v);
 
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T>& operator+=(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T>& operator-=(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T>& operator*=(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T>& operator/=(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T>& operator+=(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T>& operator-=(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T>& operator*=(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T>& operator/=(T const &scalar);
 
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T>& operator+=(vec<3, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T>& operator-=(vec<3, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T>& operator*=(vec<3, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<3, T>& operator/=(vec<3, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T>& operator+=(vec<3, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T>& operator-=(vec<3, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T>& operator*=(vec<3, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<3, T>& operator/=(vec<3, T> const &v);
 
         };
 
@@ -166,31 +166,31 @@ namespace bra {
 
                 // -- Constructor for vec4 --
 
-                BRA_FUNC_DECL vec();
-                BRA_FUNC_DECL explicit vec(T scalar);
-                BRA_FUNC_DECL BRA_INLINE BRA_CONSTEXPR vec(T x, T y, T z, T w);
+                EQU_FUNC_DECL vec();
+                EQU_FUNC_DECL explicit vec(T scalar);
+                EQU_FUNC_DECL EQU_INLINE EQU_CONSTEXPR vec(T x, T y, T z, T w);
 
                 // -- Operator override --
 
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T> operator+(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T> operator-(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T> operator*(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T> operator/(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T> operator+(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T> operator-(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T> operator*(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T> operator/(T const &scalar);
 
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T> operator+(vec<4, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T> operator-(vec<4, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T> operator*(vec<4, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T> operator/(vec<4, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T> operator+(vec<4, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T> operator-(vec<4, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T> operator*(vec<4, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T> operator/(vec<4, T> const &v);
 
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T>& operator+=(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T>& operator-=(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T>& operator*=(T const &scalar);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T>& operator/=(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T>& operator+=(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T>& operator-=(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T>& operator*=(T const &scalar);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T>& operator/=(T const &scalar);
 
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T>& operator+=(vec<4, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T>& operator-=(vec<4, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T>& operator*=(vec<4, T> const &v);
-                BRA_FUNC_DECL BRA_CONSTEXPR vec<4, T>& operator/=(vec<4, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T>& operator+=(vec<4, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T>& operator-=(vec<4, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T>& operator*=(vec<4, T> const &v);
+                EQU_FUNC_DECL EQU_CONSTEXPR vec<4, T>& operator/=(vec<4, T> const &v);
 
         };
         
@@ -203,58 +203,58 @@ namespace bra {
         vec<2, T>::vec(T scalar) : vec(scalar, scalar) {}
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T>::vec(T x, T y) : r(static_cast<T>(x)), g(static_cast<T>(y)) {}
+        EQU_CONSTEXPR vec<2, T>::vec(T x, T y) : r(static_cast<T>(x)), g(static_cast<T>(y)) {}
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> vec<2, T>::operator+(T const &scalar)
+        EQU_CONSTEXPR vec<2, T> vec<2, T>::operator+(T const &scalar)
         {
                 return vec<2, T>(x + scalar, y + scalar);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> vec<2, T>::operator-(T const &scalar)
+        EQU_CONSTEXPR vec<2, T> vec<2, T>::operator-(T const &scalar)
         {
                 return vec<2, T>(x - scalar, y - scalar);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> vec<2, T>::operator*(T const &scalar)
+        EQU_CONSTEXPR vec<2, T> vec<2, T>::operator*(T const &scalar)
         {
                 return vec<2, T>(x * scalar, y * scalar);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> vec<2, T>::operator/(T const &scalar)
+        EQU_CONSTEXPR vec<2, T> vec<2, T>::operator/(T const &scalar)
         {
                 return vec<2, T>(x / scalar, y / scalar);
         }
         
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> vec<2, T>::operator+(const vec<2, T> &v)
+        EQU_CONSTEXPR vec<2, T> vec<2, T>::operator+(const vec<2, T> &v)
         {
                 return vec<2, T>(x + v.x, y + v.y);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> vec<2, T>::operator-(const vec<2, T> &v)
+        EQU_CONSTEXPR vec<2, T> vec<2, T>::operator-(const vec<2, T> &v)
         {
                 return vec<2, T>(x - v.x, y - v.y);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> vec<2, T>::operator*(const vec<2, T> &v)
+        EQU_CONSTEXPR vec<2, T> vec<2, T>::operator*(const vec<2, T> &v)
         {
                 return vec<2, T>(x * v.x, y * v.y);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> vec<2, T>::operator/(const vec<2, T> &v)
+        EQU_CONSTEXPR vec<2, T> vec<2, T>::operator/(const vec<2, T> &v)
         {
                 return vec<2, T>(x / v.x, y / v.y);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> &vec<2, T>::operator+=(T const &scalar)
+        EQU_CONSTEXPR vec<2, T> &vec<2, T>::operator+=(T const &scalar)
         {
                 this->x = this->x + scalar;
                 this->y = this->y + scalar;
@@ -262,7 +262,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> &vec<2, T>::operator-=(T const &scalar)
+        EQU_CONSTEXPR vec<2, T> &vec<2, T>::operator-=(T const &scalar)
         {
                 this->x = this->x - scalar;
                 this->y = this->y - scalar;
@@ -270,7 +270,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> &vec<2, T>::operator*=(T const &scalar)
+        EQU_CONSTEXPR vec<2, T> &vec<2, T>::operator*=(T const &scalar)
         {
                 this->x = this->x * scalar;
                 this->y = this->y * scalar;
@@ -278,7 +278,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> &vec<2, T>::operator/=(T const &scalar)
+        EQU_CONSTEXPR vec<2, T> &vec<2, T>::operator/=(T const &scalar)
         {
                 this->x = this->x / scalar;
                 this->y = this->y / scalar;
@@ -286,7 +286,7 @@ namespace bra {
         }
         
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> &vec<2, T>::operator+=(const vec<2, T> &v)
+        EQU_CONSTEXPR vec<2, T> &vec<2, T>::operator+=(const vec<2, T> &v)
         {
                 this->x = this->x + v.x;
                 this->y = this->y + v.y;
@@ -294,7 +294,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> &vec<2, T>::operator-=(const vec<2, T> &v)
+        EQU_CONSTEXPR vec<2, T> &vec<2, T>::operator-=(const vec<2, T> &v)
         {
                 this->x = this->x - v.x;
                 this->y = this->y - v.y;
@@ -302,7 +302,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> &vec<2, T>::operator*=(const vec<2, T> &v)
+        EQU_CONSTEXPR vec<2, T> &vec<2, T>::operator*=(const vec<2, T> &v)
         {
                 this->x = this->x * v.x;
                 this->y = this->y * v.y;
@@ -310,7 +310,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<2, T> &vec<2, T>::operator/=(const vec<2, T> &v)
+        EQU_CONSTEXPR vec<2, T> &vec<2, T>::operator/=(const vec<2, T> &v)
         {
                 this->x = this->x / v.x;
                 this->y = this->y / v.y;
@@ -326,58 +326,58 @@ namespace bra {
         vec<3, T>::vec(T scalar) : vec(scalar, scalar, scalar) {}
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T>::vec(T x, T y, T z) : r(static_cast<T>(x)), g(static_cast<T>(y)), b(static_cast<T>(z)) {}
+        EQU_CONSTEXPR vec<3, T>::vec(T x, T y, T z) : r(static_cast<T>(x)), g(static_cast<T>(y)), b(static_cast<T>(z)) {}
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> vec<3, T>::operator+(T const &scalar)
+        EQU_CONSTEXPR vec<3, T> vec<3, T>::operator+(T const &scalar)
         {
                 return vec<3, T>(x + scalar, y + scalar, z + scalar);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> vec<3, T>::operator-(T const &scalar)
+        EQU_CONSTEXPR vec<3, T> vec<3, T>::operator-(T const &scalar)
         {
                 return vec<3, T>(x - scalar, y - scalar, z - scalar);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> vec<3, T>::operator*(T const &scalar)
+        EQU_CONSTEXPR vec<3, T> vec<3, T>::operator*(T const &scalar)
         {
                 return vec<3, T>(x * scalar, y * scalar, z * scalar);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> vec<3, T>::operator/(T const &scalar)
+        EQU_CONSTEXPR vec<3, T> vec<3, T>::operator/(T const &scalar)
         {
                 return vec<3, T>(x / scalar, y / scalar, z / scalar);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> vec<3, T>::operator+(const vec<3, T> &v)
+        EQU_CONSTEXPR vec<3, T> vec<3, T>::operator+(const vec<3, T> &v)
         {
                 return vec<3, T>(x + v.x, y + v.y, z + v.z);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> vec<3, T>::operator-(const vec<3, T> &v)
+        EQU_CONSTEXPR vec<3, T> vec<3, T>::operator-(const vec<3, T> &v)
         {
                 return vec<3, T>(x - v.x, y - v.y, z - v.z);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> vec<3, T>::operator*(const vec<3, T> &v)
+        EQU_CONSTEXPR vec<3, T> vec<3, T>::operator*(const vec<3, T> &v)
         {
                 return vec<3, T>(x * v.x, y * v.y, z * v.z);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> vec<3, T>::operator/(const vec<3, T> &v)
+        EQU_CONSTEXPR vec<3, T> vec<3, T>::operator/(const vec<3, T> &v)
         {
                 return vec<3, T>(x / v.x, y / v.y, z / v.z);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> &vec<3, T>::operator+=(T const &scalar)
+        EQU_CONSTEXPR vec<3, T> &vec<3, T>::operator+=(T const &scalar)
         {
                 this->x = this->x + scalar;
                 this->y = this->y + scalar;
@@ -386,7 +386,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> &vec<3, T>::operator-=(T const &scalar)
+        EQU_CONSTEXPR vec<3, T> &vec<3, T>::operator-=(T const &scalar)
         {
                 this->x = this->x - scalar;
                 this->y = this->y - scalar;
@@ -395,7 +395,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> &vec<3, T>::operator*=(T const &scalar)
+        EQU_CONSTEXPR vec<3, T> &vec<3, T>::operator*=(T const &scalar)
         {
                 this->x = this->x * scalar;
                 this->y = this->y * scalar;
@@ -404,7 +404,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> &vec<3, T>::operator/=(T const &scalar)
+        EQU_CONSTEXPR vec<3, T> &vec<3, T>::operator/=(T const &scalar)
         {
                 this->x = this->x / scalar;
                 this->y = this->y / scalar;
@@ -413,7 +413,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> &vec<3, T>::operator+=(const vec<3, T> &v)
+        EQU_CONSTEXPR vec<3, T> &vec<3, T>::operator+=(const vec<3, T> &v)
         {
                 this->x = this->x + v.x;
                 this->y = this->y + v.y;
@@ -422,7 +422,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> &vec<3, T>::operator-=(const vec<3, T> &v)
+        EQU_CONSTEXPR vec<3, T> &vec<3, T>::operator-=(const vec<3, T> &v)
         {
                 this->x = this->x - v.x;
                 this->y = this->y - v.y;
@@ -431,7 +431,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> &vec<3, T>::operator*=(const vec<3, T> &v)
+        EQU_CONSTEXPR vec<3, T> &vec<3, T>::operator*=(const vec<3, T> &v)
         {
                 this->x = this->x * v.x;
                 this->y = this->y * v.y;
@@ -440,7 +440,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<3, T> &vec<3, T>::operator/=(const vec<3, T> &v)
+        EQU_CONSTEXPR vec<3, T> &vec<3, T>::operator/=(const vec<3, T> &v)
         {
                 this->x = this->x / v.x;
                 this->y = this->y / v.y;
@@ -457,59 +457,59 @@ namespace bra {
         vec<4, T>::vec(T scalar) : vec(scalar, scalar, scalar, scalar) {}
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T>::vec(T x, T y, T z, T w) : r(static_cast<T>(x)), g(static_cast<T>(y))
+        EQU_CONSTEXPR vec<4, T>::vec(T x, T y, T z, T w) : r(static_cast<T>(x)), g(static_cast<T>(y))
                                                          , b(static_cast<T>(z)), a(static_cast<T>(w)) {}
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> vec<4, T>::operator+(T const &scalar)
+        EQU_CONSTEXPR vec<4, T> vec<4, T>::operator+(T const &scalar)
         {
                 return vec<4, T>(x + scalar, y + scalar, z + scalar, w + scalar);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> vec<4, T>::operator-(T const &scalar)
+        EQU_CONSTEXPR vec<4, T> vec<4, T>::operator-(T const &scalar)
         {
                 return vec<4, T>(x - scalar, y - scalar, z - scalar, w - scalar);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> vec<4, T>::operator*(T const &scalar)
+        EQU_CONSTEXPR vec<4, T> vec<4, T>::operator*(T const &scalar)
         {
                 return vec<4, T>(x * scalar, y * scalar, z * scalar, w * scalar);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> vec<4, T>::operator/(T const &scalar)
+        EQU_CONSTEXPR vec<4, T> vec<4, T>::operator/(T const &scalar)
         {
                 return vec<4, T>(x / scalar, y / scalar, z / scalar, w / scalar);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> vec<4, T>::operator+(const vec<4, T> &v)
+        EQU_CONSTEXPR vec<4, T> vec<4, T>::operator+(const vec<4, T> &v)
         {
                 return vec<4, T>(x + v.x, y + v.y, z + v.z, w + v.w);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> vec<4, T>::operator-(const vec<4, T> &v)
+        EQU_CONSTEXPR vec<4, T> vec<4, T>::operator-(const vec<4, T> &v)
         {
                 return vec<4, T>(x - v.x, y - v.y, z - v.z, w - v.w);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> vec<4, T>::operator*(const vec<4, T> &v)
+        EQU_CONSTEXPR vec<4, T> vec<4, T>::operator*(const vec<4, T> &v)
         {
                 return vec<4, T>(x * v.x, y * v.y, z * v.z, w * v.w);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> vec<4, T>::operator/(const vec<4, T> &v)
+        EQU_CONSTEXPR vec<4, T> vec<4, T>::operator/(const vec<4, T> &v)
         {
                 return vec<4, T>(x / v.x, y / v.y, z / v.z, w / w.w);
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> &vec<4, T>::operator+=(T const &scalar)
+        EQU_CONSTEXPR vec<4, T> &vec<4, T>::operator+=(T const &scalar)
         {
                 this->x = this->x + scalar;
                 this->y = this->y + scalar;
@@ -519,7 +519,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> &vec<4, T>::operator-=(T const &scalar)
+        EQU_CONSTEXPR vec<4, T> &vec<4, T>::operator-=(T const &scalar)
         {
                 this->x = this->x - scalar;
                 this->y = this->y - scalar;
@@ -529,7 +529,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> &vec<4, T>::operator*=(T const &scalar)
+        EQU_CONSTEXPR vec<4, T> &vec<4, T>::operator*=(T const &scalar)
         {
                 this->x = this->x * scalar;
                 this->y = this->y * scalar;
@@ -539,7 +539,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> &vec<4, T>::operator/=(T const &scalar)
+        EQU_CONSTEXPR vec<4, T> &vec<4, T>::operator/=(T const &scalar)
         {
                 this->x = this->x / scalar;
                 this->y = this->y / scalar;
@@ -549,7 +549,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> &vec<4, T>::operator+=(const vec<4, T> &v)
+        EQU_CONSTEXPR vec<4, T> &vec<4, T>::operator+=(const vec<4, T> &v)
         {
                 this->x = this->x + v.x;
                 this->y = this->y + v.y;
@@ -559,7 +559,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> &vec<4, T>::operator-=(const vec<4, T> &v)
+        EQU_CONSTEXPR vec<4, T> &vec<4, T>::operator-=(const vec<4, T> &v)
         {
                 this->x = this->x - v.x;
                 this->y = this->y - v.y;
@@ -569,7 +569,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> &vec<4, T>::operator*=(const vec<4, T> &v)
+        EQU_CONSTEXPR vec<4, T> &vec<4, T>::operator*=(const vec<4, T> &v)
         {
                 this->x = this->x * v.x;
                 this->y = this->y * v.y;
@@ -579,7 +579,7 @@ namespace bra {
         }
 
         template<typename T>
-        BRA_CONSTEXPR vec<4, T> &vec<4, T>::operator/=(const vec<4, T> &v)
+        EQU_CONSTEXPR vec<4, T> &vec<4, T>::operator/=(const vec<4, T> &v)
         {
                 this->x = this->x / v.x;
                 this->y = this->y / v.y;
@@ -591,41 +591,41 @@ namespace bra {
         // -- data --
         
         template<typename T>
-        BRA_INLINE BRA_CONSTEXPR T* value_ptr(vec<2, T> &v);
+        EQU_INLINE EQU_CONSTEXPR T* value_ptr(vec<2, T> &v);
 
         template<typename T>
-        BRA_INLINE BRA_CONSTEXPR T* value_ptr(vec<3, T> &v);
+        EQU_INLINE EQU_CONSTEXPR T* value_ptr(vec<3, T> &v);
 
         template<typename T>
-        BRA_INLINE BRA_CONSTEXPR T* value_ptr(vec<4, T> &v);
+        EQU_INLINE EQU_CONSTEXPR T* value_ptr(vec<4, T> &v);
 
         // -- debug --
 
         template<typename T>
-        BRA_INLINE void println(vec<2, T> const &v);
+        EQU_INLINE void println(vec<2, T> const &v);
 
         template<typename T>
-        BRA_INLINE void println(vec<3, T> const &v);
+        EQU_INLINE void println(vec<3, T> const &v);
 
         template<typename T>
-        BRA_INLINE void println(vec<4, T> const &v);
+        EQU_INLINE void println(vec<4, T> const &v);
 
         // -- implements --
         
         template<typename T>
-        BRA_CONSTEXPR T* value_ptr(vec<2, T> &v)
+        EQU_CONSTEXPR T* value_ptr(vec<2, T> &v)
         {
                 return &v.x;
         }
 
         template<typename T>
-        BRA_CONSTEXPR T* value_ptr(vec<3, T> &v)
+        EQU_CONSTEXPR T* value_ptr(vec<3, T> &v)
         {
                 return static_cast<T*>(&v.x);
         }
 
         template<typename T>
-        BRA_CONSTEXPR T* value_ptr(vec<4, T> &v)
+        EQU_CONSTEXPR T* value_ptr(vec<4, T> &v)
         {
                 return &v.x;
         }
@@ -649,4 +649,4 @@ namespace bra {
         }
 }
 
-#endif /* BRA_VEC_H_ */
+#endif /* EQU_VEC_H_ */

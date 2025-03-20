@@ -23,10 +23,10 @@
 
 int main()
 {
-        bra::vec3 vec(1.0f, 2.0f, 3.0f);
+        equ::vec3 vec(1.0f, 2.0f, 3.0f);
         
-        float *p = bra::value_ptr(vec);
-
+        float *p = equ::value_ptr(vec);
+        
         printf("%f, %f, %f\n", p[0], p[1], p[2]);
         
         return 0;
