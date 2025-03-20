@@ -23,8 +23,20 @@
 
 int main()
 {
-        glm::mat4 
-        return 0;
+        xeq::mat4 mat = {
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1
+        };
+
+        xeq::mat4 mat1 = {
+            xeq::vec4(1, 0, 0, 0),
+            xeq::vec4(0, 1, 0, 0),
+            xeq::vec4(0, 0, 1, 0),
+            xeq::vec4(0, 0, 0, 1)
+        };
+
 }
 
 #pragma clang diagnostic pop

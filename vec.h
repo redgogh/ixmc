@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <cmath>
 #include <stdexcept>
+#include <immintrin.h>
 
 #define XEQ_FUNC_DECL          /* UNDEF */
 #define XEQ_INLINE             inline
@@ -13,6 +14,8 @@ namespace xeq {
         // -- Constant Variables --
         
         static constexpr unsigned int ZERO_VALUE = 0U;
+        
+        static constexpr unsigned int ONE_VALUE = 1U;
         
         // -- Vector & Matrix --
         
@@ -244,11 +247,8 @@ namespace xeq {
                 XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T>& operator[](size_t n);
                 XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> const& operator[](size_t n) const;
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T> operator+(mat<4, T> const& m);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T> operator-(mat<4, T> const& m);
+                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T> operator*(T const& v);
                 XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T> operator*(mat<4, T> const& m);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T> operator/(mat<4, T> const& m);
-
                 XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v);
                 
         };
@@ -749,6 +749,74 @@ namespace xeq {
                 return vec<3, T>(x, y, z);
         }
         
+        // -- struct mat<4, T> --
+
+        template<typename T>
+        XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>::mat() : mat(ONE_VALUE) {}
+
+        template<typename T>
+        XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>::mat(T const& s) 
+                : mat(vec<4, T>(s, 0, 0, 0),
+                      vec<4, T>(0, s, 0, 0),
+                      vec<4, T>(0, 0, s, 0),
+                      vec<4, T>(0, 0, 0, s))
+        {}
+
+        template<typename T>
+        XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>::mat(
+            T const& x1, T y1, T const& z1, T const& w1,
+            T const& x2, T y2, T const& z2, T const& w2,
+            T const& x3, T y3, T const& z3, T const& w3,
+            T const& x4, T y4, T const& z4, T const& w4)
+                : mat(vec<4, T>(x1, y1, z1, w1),
+                      vec<4, T>(x2, y2, z2, w2),
+                      vec<4, T>(x3, y3, z3, w3),
+                      vec<4, T>(x4, y4, z4, w4))
+        {}
+
+        template<typename T>
+        XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>::mat(
+            vec<4, T> const &c1,
+            vec<4, T> const &c2,
+            vec<4, T> const &c3,
+            vec<4, T> const &c4)
+        {
+                data[0] = c1;
+                data[1] = c2;
+                data[2] = c3;
+                data[3] = c4;
+        }
+        
+        template<typename T>
+        XEQ_CONSTEXPR vec<4, T>& mat<4, T>::operator[](size_t n)
+        {
+                return data[0];
+        }
+
+        template<typename T>
+        XEQ_CONSTEXPR vec<4, T> const& mat<4, T>::operator[](size_t n) const
+        {
+                return data[0];
+        }
+
+        template<typename T>
+        XEQ_CONSTEXPR mat<4, T> mat<4, T>::operator*(T const& v)
+        {
+                
+        }
+        
+        template<typename T>
+        XEQ_CONSTEXPR mat<4, T> mat<4, T>::operator*(mat<4, T> const& m)
+        {
+                
+        }
+        
+        template<typename T>
+        XEQ_CONSTEXPR vec<4, T> mat<4, T>::operator*(vec<4, T> const& v)
+        {
+                
+        }
+        
         // -- data --
         
         template<typename T>
@@ -760,6 +828,9 @@ namespace xeq {
         template<typename T>
         XEQ_INLINE XEQ_CONSTEXPR T* value_ptr(vec<4, T> &v);
 
+        template<typename T>
+        XEQ_INLINE XEQ_CONSTEXPR T* value_ptr(mat<4, T> &v);
+        
         // -- debug --
 
         template<typename T>
@@ -789,6 +860,12 @@ namespace xeq {
         XEQ_CONSTEXPR T* value_ptr(vec<4, T> &v)
         {
                 return &v.x;
+        }
+
+        template<typename T>
+        XEQ_CONSTEXPR T* value_ptr(mat<4, T> &m)
+        {
+                return &m.data[0].x;
         }
         
         template<typename T>
