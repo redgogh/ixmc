@@ -220,6 +220,22 @@ namespace xeq {
         
         template<typename T>
         struct mat<2, T> {
+                // -- Data --
+                
+                vec<2, T> data[2];
+                
+                // -- Constructor --
+                
+                XEQ_FUNC_DECL mat<2, T>();
+                XEQ_FUNC_DECL mat<2, T>(T scalar);
+                XEQ_FUNC_DECL mat<2, T>(vec<2, T> const &c1, vec<2, T> const &c2);
+                
+                // -- Operator overrides --
+
+                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T>& operator[](size_t n);
+                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T> const& operator[](size_t n) const;
+
+                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T> operator*(vec<2, T> const& v);
                 
         };
         
