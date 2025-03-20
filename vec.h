@@ -315,7 +315,7 @@ namespace alg {
                 switch (n) {
                         case 0: return x;
                         case 1: return y;
-                        default: throw std::runtime_error("no index");
+                        default: throw std::runtime_error("out of index");
                 }
         }
 
@@ -325,7 +325,7 @@ namespace alg {
                 switch (n) {
                         case 0: return x;
                         case 1: return y;
-                        default: throw std::runtime_error("no index");
+                        default: throw std::runtime_error("out of index");
                 }
         }
 
@@ -465,7 +465,7 @@ namespace alg {
                         case 0: return x;
                         case 1: return y;
                         case 2: return z;
-                        default: throw std::runtime_error("no index");
+                        default: throw std::runtime_error("out of index");
                 }
         }
 
@@ -476,7 +476,7 @@ namespace alg {
                         case 0: return x;
                         case 1: return y;
                         case 2: return z;
-                        default: throw std::runtime_error("no index");
+                        default: throw std::runtime_error("out of index");
                 }
         }
 
@@ -638,7 +638,7 @@ namespace alg {
                         case 1: return y;
                         case 2: return z;
                         case 3: return w;
-                        default: throw std::runtime_error("no index");
+                        default: throw std::runtime_error("out of index");
                 }
         }
 
@@ -650,7 +650,7 @@ namespace alg {
                         case 1: return y;
                         case 2: return z;
                         case 3: return w;
-                        default: throw std::runtime_error("no index");
+                        default: throw std::runtime_error("out of index");
                 }
         }
 
