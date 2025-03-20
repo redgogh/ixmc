@@ -23,11 +23,19 @@
 
 int main()
 {
-        equ::vec3 vec(1.0f, 2.0f, 3.0f);
+        equ::vec4 vec(1.0f, 2.0f, 0.0f, 0.0f);
         
-        float *p = equ::value_ptr(vec);
+        vec[0] = 3.0f;
+        vec[1] = 4.0f;
+        vec[2] = 5.0f;
+        vec[3] = 6.0f;
         
-        printf("%f, %f, %f\n", p[0], p[1], p[2]);
+        printf("%f, %f\n", vec[0], vec[1]);
+        printf("%f, %f\n", vec[2], vec[3]);
+        
+        equ::vec2 V2 = vec.xy() * vec.xy();
+        
+        printf("%f, %f\n", V2[0], V2[1]);
         
         return 0;
 }
