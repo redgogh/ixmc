@@ -11,6 +11,7 @@
 namespace bra {
 
         // -- Vector & Matrix --
+        
         template<size_t N, typename T> struct vec;
         template<size_t N, typename T> struct mat;
 
@@ -587,6 +588,17 @@ namespace bra {
                 return *this;
         }
         
+        // -- data --
+        
+        template<typename T>
+        BRA_INLINE BRA_CONSTEXPR T* value_ptr(vec<2, T> &v);
+
+        template<typename T>
+        BRA_INLINE BRA_CONSTEXPR T* value_ptr(vec<3, T> &v);
+
+        template<typename T>
+        BRA_INLINE BRA_CONSTEXPR T* value_ptr(vec<4, T> &v);
+
         // -- debug --
 
         template<typename T>
@@ -598,6 +610,26 @@ namespace bra {
         template<typename T>
         BRA_INLINE void println(vec<4, T> const &v);
 
+        // -- implements --
+        
+        template<typename T>
+        BRA_CONSTEXPR T* value_ptr(vec<2, T> &v)
+        {
+                return &v.x;
+        }
+
+        template<typename T>
+        BRA_CONSTEXPR T* value_ptr(vec<3, T> &v)
+        {
+                return static_cast<T*>(&v.x);
+        }
+
+        template<typename T>
+        BRA_CONSTEXPR T* value_ptr(vec<4, T> &v)
+        {
+                return &v.x;
+        }
+        
         template<typename T>
         void println(vec<2, T> const &v)
         {
