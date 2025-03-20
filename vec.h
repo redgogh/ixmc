@@ -216,26 +216,40 @@ namespace xeq {
                 
         };
         
-        // -- struct mat2<2, 2, T> --
+        // -- struct mat<4, T> --
         
         template<typename T>
-        struct mat<2, T> {
+        struct mat<4, T> {
                 // -- Data --
                 
-                vec<2, T> data[2];
+                vec<4, T> data[4];
                 
                 // -- Constructor --
                 
-                XEQ_FUNC_DECL mat<2, T>();
-                XEQ_FUNC_DECL mat<2, T>(T scalar);
-                XEQ_FUNC_DECL mat<2, T>(vec<2, T> const &c1, vec<2, T> const &c2);
+                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>();
+                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>(T const& scalar);
+                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>(
+                        T const& x1, T y1, T const& z1, T const& w1,
+                        T const& x2, T y2, T const& z2, T const& w2,
+                        T const& x3, T y3, T const& z3, T const& w3,
+                        T const& x4, T y4, T const& z4, T const& w4);
+                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T>(
+                        vec<4, T> const &c1, 
+                        vec<4, T> const &c2, 
+                        vec<4, T> const &c3, 
+                        vec<4, T> const &c4);
                 
                 // -- Operator overrides --
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T>& operator[](size_t n);
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T> const& operator[](size_t n) const;
+                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T>& operator[](size_t n);
+                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> const& operator[](size_t n) const;
 
-                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<2, T> operator*(vec<2, T> const& v);
+                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T> operator+(mat<4, T> const& m);
+                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T> operator-(mat<4, T> const& m);
+                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T> operator*(mat<4, T> const& m);
+                XEQ_FUNC_DECL XEQ_CONSTEXPR mat<4, T> operator/(mat<4, T> const& m);
+
+                XEQ_FUNC_DECL XEQ_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v);
                 
         };
         
