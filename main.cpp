@@ -37,7 +37,7 @@ int main()
 
                 M = R * 5.0f;
 
-                XEQ_PRINTLN_MATRIX4(M);
+                XEQ_COMMON_PRINTLN_MATRIX4(M);
         }
 
         printf("\n");
@@ -56,7 +56,7 @@ int main()
 
                 M = R * 5.0f;
 
-                XEQ_PRINTLN_MATRIX4(M);
+                XEQ_COMMON_PRINTLN_MATRIX4(M);
         }
 }
 
