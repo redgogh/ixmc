@@ -21,9 +21,8 @@
 #include "alg.h"
 #include <glm/glm.hpp>
 
-int main()
+void MAT_MUL_VEC()
 {
-
         {
                 using namespace alg;
 
@@ -59,6 +58,13 @@ int main()
 
                 ALG_PRINT_FORMAT_MATRIX4(M);
         }
+}
+
+int main()
+{
+        alg::vec4 vec(9.0f, 25.0f, 64.0f, 256.0f);
+        alg::vec4 result = alg::sqrt(vec);
+        ALG_PRINT_FORMAT_VECTOR4(result);
 }
 
 #pragma clang diagnostic pop
