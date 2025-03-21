@@ -21,73 +21,61 @@
 #include "alg.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+// std
+#include <iostream>
 
 void MAT_MUL_VEC()
 {
         {
                 using namespace alg;
 
-                mat4 M, R;
+                mat4 m(1.0f);
+                m = translate(m, vec3(3.0f, 6.0f, 9.0f));
 
-                R = {
-                        1, 2, 3, 8,
-                        4, 5, 6, 8,
-                        7, 8, 9, 7,
-                        3, 2, 1, 7
-                };
-
-                M = R * 5.0f;
-
-                ALG_PRINT_FORMAT_MATRIX4(M);
+                vec3 p(15.f, 32.f, 64.f);
+                p = (m * vec4(p, 1.0f)).xyz();
+                
+                ALG_PRINT_FORMAT_VECTOR3(p);
         }
-
-        printf("\n");
 
         {
                 using namespace glm;
+                
+                mat4 m(1.0f);
+                m = translate(m, vec3(3.0f, 6.0f, 9.0f));
 
-                mat4 M, R;
+                vec3 p(15.f, 32.f, 64.f);
+                p = (m * vec4(p, 1.0f));
 
-                R = {
-                        1, 2, 3, 8,
-                        4, 5, 6, 8,
-                        7, 8, 9, 7,
-                        3, 2, 1, 7
-                };
-
-                M = R * 5.0f;
-
-                ALG_PRINT_FORMAT_MATRIX4(M);
+                ALG_PRINT_FORMAT_VECTOR3(p);
         }
 }
 
 int main()
 {
+        // MAT_MUL_VEC();
+
         {
-                using namespace alg;
-                
-                vec2 p2(1.0f, 2.0f);
-                vec3 p3(1.0f, 2.0f, 3.0f);
-                vec4 p4(1.0f, 2.0f, 3.0f, 4.0f);
+                alg::vec4 p(5.0f);
 
-                printf("p2 = %.2f\n", length(p2));
-                printf("p3 = %.2f\n", length(p3));
-                printf("p4 = %.2f\n", length(p4));
+                alg::vec4 x(3.0f, 6.0f, 9.0f, 1.0f);
 
+                p *= x;
+
+                ALG_PRINT_FORMAT_VECTOR4(p);
         }
 
         {
-                using namespace glm;
+                glm::vec4 p(5.0f);
 
-                vec2 p2(1.0f, 2.0f);
-                vec3 p3(1.0f, 2.0f, 3.0f);
-                vec4 p4(1.0f, 2.0f, 3.0f, 4.0f);
+                glm::vec4 x(3.0f, 6.0f, 9.0f, 1.0f);
 
-                printf("p2 = %.2f\n", length(p2));
-                printf("p3 = %.2f\n", length(p3));
-                printf("p4 = %.2f\n", length(p4));
+                p *= x;
 
+                ALG_PRINT_FORMAT_VECTOR4(p);
         }
+        
 }
 
 #pragma clang diagnostic pop

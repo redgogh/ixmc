@@ -266,6 +266,9 @@ namespace alg {
         /// 
         template<typename T = ALG_TEMPLATE_TYPE_FLOAT32>
         ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T length(vec<4, T> const& v);
+
+        template<typename T = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T> translate(mat<4, T> const& m, vec<3, T> const& v);
         
         // -- implements --
 
@@ -347,6 +350,18 @@ namespace alg {
                 return sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
         }
 
+        template<typename T>
+        ALG_FUNC_CONSTEXPR mat<4, T> translate(mat<4, T> const& m, vec<3, T> const& v)
+        {
+                mat<4, T> t(1.0f);
+
+                t[3][0] = v[0];
+                t[3][1] = v[1];
+                t[3][2] = v[2];
+                
+                return m * t;
+        }
+        
 }
 
 #endif /* ALG_H_ */
