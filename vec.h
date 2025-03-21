@@ -26,10 +26,6 @@
 
 namespace alg
 {
-        // -- Constant Variables --
-        
-        static constexpr unsigned int ONE_VALUE = 1U;
-        
         // -- Vector & Matrix --
         
         template<size_t N, typename T> struct vec;
@@ -98,7 +94,6 @@ namespace alg
 
                 // -- Constructor for vec2 --
 
-                ALG_FUNC_DECL vec();
                 ALG_FUNC_DECL explicit vec(T s);
                 ALG_FUNC_DECL ALG_INLINE ALG_FUNC_CONSTEXPR vec(T x, T y);
 
@@ -152,9 +147,7 @@ namespace alg
 
                 // -- Constructor for vec3 --
 
-                ALG_FUNC_DECL vec();
                 ALG_FUNC_DECL explicit vec(T s);
-                ALG_FUNC_DECL explicit vec(vec<2, T> const& v);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec(vec<2, T> const& v, T z);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec(T x, T y, T z);
 
@@ -201,7 +194,7 @@ namespace alg
 
         template<typename T>
         struct vec<4, T> {
-                // -- Store data define --ONE_VALUE
+                // -- Store data define --
 
                 union {
                         struct { T x, y, z, w; };
@@ -210,10 +203,7 @@ namespace alg
 
                 // -- Constructor for vec4 --
 
-                ALG_FUNC_DECL vec();
                 ALG_FUNC_DECL explicit vec(T s);
-                ALG_FUNC_DECL explicit vec(vec<2, T> const& v);
-                ALG_FUNC_DECL explicit vec(vec<3, T> const& v);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec(vec<2, T> const& v, T z, T w);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec(vec<3, T> const& v, T w);
                 ALG_FUNC_DECL ALG_INLINE ALG_FUNC_CONSTEXPR vec(T x, T y, T z, T w);
@@ -268,7 +258,6 @@ namespace alg
                 
                 // -- Constructor --
                 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T>();
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR explicit mat<4, T>(T const& s);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T>(
                         T const& x1, T y1, T const& z1, T const& w1,
@@ -300,9 +289,6 @@ namespace alg
         ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> operator*(mat<4, T> const& m, vec<4, T> const& v);
         
         // -- struct vec<2, T>: implements --
-
-        template<typename T>
-        vec<2, T>::vec() : vec(ONE_VALUE, ONE_VALUE) {}
 
         template<typename T>
         vec<2, T>::vec(T s) : vec(s, s) {}
@@ -445,13 +431,7 @@ namespace alg
         // -- struct vec<3, T>: implements --
 
         template<typename T>
-        vec<3, T>::vec() : vec(ONE_VALUE, ONE_VALUE, ONE_VALUE) {}
-
-        template<typename T>
         vec<3, T>::vec(T s) : vec(s, s, s) {}
-
-        template<typename T>
-        vec<3, T>::vec(vec<2, T> const& v) : vec(v, ONE_VALUE) {}
 
         template<typename T>
         ALG_FUNC_CONSTEXPR vec<3, T>::vec(vec<2, T> const& v, T z) : vec(v.x, v.y, z) {}
@@ -610,16 +590,7 @@ namespace alg
         // -- struct vec<4, T>: implements --
 
         template<typename T>
-        vec<4, T>::vec() : vec(ONE_VALUE, ONE_VALUE, ONE_VALUE, ONE_VALUE) {}
-
-        template<typename T>
         vec<4, T>::vec(T s) : vec(s, s, s, s) {}
-
-        template<typename T>
-        vec<4, T>::vec(vec<2, T> const& v) : vec(v.x, v.y, ONE_VALUE, ONE_VALUE) {}
-
-        template<typename T>
-        vec<4, T>::vec(vec<3, T> const& v) : vec(v.x, v.y, v.z, ONE_VALUE) {}
 
         template<typename T>
         ALG_FUNC_CONSTEXPR vec<4, T>::vec(vec<2, T> const& v, T z, T w) : vec(v.x, v.y, z, w) {}
@@ -796,9 +767,6 @@ namespace alg
         }
 
         // -- struct mat<4, T> --
-
-        template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T>::mat() : mat(ONE_VALUE) {}
 
         template<typename T>
         ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T>::mat(T const& s)

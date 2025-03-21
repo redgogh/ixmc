@@ -25,7 +25,7 @@
 // std
 #include <iostream>
 
-void MAT_MUL_VEC()
+int main()
 {
         {
                 using namespace alg;
@@ -35,13 +35,13 @@ void MAT_MUL_VEC()
 
                 vec3 p(15.f, 32.f, 64.f);
                 p = (m * vec4(p, 1.0f)).xyz();
-                
+
                 ALG_PRINT_FORMAT_VECTOR3(p);
         }
 
         {
                 using namespace glm;
-                
+
                 mat4 m(1.0f);
                 m = translate(m, vec3(3.0f, 6.0f, 9.0f));
 
@@ -49,33 +49,7 @@ void MAT_MUL_VEC()
                 p = (m * vec4(p, 1.0f));
 
                 ALG_PRINT_FORMAT_VECTOR3(p);
-        }
-}
-
-int main()
-{
-        // MAT_MUL_VEC();
-
-        {
-                alg::vec3 p(5.0f);
-
-                alg::vec3 x(3.0f, 6.0f, 9.0f);
-
-                p *= x;
-
-                ALG_PRINT_FORMAT_VECTOR3(p);
-        }
-
-        {
-                glm::vec3 p(5.0f);
-
-                glm::vec3 x(3.0f, 6.0f, 9.0f);
-
-                p *= x;
-
-                ALG_PRINT_FORMAT_VECTOR3(p);
-        }
-        
+        }   
 }
 
 #pragma clang diagnostic pop
