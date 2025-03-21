@@ -49,8 +49,8 @@ namespace alg {
         ///  2. 处理周期性计算，如波形生成、动画循环等。
         ///  3. 保留小数部分，例如 fmod(5.75, 1.0) 结果为 0.75。
         ///
-        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR int mod(U x, U y);
+        template<typename T = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR int mod(T x, T y);
 
         ///
         /// @brief 计算浮点数的绝对值。
@@ -69,9 +69,9 @@ namespace alg {
         ///  2. 在需要忽略符号的场合，如计算误差、比较大小等。
         ///  3. 在数学运算中，确保某些值始终为正数，例如向量的模长计算。
         ///
-        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
-        U
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR abs(U x);
+        template<typename T = ALG_TEMPLATE_TYPE_FLOAT32>
+        T
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR abs(T x);
 
         ///
         /// @brief 计算浮点数 `x` 的整数次幂。
@@ -94,8 +94,8 @@ namespace alg {
         /// @warning 当 `x` 为负数且 `a` 为非整数时，结果可能为 NaN（未定义）。
         ///          当 `x` 为 0 且 `a` 为负数时，结果可能为无穷大（inf）。
         ///
-        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR U pow(U x, U a);
+        template<typename T = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T pow(T x, T a);
 
         ///
         /// @brief 将弧度值转换为角度值。
@@ -114,8 +114,8 @@ namespace alg {
         ///  2. 在物理仿真中处理角度相关的计算。
         ///  3. 在游戏开发中处理角色的旋转和方向。
         ///
-        template<typename U = ALG_TEMPLATE_TYPE_INT32>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR int degrees(U angrad);
+        template<typename T = ALG_TEMPLATE_TYPE_INT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR int degrees(T angrad);
 
         ///
         /// @brief 将角度值转换为弧度值。
@@ -134,8 +134,8 @@ namespace alg {
         ///  2. 在物理仿真中处理弧度相关的计算。
         ///  3. 在游戏开发中处理角色的旋转和方向。
         ///
-        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR U radians(int angdeg);
+        template<typename T = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T radians(int angdeg);
 
         ///
         /// @brief 计算浮点数的正弦值。
@@ -151,8 +151,8 @@ namespace alg {
         ///  2. 在物理仿真中模拟周期性运动，如弹簧振动。
         ///  3. 在信号处理中分析周期性信号。
         ///
-        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR U sin(U x);
+        template<typename T = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T sin(T x);
 
         ///
         /// @brief 计算浮点数的余弦值。
@@ -168,8 +168,8 @@ namespace alg {
         ///  2. 在物理仿真中模拟周期性运动，如弹簧振动。
         ///  3. 在信号处理中分析周期性信号。
         ///
-        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR U cos(U x);
+        template<typename T = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T cos(T x);
 
         ///
         /// @brief 计算浮点数的平方根。
@@ -186,8 +186,8 @@ namespace alg {
         ///
         /// @warning 当 `x` 为负数时，结果可能为 NaN（未定义）。
         ///
-        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR U sqrt(U x);
+        template<typename T = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T sqrt(T x);
 
         ///
         /// @brief 计算 4个 浮点数的平方根。
@@ -196,7 +196,7 @@ namespace alg {
         /// 平方根是数学中的基本运算，常用于几何、物理和工程计算中。
         ///
         /// @param v 输入的浮点数向量（必须为非负数）
-        /// @return vec<4, U> 返回 `v` 向量的平方根，结果为非负数。
+        /// @return vec<4, T> 返回 `v` 向量的平方根，结果为非负数。
         ///
         /// @note sqrt 的常见用途：
         ///  1. 计算几何中的距离或长度，如欧几里得距离。
@@ -204,8 +204,8 @@ namespace alg {
         ///
         /// @warning 当 `x` 为负数时，结果可能为 NaN（未定义）。
         ///
-        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, U> sqrt(vec<4, U> const& v);
+        template<typename T = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> sqrt(vec<4, T> const& v);
 
         /// 
         /// @brief 计算二维向量的长度（模）。
@@ -224,8 +224,8 @@ namespace alg {
         ///  2. 在物理仿真中计算速度、力的强度等。
         ///  3. 在游戏开发中计算距离或范围。
         /// 
-        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR U length(vec<2, U> const& v);
+        template<typename T = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T length(vec<2, T> const& v);
 
         /// 
         /// @brief 计算三维向量的长度（模）。
@@ -244,8 +244,8 @@ namespace alg {
         ///  2. 在物理仿真中计算速度、力的强度等。
         ///  3. 在游戏开发中计算距离或范围。
         /// 
-        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR U length(vec<3, U> const& v);
+        template<typename T = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T length(vec<3, T> const& v);
 
         /// 
         /// @brief 计算四维向量的长度（模）。
@@ -264,85 +264,85 @@ namespace alg {
         ///  2. 在物理仿真中计算速度、力的强度等。
         ///  3. 在游戏开发中计算距离或范围。
         /// 
-        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR U length(vec<4, U> const& v);
+        template<typename T = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T length(vec<4, T> const& v);
         
         // -- implements --
 
-        template<typename U>
-        ALG_FUNC_CONSTEXPR int mod(U x, U y) {
+        template<typename T>
+        ALG_FUNC_CONSTEXPR int mod(T x, T y) {
                 if (y == 0)
                         return 0;
                 return x - ((int) (x / y)) * y;
         }
 
-        template<typename U>
-        U
-        ALG_FUNC_CONSTEXPR abs(U x) {
+        template<typename T>
+        T
+        ALG_FUNC_CONSTEXPR abs(T x) {
                 return x < 0 ? -x : x;
         }
 
-        template<typename U>
-        ALG_FUNC_CONSTEXPR U pow(U x, U a) {
+        template<typename T>
+        ALG_FUNC_CONSTEXPR T pow(T x, T a) {
                 return std::pow(x, a);
         }
 
-        template<typename U>
-        ALG_FUNC_CONSTEXPR int degrees(U angrad)
+        template<typename T>
+        ALG_FUNC_CONSTEXPR int degrees(T angrad)
         {
                 return angrad / (M_PI / 180);
         }
 
-        template<typename U>
-        ALG_FUNC_CONSTEXPR U radians(int angdeg)
+        template<typename T>
+        ALG_FUNC_CONSTEXPR T radians(int angdeg)
         {
                 return angdeg / (180 / M_PI);
         }
 
-        template<typename U>
-        ALG_FUNC_CONSTEXPR U sin(U x)
+        template<typename T>
+        ALG_FUNC_CONSTEXPR T sin(T x)
         {
                 return std::sin(x);
         }
 
-        template<typename U>
-        ALG_FUNC_CONSTEXPR U cos(U x)
+        template<typename T>
+        ALG_FUNC_CONSTEXPR T cos(T x)
         {
                 return std::cos(x);
         }
 
-        template<typename U>
-        ALG_FUNC_CONSTEXPR U sqrt(U x)
+        template<typename T>
+        ALG_FUNC_CONSTEXPR T sqrt(T x)
         {
                 return std::sqrt(x);
         }
 
-        template<typename U>
-        ALG_FUNC_CONSTEXPR vec<4, U> sqrt(vec<4, U> const& v)
+        template<typename T>
+        ALG_FUNC_CONSTEXPR vec<4, T> sqrt(vec<4, T> const& v)
         {
                 using namespace std::experimental;
 
-                std::experimental::native_simd<U> data;
+                std::experimental::native_simd<T> data;
                 data.copy_from(&v[0], element_aligned);
                 auto Result = std::experimental::sqrt(data);
 
-                return vec<4, U>(Result[0], Result[1], Result[2], Result[3]);
+                return vec<4, T>(Result[0], Result[1], Result[2], Result[3]);
         }
 
-        template<typename U>
-        ALG_FUNC_CONSTEXPR U length(vec<2, U> const& v)
+        template<typename T>
+        ALG_FUNC_CONSTEXPR T length(vec<2, T> const& v)
         {
                 return sqrt((v.x * v.x) + (v.y * v.y));
         }
 
-        template<typename U>
-        ALG_FUNC_CONSTEXPR U length(vec<3, U> const& v)
+        template<typename T>
+        ALG_FUNC_CONSTEXPR T length(vec<3, T> const& v)
         {
                 return sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
         }
 
-        template<typename U>
-        ALG_FUNC_CONSTEXPR U length(vec<4, U> const& v)
+        template<typename T>
+        ALG_FUNC_CONSTEXPR T length(vec<4, T> const& v)
         {
                 return sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
         }
