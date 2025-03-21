@@ -57,23 +57,23 @@ int main()
         // MAT_MUL_VEC();
 
         {
-                alg::vec4 p(5.0f);
+                alg::vec3 p(5.0f);
 
-                alg::vec4 x(3.0f, 6.0f, 9.0f, 1.0f);
+                alg::vec3 x(3.0f, 6.0f, 9.0f);
 
                 p *= x;
 
-                ALG_PRINT_FORMAT_VECTOR4(p);
+                ALG_PRINT_FORMAT_VECTOR3(p);
         }
 
         {
-                glm::vec4 p(5.0f);
+                glm::vec3 p(5.0f);
 
-                glm::vec4 x(3.0f, 6.0f, 9.0f, 1.0f);
+                glm::vec3 x(3.0f, 6.0f, 9.0f);
 
                 p *= x;
 
-                ALG_PRINT_FORMAT_VECTOR4(p);
+                ALG_PRINT_FORMAT_VECTOR3(p);
         }
         
 }
