@@ -20,6 +20,7 @@
 
 #include "alg.h"
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 void MAT_MUL_VEC()
 {
@@ -62,9 +63,31 @@ void MAT_MUL_VEC()
 
 int main()
 {
-        alg::vec4 vec(9.0f, 25.0f, 64.0f, 256.0f);
-        alg::vec4 result = alg::sqrt(vec);
-        ALG_PRINT_FORMAT_VECTOR4(result);
+        {
+                using namespace alg;
+                
+                vec2 p2(1.0f, 2.0f);
+                vec3 p3(1.0f, 2.0f, 3.0f);
+                vec4 p4(1.0f, 2.0f, 3.0f, 4.0f);
+
+                printf("p2 = %.2f\n", length(p2));
+                printf("p3 = %.2f\n", length(p3));
+                printf("p4 = %.2f\n", length(p4));
+
+        }
+
+        {
+                using namespace glm;
+
+                vec2 p2(1.0f, 2.0f);
+                vec3 p3(1.0f, 2.0f, 3.0f);
+                vec4 p4(1.0f, 2.0f, 3.0f, 4.0f);
+
+                printf("p2 = %.2f\n", length(p2));
+                printf("p3 = %.2f\n", length(p3));
+                printf("p4 = %.2f\n", length(p4));
+
+        }
 }
 
 #pragma clang diagnostic pop

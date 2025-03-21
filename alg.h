@@ -207,6 +207,66 @@ namespace alg {
         template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
         ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, U> sqrt(vec<4, U> const& v);
 
+        /// 
+        /// @brief 计算二维向量的长度（模）。
+        /// 
+        /// length 函数用于计算给定二维向量 `vec` 的长度（模）。
+        /// 向量的长度是从原点到向量点的欧几里得距离。
+        /// 
+        /// 计算公式如下：
+        ///   length(vec) = sqrt(vec.x * vec.x + vec.y * vec.y)
+        /// 
+        /// @param vec 输入的二维向量（vec2 类型）
+        /// @return float 返回向量的长度，结果为非负数。
+        /// 
+        /// @note length 的常见用途：
+        ///  1. 在图形学中计算向量的长度，用于光照、反射等计算。
+        ///  2. 在物理仿真中计算速度、力的强度等。
+        ///  3. 在游戏开发中计算距离或范围。
+        /// 
+        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR U length(vec<2, U> const& v);
+
+        /// 
+        /// @brief 计算三维向量的长度（模）。
+        /// 
+        /// length 函数用于计算给定二维向量 `vec` 的长度（模）。
+        /// 向量的长度是从原点到向量点的欧几里得距离。
+        /// 
+        /// 计算公式如下：
+        ///   length(vec) = sqrt(vec.x * vec.x + vec.y * vec.y)
+        /// 
+        /// @param vec 输入的二维向量（vec3 类型）
+        /// @return float 返回向量的长度，结果为非负数。
+        /// 
+        /// @note length 的常见用途：
+        ///  1. 在图形学中计算向量的长度，用于光照、反射等计算。
+        ///  2. 在物理仿真中计算速度、力的强度等。
+        ///  3. 在游戏开发中计算距离或范围。
+        /// 
+        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR U length(vec<3, U> const& v);
+
+        /// 
+        /// @brief 计算四维向量的长度（模）。
+        /// 
+        /// length 函数用于计算给定二维向量 `vec` 的长度（模）。
+        /// 向量的长度是从原点到向量点的欧几里得距离。
+        /// 
+        /// 计算公式如下：
+        ///   length(vec) = sqrt(vec.x * vec.x + vec.y * vec.y)
+        /// 
+        /// @param vec 输入的二维向量（vec4 类型）
+        /// @return float 返回向量的长度，结果为非负数。
+        /// 
+        /// @note length 的常见用途：
+        ///  1. 在图形学中计算向量的长度，用于光照、反射等计算。
+        ///  2. 在物理仿真中计算速度、力的强度等。
+        ///  3. 在游戏开发中计算距离或范围。
+        /// 
+        template<typename U = ALG_TEMPLATE_TYPE_FLOAT32>
+        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR U length(vec<4, U> const& v);
+        
         // -- implements --
 
         template<typename U>
@@ -267,6 +327,24 @@ namespace alg {
                 auto Result = std::experimental::sqrt(data);
 
                 return vec<4, U>(Result[0], Result[1], Result[2], Result[3]);
+        }
+
+        template<typename U>
+        ALG_FUNC_CONSTEXPR U length(vec<2, U> const& v)
+        {
+                return sqrt((v.x * v.x) + (v.y * v.y));
+        }
+
+        template<typename U>
+        ALG_FUNC_CONSTEXPR U length(vec<3, U> const& v)
+        {
+                return sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
+        }
+
+        template<typename U>
+        ALG_FUNC_CONSTEXPR U length(vec<4, U> const& v)
+        {
+                return sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
         }
 
 }
