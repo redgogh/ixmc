@@ -23,6 +23,7 @@
 #define ALG_FUNC_DECL          /* UNDEF */
 #define ALG_INLINE             inline
 #define ALG_FUNC_CONSTEXPR     constexpr
+#define ALG_FUNC_DEFAULT_CTOR  = default
 
 namespace alg
 {
@@ -94,23 +95,28 @@ namespace alg
 
                 // -- Constructor for vec2 --
 
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec() ALG_FUNC_DEFAULT_CTOR;
                 ALG_FUNC_DECL explicit vec(T s);
                 ALG_FUNC_DECL ALG_INLINE ALG_FUNC_CONSTEXPR vec(T x, T y);
 
                 // -- Operator override --
-
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T& operator[](size_t n);
+                
+                template<typename U>
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator=(vec<2, U> const& v);
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator=(vec<2, T> const& v) = default;
+                
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T & operator[](size_t n);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T const& operator[](size_t n) const;
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T>& operator+=(T const &s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T>& operator-=(T const &s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T>& operator*=(T const &s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T>& operator/=(T const &s);
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator+=(T const &s);
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator-=(T const &s);
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator*=(T const &s);
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator/=(T const &s);
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T>& operator+=(vec<2, T> const &v);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T>& operator-=(vec<2, T> const &v);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T>& operator*=(vec<2, T> const &v);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T>& operator/=(vec<2, T> const &v);
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator+=(vec<2, T> const &v);
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator-=(vec<2, T> const &v);
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator*=(vec<2, T> const &v);
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator/=(vec<2, T> const &v);
 
         };
 
@@ -147,13 +153,18 @@ namespace alg
 
                 // -- Constructor for vec3 --
 
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec() ALG_FUNC_DEFAULT_CTOR;
                 ALG_FUNC_DECL explicit vec(T s);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec(vec<2, T> const& v, T z);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec(T x, T y, T z);
 
                 // -- Operator override --
+
+                template<typename U>
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T> & operator=(vec<3, U> const& v);
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T> & operator=(vec<3, T> const& v) = default;
                 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T& operator[](size_t n);
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T & operator[](size_t n);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T const& operator[](size_t n) const;
                 
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T>& operator+=(T const &s);
@@ -203,6 +214,7 @@ namespace alg
 
                 // -- Constructor for vec4 --
 
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec() ALG_FUNC_DEFAULT_CTOR;
                 ALG_FUNC_DECL explicit vec(T s);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec(vec<2, T> const& v, T z, T w);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec(vec<3, T> const& v, T w);
@@ -210,7 +222,11 @@ namespace alg
 
                 // -- Operator override --
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T& operator[](size_t n);
+                template<typename U>
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> & operator=(vec<4, U> const& v);
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> & operator=(vec<4, T> const& v) = default;
+                
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T & operator[](size_t n);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T const& operator[](size_t n) const;
 
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T>& operator+=(T const &s);
@@ -257,7 +273,8 @@ namespace alg
                 vec<4, T> data[4];
                 
                 // -- Constructor --
-                
+
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat() ALG_FUNC_DEFAULT_CTOR;
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR explicit mat<4, T>(T const& s);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T>(
                         T const& x1, T y1, T const& z1, T const& w1,
@@ -265,14 +282,14 @@ namespace alg
                         T const& x3, T y3, T const& z3, T const& w3,
                         T const& x4, T y4, T const& z4, T const& w4);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T>(
-                        vec<4, T> const &c1, 
-                        vec<4, T> const &c2, 
-                        vec<4, T> const &c3, 
-                        vec<4, T> const &c4);
+                        vec<4, T> const& c1, 
+                        vec<4, T> const& c2, 
+                        vec<4, T> const& c3, 
+                        vec<4, T> const& c4);
                 
                 // -- Operator overrides --
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T>& operator[](size_t n);
+                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> & operator[](size_t n);
                 ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> const& operator[](size_t n) const;
                 
         };
@@ -296,6 +313,16 @@ namespace alg
         template<typename T>
         ALG_FUNC_CONSTEXPR vec<2, T>::vec(T x, T y) : r(static_cast<T>(x)), g(static_cast<T>(y)) {}
 
+        template<typename T>
+        template<typename U>
+        ALG_FUNC_CONSTEXPR vec<2, T> & vec<2, T>::operator=(vec<2, U> const& v)
+        {
+                this->x = static_cast<T>(v.x);
+                this->y = static_cast<T>(v.y);
+
+                return *this;
+        }
+        
         template<typename T>
         ALG_FUNC_CONSTEXPR T& vec<2, T>::operator[](size_t n)
         {
@@ -439,6 +466,17 @@ namespace alg
         template<typename T>
         ALG_FUNC_CONSTEXPR vec<3, T>::vec(T x, T y, T z) : r(static_cast<T>(x)), g(static_cast<T>(y)), b(static_cast<T>(z)) {}
 
+        template<typename T>
+        template<typename U>
+        ALG_FUNC_CONSTEXPR vec<3, T> & vec<3, T>::operator=(vec<3, U> const& v)
+        {
+                this->x = static_cast<T>(v.x);
+                this->y = static_cast<T>(v.y);
+                this->z = static_cast<T>(v.z);
+
+                return *this;
+        }
+        
         template<typename T>
         ALG_FUNC_CONSTEXPR T& vec<3, T>::operator[](size_t n)
         {
@@ -599,9 +637,23 @@ namespace alg
         ALG_FUNC_CONSTEXPR vec<4, T>::vec(vec<3, T> const& v, T w) : vec(v.x, v.y, v.z, w) {}
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T>::vec(T x, T y, T z, T w) : r(static_cast<T>(x)), g(static_cast<T>(y))
-                , b(static_cast<T>(z)), a(static_cast<T>(w)) {}
+        ALG_FUNC_CONSTEXPR vec<4, T>::vec(T x, T y, T z, T w) 
+                : r(static_cast<T>(x)), g(static_cast<T>(y))
+                , b(static_cast<T>(z)), a(static_cast<T>(w))
+        {}
 
+        template<typename T>
+        template<typename U>
+        ALG_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator=(vec<4, U> const& v)
+        {
+                this->x = static_cast<T>(v.x);
+                this->y = static_cast<T>(v.y);
+                this->z = static_cast<T>(v.z);
+                this->w = static_cast<T>(v.w);
+                
+                return *this;
+        }
+                
         template<typename T>
         ALG_FUNC_CONSTEXPR T& vec<4, T>::operator[](size_t n)
         {
@@ -790,10 +842,10 @@ namespace alg
 
         template<typename T>
         ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T>::mat(
-                vec<4, T> const &c1,
-                vec<4, T> const &c2,
-                vec<4, T> const &c3,
-                vec<4, T> const &c4)
+                vec<4, T> const& c1,
+                vec<4, T> const& c2,
+                vec<4, T> const& c3,
+                vec<4, T> const& c4)
         {
                 data[0] = c1;
                 data[1] = c2;
