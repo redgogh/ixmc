@@ -25,29 +25,109 @@
 // std
 #include <iostream>
 
-int main()
+void vrt_test_vec2()
+{
+        {
+                vrt::vec2 p(5.23f, 1.32f);
+                vrt::mat2 m(1.0f);
+
+                m[0][0] = 23.02f;
+                m[0][1] = 43.02f;
+
+                m[1][0] = 93.02f;
+                m[1][1] = 124.02f;
+
+                p = m * p;
+
+                VRT_PRINT_FORMAT_VECTOR2(p);
+        }
+
+        std::cout << std::endl;
+
+        {
+                glm::vec2 p(5.23f, 1.32f);
+                glm::mat2 m(1.0f);
+
+                m[0][0] = 23.02f;
+                m[0][1] = 43.02f;
+
+                m[1][0] = 93.02f;
+                m[1][1] = 124.02f;
+
+                p = m * p;
+
+                VRT_PRINT_FORMAT_VECTOR2(p);
+        }
+}
+
+void vrt_test_vec3()
 {
         {
                 vrt::mat4 m(1.0f);
                 vrt::vec3 p(1.0f);
 
                 m = vrt::translate(m, vrt::vec3(3.0f, 6.0f, 9.0f));
-                
+                m = vrt::scale(m, vrt::vec3(2.0));
+
                 p = (m * vrt::vec4(p, 1.0f));
-                
+
                 VRT_PRINT_FORMAT_VECTOR3(p);
         }
 
+        std::cout << std::endl;
+        
         {
                 glm::mat4 m(1.0f);
                 glm::vec3 p(1.0f);
 
                 m = glm::translate(m, glm::vec3(3.0f, 6.0f, 9.0f));
+                m = glm::scale(m, glm::vec3(2.0f));
 
                 p = (m * glm::vec4(p, 1.0f));
 
                 VRT_PRINT_FORMAT_VECTOR3(p);
-        }   
+        }
+}
+
+int main()
+{
+        {
+                vrt::vec3 p(5.23f, 1.32f, 6.0f);
+                vrt::mat3 m(1.0f);
+
+                m[0][0] = 2235433.02f;
+                m[0][1] = 43.02f;
+
+                m[1][0] = 93345.02f;
+                m[1][1] = 156724.02f;
+
+                m[2][0] = 90323.02f;
+                m[2][1] = 9954534.02f;
+                
+                p = m * p;
+
+                VRT_PRINT_FORMAT_VECTOR3(p);
+        }
+
+        std::cout << std::endl;
+
+        {
+                glm::vec3 p(5.23f, 1.32f, 6.0f);
+                glm::mat3 m(1.0f);
+
+                m[0][0] = 2235433.02f;
+                m[0][1] = 43.02f;
+
+                m[1][0] = 93345.02f;
+                m[1][1] = 156724.02f;
+
+                m[2][0] = 90323.02f;
+                m[2][1] = 9954534.02f;
+
+                p = m * p;
+
+                VRT_PRINT_FORMAT_VECTOR3(p);
+        }
 }
 
 #pragma clang diagnostic pop

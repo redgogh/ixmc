@@ -269,6 +269,9 @@ namespace vrt {
 
         template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<4, T> translate(mat<4, T> const& m, vec<3, T> const& v);
+
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<4, T> scale(mat<4, T> const& m, vec<3, T> const& v);
         
         // -- implements --
 
@@ -359,6 +362,18 @@ namespace vrt {
                 t[3][1] = v[1];
                 t[3][2] = v[2];
                 
+                return m * t;
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR mat<4, T> scale(mat<4, T> const& m, vec<3, T> const& v)
+        {
+                mat<4, T> t(1.0f);
+
+                t[0][0] = v[0];
+                t[1][1] = v[1];
+                t[2][2] = v[2];
+
                 return m * t;
         }
         

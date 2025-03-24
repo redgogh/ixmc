@@ -269,6 +269,60 @@ namespace vrt
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v1, vec<4, T> const &v2);
         template<typename T>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<4, T> operator/(vec<4, T> const& v1, vec<4, T> const &v2);
+
+        // -- struct mat<2, T> --
+
+        template<typename T>
+        struct mat<2, T> {
+                // -- Data --
+
+                vec<2, T> data[2];
+
+                // -- Constructor --
+
+                VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat() VRT_FUNC_DEFAULT_CTOR;
+                VRT_FUNC_DECL VRT_FUNC_CONSTEXPR explicit mat<2, T>(T const& s);
+                VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<2, T>(
+                        T const& x1, T y1,
+                        T const& x2, T y2);
+                VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<2, T>(
+                        vec<2, T> const& c1,
+                        vec<2, T> const& c2);
+
+                // -- Operator overrides --
+
+                VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> & operator[](size_t n);
+                VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> const& operator[](size_t n) const;
+
+        };
+
+        // -- struct mat<3 T> --
+
+        template<typename T>
+        struct mat<3, T> {
+                // -- Data --
+
+                vec<3, T> data[3];
+
+                // -- Constructor --
+
+                VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat() VRT_FUNC_DEFAULT_CTOR;
+                VRT_FUNC_DECL VRT_FUNC_CONSTEXPR explicit mat<3, T>(T const& s);
+                VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<3, T>(
+                    T const& x1, T y1, T const& z1,
+                    T const& x2, T y2, T const& z2,
+                    T const& x3, T y3, T const& z3);
+                VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<3, T>(
+                    vec<3, T> const& c1,
+                    vec<3, T> const& c2,
+                    vec<3, T> const& c3);
+
+                // -- Operator overrides --
+
+                VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> & operator[](size_t n);
+                VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> const& operator[](size_t n) const;
+
+        };
         
         // -- struct mat<4, T> --
         
@@ -845,6 +899,183 @@ namespace vrt
                 return vec<4, T>(v1.x / v2.x, v1.y / v2.y, v1.z / v2.z, v1.w / v2.w);
         }
 
+        // -- struct mat<2, T> --
+
+        template<typename T>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<2, T>::mat(T const& s)
+            : mat(vec<2, T>(s, 0),
+                  vec<2, T>(0, s))
+        {}
+
+        template<typename T>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<2, T>::mat(
+            T const& x1, T y1,
+            T const& x2, T y2)
+            : mat(vec<2, T>(x1, y1),
+                  vec<2, T>(x2, y2))
+        {}
+
+        template<typename T>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<2, T>::mat(
+            vec<2, T> const& c1,
+            vec<2, T> const& c2)
+        {
+                data[0] = c1;
+                data[1] = c2;
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR vec<2, T>& mat<2, T>::operator[](size_t n)
+        {
+                return data[n];
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR vec<2, T> const& mat<2, T>::operator[](size_t n) const
+        {
+                return data[n];
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR mat<2, T> operator*(mat<2, T> const& m, T const& v)
+        {
+                mat<2, T> Result;
+
+                for (int i = 0; i < 2; i++)
+                        Result[i] = m[i] * v;
+
+                return Result;
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR mat<2, T> operator*(mat<2, T> const& m1, mat<2, T> const& m2)
+        {
+                using namespace std::experimental;
+
+                mat<2, T> Result;
+
+                for (int j = 0; j < 2; j++) {
+                        simd<T, simd_abi::fixed_size<2>> col(&m2[j].x, element_aligned);
+                        for (int i = 0; i < 2; i++) {
+                                T row_data[] = { m1[0][i], m1[1][i] };
+                                simd<T, simd_abi::fixed_size<2>> row;
+                                row.copy_from(row_data, element_aligned);
+                                Result[j][i] = std::experimental::reduce(row * col);
+                        }
+                }
+
+                return Result;
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR vec<2, T> operator*(mat<2, T> const& m, vec<2, T> const& v)
+        {
+                using namespace std::experimental;
+
+                vec<2, T> Result;
+
+                simd<T, simd_abi::fixed_size<2>> col(&v.x, element_aligned);
+                for (int i = 0; i < 2; i++) {
+                        T row_data[] = { m[0][i], m[1][i] };
+                        simd<T, simd_abi::fixed_size<2>> row;
+                        row.copy_from(row_data, element_aligned);
+                        Result[i] = std::experimental::reduce(row * col);
+                }
+
+                return Result;
+        }
+
+        // -- struct mat<3, T> --
+
+        template<typename T>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<3, T>::mat(T const& s)
+            : mat(vec<3, T>(s, 0, 0),
+                  vec<3, T>(0, s, 0),
+                  vec<3, T>(0, 0, s))
+        {}
+
+        template<typename T>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<3, T>::mat(
+            T const& x1, T y1, T const& z1,
+            T const& x2, T y2, T const& z2,
+            T const& x3, T y3, T const& z3)
+            : mat(vec<3, T>(x1, y1, z1),
+                  vec<3, T>(x2, y2, z2),
+                  vec<3, T>(x3, y3, z3))
+        {}
+
+        template<typename T>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<3, T>::mat(
+            vec<3, T> const& c1,
+            vec<3, T> const& c2,
+            vec<3, T> const& c3)
+        {
+                data[0] = c1;
+                data[1] = c2;
+                data[2] = c3;
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR vec<3, T>& mat<3, T>::operator[](size_t n)
+        {
+                return data[n];
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR vec<3, T> const& mat<3, T>::operator[](size_t n) const
+        {
+                return data[n];
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR mat<3, T> operator*(mat<3, T> const& m, T const& v)
+        {
+                mat<3, T> Result;
+
+                for (int i = 0; i < 3; i++)
+                        Result[i] = m[i] * v;
+
+                return Result;
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR mat<3, T> operator*(mat<3, T> const& m1, mat<3, T> const& m2)
+        {
+                using namespace std::experimental;
+
+                mat<3, T> Result;
+
+                for (int j = 0; j < 3; j++) {
+                        simd<T, simd_abi::fixed_size<3>> col(&m2[j].x, element_aligned);
+                        for (int i = 0; i < 3; i++) {
+                                T row_data[] = { m1[0][i], m1[1][i], m1[2][i], m1[3][i] };
+                                simd<T, simd_abi::fixed_size<3>> row;
+                                row.copy_from(row_data, element_aligned);
+                                Result[j][i] = std::experimental::reduce(row * col);
+                        }
+                }
+
+                return Result;
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR vec<3, T> operator*(mat<3, T> const& m, vec<3, T> const& v)
+        {
+                using namespace std::experimental;
+
+                vec<3, T> Result;
+
+                simd<T, simd_abi::fixed_size<3>> col(&v.x, element_aligned);
+                for (int i = 0; i < 3; i++) {
+                        T row_data[] = { m[0][i], m[1][i], m[2][i] };
+                        simd<T, simd_abi::fixed_size<3>> row;
+                        row.copy_from(row_data, element_aligned);
+                        Result[i] = std::experimental::reduce(row * col);
+                }
+
+                return Result;
+        }
+        
         // -- struct mat<4, T> --
 
         template<typename T>
