@@ -15,8 +15,8 @@
 |*    limitations under the License.                                                *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
-#ifndef ART_H_
-#define ART_H_
+#ifndef VRT_H_
+#define VRT_H_
 
 #include "vec.h"
 // std
@@ -24,12 +24,12 @@
 #include <cmath>
 #include <stdexcept>
 
-#define ART_TEMPLATE_TYPE_INT32   int
-#define ART_TEMPLATE_TYPE_INT64   long
-#define ART_TEMPLATE_TYPE_FLOAT32 float
-#define ART_TEMPLATE_TYPE_FLOAT64 double
+#define VRT_TEMPLATE_TYPE_INT32   int
+#define VRT_TEMPLATE_TYPE_INT64   long
+#define VRT_TEMPLATE_TYPE_FLOAT32 float
+#define VRT_TEMPLATE_TYPE_FLOAT64 double
 
-namespace art {
+namespace vrt {
         // -- define --
 
         ///
@@ -49,8 +49,8 @@ namespace art {
         ///  2. 处理周期性计算，如波形生成、动画循环等。
         ///  3. 保留小数部分，例如 fmod(5.75, 1.0) 结果为 0.75。
         ///
-        template<typename T = ART_TEMPLATE_TYPE_FLOAT32>
-        ART_FUNC_DECL ART_FUNC_CONSTEXPR int mod(T x, T y);
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR int mod(T x, T y);
 
         ///
         /// @brief 计算浮点数的绝对值。
@@ -69,9 +69,9 @@ namespace art {
         ///  2. 在需要忽略符号的场合，如计算误差、比较大小等。
         ///  3. 在数学运算中，确保某些值始终为正数，例如向量的模长计算。
         ///
-        template<typename T = ART_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
         T
-        ART_FUNC_DECL ART_FUNC_CONSTEXPR abs(T x);
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR abs(T x);
 
         ///
         /// @brief 计算浮点数 `x` 的整数次幂。
@@ -94,8 +94,8 @@ namespace art {
         /// @warning 当 `x` 为负数且 `a` 为非整数时，结果可能为 NaN（未定义）。
         ///          当 `x` 为 0 且 `a` 为负数时，结果可能为无穷大（inf）。
         ///
-        template<typename T = ART_TEMPLATE_TYPE_FLOAT32>
-        ART_FUNC_DECL ART_FUNC_CONSTEXPR T pow(T x, T a);
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T pow(T x, T a);
 
         ///
         /// @brief 将弧度值转换为角度值。
@@ -114,8 +114,8 @@ namespace art {
         ///  2. 在物理仿真中处理角度相关的计算。
         ///  3. 在游戏开发中处理角色的旋转和方向。
         ///
-        template<typename T = ART_TEMPLATE_TYPE_INT32>
-        ART_FUNC_DECL ART_FUNC_CONSTEXPR int degrees(T angrad);
+        template<typename T = VRT_TEMPLATE_TYPE_INT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR int degrees(T angrad);
 
         ///
         /// @brief 将角度值转换为弧度值。
@@ -134,8 +134,8 @@ namespace art {
         ///  2. 在物理仿真中处理弧度相关的计算。
         ///  3. 在游戏开发中处理角色的旋转和方向。
         ///
-        template<typename T = ART_TEMPLATE_TYPE_FLOAT32>
-        ART_FUNC_DECL ART_FUNC_CONSTEXPR T radians(int angdeg);
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T radians(int angdeg);
 
         ///
         /// @brief 计算浮点数的正弦值。
@@ -151,8 +151,8 @@ namespace art {
         ///  2. 在物理仿真中模拟周期性运动，如弹簧振动。
         ///  3. 在信号处理中分析周期性信号。
         ///
-        template<typename T = ART_TEMPLATE_TYPE_FLOAT32>
-        ART_FUNC_DECL ART_FUNC_CONSTEXPR T sin(T x);
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T sin(T x);
 
         ///
         /// @brief 计算浮点数的余弦值。
@@ -168,8 +168,8 @@ namespace art {
         ///  2. 在物理仿真中模拟周期性运动，如弹簧振动。
         ///  3. 在信号处理中分析周期性信号。
         ///
-        template<typename T = ART_TEMPLATE_TYPE_FLOAT32>
-        ART_FUNC_DECL ART_FUNC_CONSTEXPR T cos(T x);
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T cos(T x);
 
         ///
         /// @brief 计算浮点数的平方根。
@@ -186,8 +186,8 @@ namespace art {
         ///
         /// @warning 当 `x` 为负数时，结果可能为 NaN（未定义）。
         ///
-        template<typename T = ART_TEMPLATE_TYPE_FLOAT32>
-        ART_FUNC_DECL ART_FUNC_CONSTEXPR T sqrt(T x);
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T sqrt(T x);
 
         ///
         /// @brief 计算 4个 浮点数的平方根。
@@ -204,8 +204,8 @@ namespace art {
         ///
         /// @warning 当 `x` 为负数时，结果可能为 NaN（未定义）。
         ///
-        template<typename T = ART_TEMPLATE_TYPE_FLOAT32>
-        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> sqrt(vec<4, T> const& v);
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<4, T> sqrt(vec<4, T> const& v);
 
         /// 
         /// @brief 计算二维向量的长度（模）。
@@ -224,8 +224,8 @@ namespace art {
         ///  2. 在物理仿真中计算速度、力的强度等。
         ///  3. 在游戏开发中计算距离或范围。
         /// 
-        template<typename T = ART_TEMPLATE_TYPE_FLOAT32>
-        ART_FUNC_DECL ART_FUNC_CONSTEXPR T length(vec<2, T> const& v);
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T length(vec<2, T> const& v);
 
         /// 
         /// @brief 计算三维向量的长度（模）。
@@ -244,8 +244,8 @@ namespace art {
         ///  2. 在物理仿真中计算速度、力的强度等。
         ///  3. 在游戏开发中计算距离或范围。
         /// 
-        template<typename T = ART_TEMPLATE_TYPE_FLOAT32>
-        ART_FUNC_DECL ART_FUNC_CONSTEXPR T length(vec<3, T> const& v);
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T length(vec<3, T> const& v);
 
         /// 
         /// @brief 计算四维向量的长度（模）。
@@ -264,16 +264,16 @@ namespace art {
         ///  2. 在物理仿真中计算速度、力的强度等。
         ///  3. 在游戏开发中计算距离或范围。
         /// 
-        template<typename T = ART_TEMPLATE_TYPE_FLOAT32>
-        ART_FUNC_DECL ART_FUNC_CONSTEXPR T length(vec<4, T> const& v);
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T length(vec<4, T> const& v);
 
-        template<typename T = ART_TEMPLATE_TYPE_FLOAT32>
-        ART_FUNC_DECL ART_FUNC_CONSTEXPR mat<4, T> translate(mat<4, T> const& m, vec<3, T> const& v);
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<4, T> translate(mat<4, T> const& m, vec<3, T> const& v);
         
         // -- implements --
 
         template<typename T>
-        ART_FUNC_CONSTEXPR int mod(T x, T y) {
+        VRT_FUNC_CONSTEXPR int mod(T x, T y) {
                 if (y == 0)
                         return 0;
                 return x - ((int) (x / y)) * y;
@@ -281,47 +281,47 @@ namespace art {
 
         template<typename T>
         T
-        ART_FUNC_CONSTEXPR abs(T x) {
+        VRT_FUNC_CONSTEXPR abs(T x) {
                 return x < 0 ? -x : x;
         }
 
         template<typename T>
-        ART_FUNC_CONSTEXPR T pow(T x, T a) {
+        VRT_FUNC_CONSTEXPR T pow(T x, T a) {
                 return std::pow(x, a);
         }
 
         template<typename T>
-        ART_FUNC_CONSTEXPR int degrees(T angrad)
+        VRT_FUNC_CONSTEXPR int degrees(T angrad)
         {
                 return angrad / (M_PI / 180);
         }
 
         template<typename T>
-        ART_FUNC_CONSTEXPR T radians(int angdeg)
+        VRT_FUNC_CONSTEXPR T radians(int angdeg)
         {
                 return angdeg / (180 / M_PI);
         }
 
         template<typename T>
-        ART_FUNC_CONSTEXPR T sin(T x)
+        VRT_FUNC_CONSTEXPR T sin(T x)
         {
                 return std::sin(x);
         }
 
         template<typename T>
-        ART_FUNC_CONSTEXPR T cos(T x)
+        VRT_FUNC_CONSTEXPR T cos(T x)
         {
                 return std::cos(x);
         }
 
         template<typename T>
-        ART_FUNC_CONSTEXPR T sqrt(T x)
+        VRT_FUNC_CONSTEXPR T sqrt(T x)
         {
                 return std::sqrt(x);
         }
 
         template<typename T>
-        ART_FUNC_CONSTEXPR vec<4, T> sqrt(vec<4, T> const& v)
+        VRT_FUNC_CONSTEXPR vec<4, T> sqrt(vec<4, T> const& v)
         {
                 using namespace std::experimental;
 
@@ -333,25 +333,25 @@ namespace art {
         }
 
         template<typename T>
-        ART_FUNC_CONSTEXPR T length(vec<2, T> const& v)
+        VRT_FUNC_CONSTEXPR T length(vec<2, T> const& v)
         {
                 return sqrt((v.x * v.x) + (v.y * v.y));
         }
 
         template<typename T>
-        ART_FUNC_CONSTEXPR T length(vec<3, T> const& v)
+        VRT_FUNC_CONSTEXPR T length(vec<3, T> const& v)
         {
                 return sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
         }
 
         template<typename T>
-        ART_FUNC_CONSTEXPR T length(vec<4, T> const& v)
+        VRT_FUNC_CONSTEXPR T length(vec<4, T> const& v)
         {
                 return sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
         }
 
         template<typename T>
-        ART_FUNC_CONSTEXPR mat<4, T> translate(mat<4, T> const& m, vec<3, T> const& v)
+        VRT_FUNC_CONSTEXPR mat<4, T> translate(mat<4, T> const& m, vec<3, T> const& v)
         {
                 mat<4, T> t(1.0f);
 
@@ -364,4 +364,4 @@ namespace art {
         
 }
 
-#endif /* ART_H_ */
+#endif /* VRT_H_ */

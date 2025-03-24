@@ -18,7 +18,7 @@
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
 
-#include "art.h"
+#include "vrt.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -28,14 +28,14 @@
 int main()
 {
         {
-                art::mat4 m(1.0f);
-                art::vec3 p(1.0f);
+                vrt::mat4 m(1.0f);
+                vrt::vec3 p(1.0f);
 
-                m = art::translate(m, art::vec3(3.0f, 6.0f, 9.0f));
+                m = vrt::translate(m, vrt::vec3(3.0f, 6.0f, 9.0f));
                 
-                p = (m * art::vec4(p, 1.0f));
-
-                ART_PRINT_FORMAT_VECTOR3(p);
+                p = (m * vrt::vec4(p, 1.0f));
+                
+                VRT_PRINT_FORMAT_VECTOR3(p);
         }
 
         {
@@ -46,7 +46,7 @@ int main()
 
                 p = (m * glm::vec4(p, 1.0f));
 
-                ART_PRINT_FORMAT_VECTOR3(p);
+                VRT_PRINT_FORMAT_VECTOR3(p);
         }   
 }
 
