@@ -103,7 +103,10 @@ namespace art
                 
                 template<typename U>
                 ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator=(vec<2, U> const& v);
-                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator=(vec<2, T> const& v) = default;
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator=(vec<2, T> const& v) ART_FUNC_DEFAULT_CTOR;
+
+                template<typename U>
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator=(vec<3, U> const& v);
                 
                 ART_FUNC_DECL ART_FUNC_CONSTEXPR T & operator[](size_t n);
                 ART_FUNC_DECL ART_FUNC_CONSTEXPR T const& operator[](size_t n) const;
@@ -319,6 +322,16 @@ namespace art
         template<typename T>
         template<typename U>
         ART_FUNC_CONSTEXPR vec<2, T> & vec<2, T>::operator=(vec<2, U> const& v)
+        {
+                this->x = static_cast<T>(v.x);
+                this->y = static_cast<T>(v.y);
+
+                return *this;
+        }
+
+        template<typename T>
+        template<typename U>
+        ART_FUNC_CONSTEXPR vec<2, T> & vec<2, T>::operator=(vec<3, U> const& v)
         {
                 this->x = static_cast<T>(v.x);
                 this->y = static_cast<T>(v.y);
