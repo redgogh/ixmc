@@ -267,12 +267,80 @@ namespace vrt {
         template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T length(vec<4, T> const& v);
 
+        ///
+        /// @brief 归一化三维向量。
+        ///
+        /// 将输入的三维向量 `v` 转换为单位向量（长度为1），保持原方向不变。
+        /// 归一化操作常用于方向向量的标准化处理。
+        ///
+        /// @tparam T 浮点数类型，默认为 VRT_TEMPLATE_TYPE_FLOAT32
+        /// @param v 输入的三维向量
+        /// @return vec<3, T> 返回归一化后的单位向量
+        ///
+        /// @note 使用场景：
+        ///  1. 光照计算中的法线向量处理
+        ///  2. 物理引擎中的方向向量标准化
+        ///  3. 相机和视角控制
+        ///
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> normalize(vec<3, T> const& v);
+
+        ///
+        /// @brief 归一化四维向量。
+        ///
+        /// 将输入的四维向量 `v` 转换为单位向量（长度为1），保持原方向不变。
+        /// 适用于齐次坐标或四元数的归一化处理。
+        ///
+        /// @tparam T 浮点数类型，默认为 VRT_TEMPLATE_TYPE_FLOAT32
+        /// @param v 输入的四维向量
+        /// @return vec<4, T> 返回归一化后的单位向量
+        ///
+        /// @note 使用场景：
+        ///  1. 四元数旋转的标准化
+        ///  2. 齐次坐标系的规范化
+        ///  3. 投影空间计算
+        ///
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<4, T> normalize(vec<4, T> const& v);
+
+        ///
+        /// @brief 创建平移变换矩阵。
+        ///
+        /// 在现有4x4变换矩阵 `m` 基础上，应用由三维向量 `v` 指定的平移变换。
+        /// 返回新的变换矩阵，保持原矩阵的其他变换不变。
+        ///
+        /// @tparam T 浮点数类型，默认为 VRT_TEMPLATE_TYPE_FLOAT32
+        /// @param m 输入的4x4变换矩阵
+        /// @param v 平移向量(x,y,z分量分别对应各轴平移量)
+        /// @return mat<4, T> 返回应用平移后的新变换矩阵
+        ///
+        /// @note 使用场景：
+        ///  1. 3D物体位置变换
+        ///  2. 相机视图矩阵构造
+        ///  3. 场景图节点变换
+        ///
         template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<4, T> translate(mat<4, T> const& m, vec<3, T> const& v);
 
+        ///
+        /// @brief 创建缩放变换矩阵。
+        ///
+        /// 在现有4x4变换矩阵 `m` 基础上，应用由三维向量 `v` 指定的缩放变换。
+        /// 返回新的变换矩阵，保持原矩阵的其他变换不变。
+        ///
+        /// @tparam T 浮点数类型，默认为 VRT_TEMPLATE_TYPE_FLOAT32
+        /// @param m 输入的4x4变换矩阵
+        /// @param v 缩放向量(x,y,z分量分别对应各轴缩放比例)
+        /// @return mat<4, T> 返回应用缩放后的新变换矩阵
+        ///
+        /// @note 使用场景：
+        ///  1. 3D物体大小变换
+        ///  2. 非均匀缩放效果实现
+        ///  3. 模型空间变换
+        ///
         template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<4, T> scale(mat<4, T> const& m, vec<3, T> const& v);
-        
+
         // -- implements --
 
         template<typename T>
@@ -351,6 +419,20 @@ namespace vrt {
         VRT_FUNC_CONSTEXPR T length(vec<4, T> const& v)
         {
                 return sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR T normalize(vec3 const& v)
+        {
+                T len = length(v);
+                return vec3(v.x / len, v.y / len, v.z / len);
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR T normalize(vec4 const& v)
+        {
+                T len = length(v);
+                return vec3(v.x / len, v.y / len, v.z / len, v.w / len);
         }
 
         template<typename T>
