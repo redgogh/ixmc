@@ -18,7 +18,7 @@
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
 
-#include "alg.h"
+#include "art.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -28,27 +28,25 @@
 int main()
 {
         {
-                using namespace alg;
+                art::mat4 m(1.0f);
+                art::vec3 p(1.0f);
 
-                mat4 m(1.0f);
-                m = translate(m, vec3(3.0f, 6.0f, 9.0f));
+                m = art::translate(m, art::vec3(3.0f, 6.0f, 9.0f));
+                
+                p = (m * art::vec4(p, 1.0f));
 
-                vec3 p(15.f, 32.f, 64.f);
-                p = (m * vec4(p, 1.0f)).xyz();
-
-                ALG_PRINT_FORMAT_VECTOR3(p);
+                ART_PRINT_FORMAT_VECTOR3(p);
         }
 
         {
-                using namespace glm;
+                glm::mat4 m(1.0f);
+                glm::vec3 p(1.0f);
 
-                mat4 m(1.0f);
-                m = translate(m, vec3(3.0f, 6.0f, 9.0f));
+                m = glm::translate(m, glm::vec3(3.0f, 6.0f, 9.0f));
 
-                vec3 p(15.f, 32.f, 64.f);
-                p = (m * vec4(p, 1.0f));
+                p = (m * glm::vec4(p, 1.0f));
 
-                ALG_PRINT_FORMAT_VECTOR3(p);
+                ART_PRINT_FORMAT_VECTOR3(p);
         }   
 }
 

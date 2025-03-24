@@ -15,17 +15,17 @@
 |*    limitations under the License.                                                *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
-#ifndef ALG_VEC_H_
-#define ALG_VEC_H_
+#ifndef ART_VEC_H_
+#define ART_VEC_H_
 
 #include <experimental/simd>
 
-#define ALG_FUNC_DECL          /* UNDEF */
-#define ALG_INLINE             inline
-#define ALG_FUNC_CONSTEXPR     constexpr
-#define ALG_FUNC_DEFAULT_CTOR  = default
+#define ART_FUNC_DECL          /* UNDEF */
+#define ART_INLINE             inline
+#define ART_FUNC_CONSTEXPR     constexpr
+#define ART_FUNC_DEFAULT_CTOR  = default
 
-namespace alg
+namespace art
 {
         // -- Vector & Matrix --
         
@@ -95,50 +95,50 @@ namespace alg
 
                 // -- Constructor for vec2 --
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec() ALG_FUNC_DEFAULT_CTOR;
-                ALG_FUNC_DECL explicit vec(T s);
-                ALG_FUNC_DECL ALG_INLINE ALG_FUNC_CONSTEXPR vec(T x, T y);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec() ART_FUNC_DEFAULT_CTOR;
+                ART_FUNC_DECL explicit vec(T s);
+                ART_FUNC_DECL ART_INLINE ART_FUNC_CONSTEXPR vec(T x, T y);
 
                 // -- Operator override --
                 
                 template<typename U>
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator=(vec<2, U> const& v);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator=(vec<2, T> const& v) = default;
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator=(vec<2, U> const& v);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator=(vec<2, T> const& v) = default;
                 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T & operator[](size_t n);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T const& operator[](size_t n) const;
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR T & operator[](size_t n);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR T const& operator[](size_t n) const;
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator+=(T const &s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator-=(T const &s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator*=(T const &s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator/=(T const &s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator+=(T const &s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator-=(T const &s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator*=(T const &s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator/=(T const &s);
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator+=(vec<2, T> const &v);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator-=(vec<2, T> const &v);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator*=(vec<2, T> const &v);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> & operator/=(vec<2, T> const &v);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator+=(vec<2, T> const &v);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator-=(vec<2, T> const &v);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator*=(vec<2, T> const &v);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> & operator/=(vec<2, T> const &v);
 
         };
 
         // -- struct vec<2, T>: Global operator overrides --
 
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> operator+(vec<2, T> const& v, T const &s);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> operator+(vec<2, T> const& v, T const &s);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> operator-(vec<2, T> const& v, T const &s);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> operator-(vec<2, T> const& v, T const &s);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> operator*(vec<2, T> const& v, T const &s);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> operator*(vec<2, T> const& v, T const &s);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> operator/(vec<2, T> const& v, T const &s);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> operator/(vec<2, T> const& v, T const &s);
 
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> operator+(vec<2, T> const& v1, vec<2, T> const &v2);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> operator+(vec<2, T> const& v1, vec<2, T> const &v2);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> operator-(vec<2, T> const& v1, vec<2, T> const &v2);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> operator-(vec<2, T> const& v1, vec<2, T> const &v2);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> operator*(vec<2, T> const& v1, vec<2, T> const &v2);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> operator*(vec<2, T> const& v1, vec<2, T> const &v2);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<2, T> operator/(vec<2, T> const& v1, vec<2, T> const &v2);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<2, T> operator/(vec<2, T> const& v1, vec<2, T> const &v2);
 
         // -- struct vec<3, T> --
 
@@ -153,53 +153,56 @@ namespace alg
 
                 // -- Constructor for vec3 --
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec() ALG_FUNC_DEFAULT_CTOR;
-                ALG_FUNC_DECL explicit vec(T s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec(vec<2, T> const& v, T z);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec(T x, T y, T z);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec() ART_FUNC_DEFAULT_CTOR;
+                ART_FUNC_DECL explicit vec(T s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec(vec<2, T> const& v, T z);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec(T x, T y, T z);
 
                 // -- Operator override --
 
                 template<typename U>
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T> & operator=(vec<3, U> const& v);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T> & operator=(vec<3, T> const& v) = default;
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T> & operator=(vec<3, U> const& v);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T> & operator=(vec<3, T> const& v) ART_FUNC_DEFAULT_CTOR;
                 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T & operator[](size_t n);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T const& operator[](size_t n) const;
+                template<typename U>
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T> & operator=(vec<4, U> const& v);
+                    
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR T & operator[](size_t n);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR T const& operator[](size_t n) const;
                 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T>& operator+=(T const &s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T>& operator-=(T const &s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T>& operator*=(T const &s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T>& operator/=(T const &s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T>& operator+=(T const &s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T>& operator-=(T const &s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T>& operator*=(T const &s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T>& operator/=(T const &s);
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T>& operator+=(vec<3, T> const &v);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T>& operator-=(vec<3, T> const &v);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T>& operator*=(vec<3, T> const &v);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T>& operator/=(vec<3, T> const &v);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T>& operator+=(vec<3, T> const &v);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T>& operator-=(vec<3, T> const &v);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T>& operator*=(vec<3, T> const &v);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T>& operator/=(vec<3, T> const &v);
 
-                ALG_FUNC_DECL vec<2, T> xy();
+                ART_FUNC_DECL vec<2, T> xy();
                 
         };
 
         // -- struct vec<3, T>: Global operator overrides --
 
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T> operator+(vec<3, T> const& v, T const &s);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T> operator+(vec<3, T> const& v, T const &s);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T> operator-(vec<3, T> const& v, T const &s);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T> operator-(vec<3, T> const& v, T const &s);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T> operator*(vec<3, T> const& v, T const &s);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T> operator*(vec<3, T> const& v, T const &s);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T> operator/(vec<3, T> const& v, T const &s);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T> operator/(vec<3, T> const& v, T const &s);
 
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T> operator+(vec<3, T> const& v1, vec<3, T> const &v2);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T> operator+(vec<3, T> const& v1, vec<3, T> const &v2);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T> operator-(vec<3, T> const& v1, vec<3, T> const &v2);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T> operator-(vec<3, T> const& v1, vec<3, T> const &v2);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T> operator*(vec<3, T> const& v1, vec<3, T> const &v2);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T> operator*(vec<3, T> const& v1, vec<3, T> const &v2);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<3, T> operator/(vec<3, T> const& v1, vec<3, T> const &v2);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<3, T> operator/(vec<3, T> const& v1, vec<3, T> const &v2);
 
         // -- struct vec<4, T> --
 
@@ -214,55 +217,55 @@ namespace alg
 
                 // -- Constructor for vec4 --
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec() ALG_FUNC_DEFAULT_CTOR;
-                ALG_FUNC_DECL explicit vec(T s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec(vec<2, T> const& v, T z, T w);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec(vec<3, T> const& v, T w);
-                ALG_FUNC_DECL ALG_INLINE ALG_FUNC_CONSTEXPR vec(T x, T y, T z, T w);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec() ART_FUNC_DEFAULT_CTOR;
+                ART_FUNC_DECL explicit vec(T s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec(vec<2, T> const& v, T z, T w);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec(vec<3, T> const& v, T w);
+                ART_FUNC_DECL ART_INLINE ART_FUNC_CONSTEXPR vec(T x, T y, T z, T w);
 
                 // -- Operator override --
 
                 template<typename U>
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> & operator=(vec<4, U> const& v);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> & operator=(vec<4, T> const& v) = default;
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> & operator=(vec<4, U> const& v);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> & operator=(vec<4, T> const& v) = default;
                 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T & operator[](size_t n);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR T const& operator[](size_t n) const;
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR T & operator[](size_t n);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR T const& operator[](size_t n) const;
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T>& operator+=(T const &s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T>& operator-=(T const &s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T>& operator*=(T const &s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T>& operator/=(T const &s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T>& operator+=(T const &s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T>& operator-=(T const &s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T>& operator*=(T const &s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T>& operator/=(T const &s);
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T>& operator+=(vec<4, T> const &vv);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T>& operator-=(vec<4, T> const &vv);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T>& operator*=(vec<4, T> const &vv);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T>& operator/=(vec<4, T> const &vv);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T>& operator+=(vec<4, T> const &vv);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T>& operator-=(vec<4, T> const &vv);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T>& operator*=(vec<4, T> const &vv);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T>& operator/=(vec<4, T> const &vv);
                 
-                ALG_FUNC_DECL ALG_INLINE vec<2, T> xy();
-                ALG_FUNC_DECL ALG_INLINE vec<3, T> xyz();
+                ART_FUNC_DECL ART_INLINE vec<2, T> xy();
+                ART_FUNC_DECL ART_INLINE vec<3, T> xyz();
                 
         };
 
         // -- struct vec<4, T>: Global operator overrides --
 
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> operator+(vec<4, T> const& v, T const &s);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> operator+(vec<4, T> const& v, T const &s);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> operator-(vec<4, T> const& v, T const &s);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> operator-(vec<4, T> const& v, T const &s);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v, T const &s);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v, T const &s);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> operator/(vec<4, T> const& v, T const &s);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> operator/(vec<4, T> const& v, T const &s);
         
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> operator+(vec<4, T> const& v1, vec<4, T> const &v2);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> operator+(vec<4, T> const& v1, vec<4, T> const &v2);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> operator-(vec<4, T> const& v1, vec<4, T> const &v2);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> operator-(vec<4, T> const& v1, vec<4, T> const &v2);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v1, vec<4, T> const &v2);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v1, vec<4, T> const &v2);
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> operator/(vec<4, T> const& v1, vec<4, T> const &v2);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> operator/(vec<4, T> const& v1, vec<4, T> const &v2);
         
         // -- struct mat<4, T> --
         
@@ -274,14 +277,14 @@ namespace alg
                 
                 // -- Constructor --
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat() ALG_FUNC_DEFAULT_CTOR;
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR explicit mat<4, T>(T const& s);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T>(
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR mat() ART_FUNC_DEFAULT_CTOR;
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR explicit mat<4, T>(T const& s);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR mat<4, T>(
                         T const& x1, T y1, T const& z1, T const& w1,
                         T const& x2, T y2, T const& z2, T const& w2,
                         T const& x3, T y3, T const& z3, T const& w3,
                         T const& x4, T y4, T const& z4, T const& w4);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T>(
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR mat<4, T>(
                         vec<4, T> const& c1, 
                         vec<4, T> const& c2, 
                         vec<4, T> const& c3, 
@@ -289,21 +292,21 @@ namespace alg
                 
                 // -- Operator overrides --
 
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> & operator[](size_t n);
-                ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> const& operator[](size_t n) const;
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> & operator[](size_t n);
+                ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> const& operator[](size_t n) const;
                 
         };
 
         // -- struct mat<4, T>: Global operator overrides --
         
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T> operator*(mat<4, T> const& m, T const& v);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR mat<4, T> operator*(mat<4, T> const& m, T const& v);
         
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T> operator*(mat<4, T> const& m1, mat<4, T> const& m2);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR mat<4, T> operator*(mat<4, T> const& m1, mat<4, T> const& m2);
 
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR vec<4, T> operator*(mat<4, T> const& m, vec<4, T> const& v);
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR vec<4, T> operator*(mat<4, T> const& m, vec<4, T> const& v);
         
         // -- struct vec<2, T>: implements --
 
@@ -311,11 +314,11 @@ namespace alg
         vec<2, T>::vec(T s) : vec(s, s) {}
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T>::vec(T x, T y) : r(static_cast<T>(x)), g(static_cast<T>(y)) {}
+        ART_FUNC_CONSTEXPR vec<2, T>::vec(T x, T y) : r(static_cast<T>(x)), g(static_cast<T>(y)) {}
 
         template<typename T>
         template<typename U>
-        ALG_FUNC_CONSTEXPR vec<2, T> & vec<2, T>::operator=(vec<2, U> const& v)
+        ART_FUNC_CONSTEXPR vec<2, T> & vec<2, T>::operator=(vec<2, U> const& v)
         {
                 this->x = static_cast<T>(v.x);
                 this->y = static_cast<T>(v.y);
@@ -324,7 +327,7 @@ namespace alg
         }
         
         template<typename T>
-        ALG_FUNC_CONSTEXPR T& vec<2, T>::operator[](size_t n)
+        ART_FUNC_CONSTEXPR T& vec<2, T>::operator[](size_t n)
         {
                 switch (n) {
                         case 0: return x;
@@ -334,7 +337,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR T const& vec<2, T>::operator[](size_t n) const
+        ART_FUNC_CONSTEXPR T const& vec<2, T>::operator[](size_t n) const
         {
                 switch (n) {
                         case 0: return x;
@@ -344,7 +347,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator+=(T const &s)
+        ART_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator+=(T const &s)
         {
                 this->x = this->x + s;
                 this->y = this->y + s;
@@ -352,7 +355,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator-=(T const &s)
+        ART_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator-=(T const &s)
         {
                 this->x = this->x - s;
                 this->y = this->y - s;
@@ -360,7 +363,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator*=(T const &s)
+        ART_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator*=(T const &s)
         {
                 this->x = this->x * s;
                 this->y = this->y * s;
@@ -368,7 +371,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator/=(T const &s)
+        ART_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator/=(T const &s)
         {
                 this->x = this->x / s;
                 this->y = this->y / s;
@@ -376,7 +379,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator+=(const vec<2, T> &v)
+        ART_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator+=(const vec<2, T> &v)
         {
                 this->x = this->x + v.x;
                 this->y = this->y + v.y;
@@ -384,7 +387,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator-=(const vec<2, T> &v)
+        ART_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator-=(const vec<2, T> &v)
         {
                 this->x = this->x - v.x;
                 this->y = this->y - v.y;
@@ -392,7 +395,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator*=(const vec<2, T> &v)
+        ART_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator*=(const vec<2, T> &v)
         {
                 this->x = this->x * v.x;
                 this->y = this->y * v.y;
@@ -400,7 +403,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator/=(const vec<2, T> &v)
+        ART_FUNC_CONSTEXPR vec<2, T> &vec<2, T>::operator/=(const vec<2, T> &v)
         {
                 this->x = this->x / v.x;
                 this->y = this->y / v.y;
@@ -408,49 +411,49 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> operator+(vec<2, T> const& v, T const& s)
+        ART_FUNC_CONSTEXPR vec<2, T> operator+(vec<2, T> const& v, T const& s)
         {
                 return vec<2, T>(v.x + s, v.y + s);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> operator-(vec<2, T> const& v, T const& s)
+        ART_FUNC_CONSTEXPR vec<2, T> operator-(vec<2, T> const& v, T const& s)
         {
                 return vec<2, T>(v.x - s, v.y - s);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> operator*(vec<2, T> const& v, T const& s)
+        ART_FUNC_CONSTEXPR vec<2, T> operator*(vec<2, T> const& v, T const& s)
         {
                 return vec<2, T>(v.x * s, v.y * s);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> operator/(vec<2, T> const& v, T const& s)
+        ART_FUNC_CONSTEXPR vec<2, T> operator/(vec<2, T> const& v, T const& s)
         {
                 return vec<2, T>(v.x / s, v.y / s);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> operator+(vec<2, T> const& v1, vec<2, T> const& v2)
+        ART_FUNC_CONSTEXPR vec<2, T> operator+(vec<2, T> const& v1, vec<2, T> const& v2)
         {
                 return vec<2, T>(v1.x + v2.x, v1.y + v2.y);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> operator-(vec<2, T> const& v1, vec<2, T> const& v2)
+        ART_FUNC_CONSTEXPR vec<2, T> operator-(vec<2, T> const& v1, vec<2, T> const& v2)
         {
                 return vec<2, T>(v1.x - v2.x, v1.y - v2.y);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> operator*(vec<2, T> const& v1, vec<2, T> const& v2)
+        ART_FUNC_CONSTEXPR vec<2, T> operator*(vec<2, T> const& v1, vec<2, T> const& v2)
         {
                 return vec<2, T>(v1.x * v2.x, v1.y * v2.y);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<2, T> operator/(vec<2, T> const& v1, vec<2, T> const& v2)
+        ART_FUNC_CONSTEXPR vec<2, T> operator/(vec<2, T> const& v1, vec<2, T> const& v2)
         {
                 return vec<2, T>(v1.x / v2.x, v1.y / v2.y);
         }
@@ -461,14 +464,14 @@ namespace alg
         vec<3, T>::vec(T s) : vec(s, s, s) {}
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T>::vec(vec<2, T> const& v, T z) : vec(v.x, v.y, z) {}
+        ART_FUNC_CONSTEXPR vec<3, T>::vec(vec<2, T> const& v, T z) : vec(v.x, v.y, z) {}
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T>::vec(T x, T y, T z) : r(static_cast<T>(x)), g(static_cast<T>(y)), b(static_cast<T>(z)) {}
+        ART_FUNC_CONSTEXPR vec<3, T>::vec(T x, T y, T z) : r(static_cast<T>(x)), g(static_cast<T>(y)), b(static_cast<T>(z)) {}
 
         template<typename T>
         template<typename U>
-        ALG_FUNC_CONSTEXPR vec<3, T> & vec<3, T>::operator=(vec<3, U> const& v)
+        ART_FUNC_CONSTEXPR vec<3, T> & vec<3, T>::operator=(vec<3, U> const& v)
         {
                 this->x = static_cast<T>(v.x);
                 this->y = static_cast<T>(v.y);
@@ -476,9 +479,20 @@ namespace alg
 
                 return *this;
         }
-        
+
         template<typename T>
-        ALG_FUNC_CONSTEXPR T& vec<3, T>::operator[](size_t n)
+        template<typename U>
+        ART_FUNC_CONSTEXPR vec<3, T> & vec<3, T>::operator=(vec<4, U> const& v)
+        {
+                this->x = static_cast<T>(v.x);
+                this->y = static_cast<T>(v.y);
+                this->z = static_cast<T>(v.z);
+
+                return *this;
+        }
+
+        template<typename T>
+        ART_FUNC_CONSTEXPR T& vec<3, T>::operator[](size_t n)
         {
                 switch (n) {
                         case 0: return x;
@@ -489,7 +503,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR T const& vec<3, T>::operator[](size_t n) const
+        ART_FUNC_CONSTEXPR T const& vec<3, T>::operator[](size_t n) const
         {
                 switch (n) {
                         case 0: return x;
@@ -500,7 +514,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator+=(T const &s)
+        ART_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator+=(T const &s)
         {
                 this->x = this->x + s;
                 this->y = this->y + s;
@@ -509,7 +523,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator-=(T const &s)
+        ART_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator-=(T const &s)
         {
                 this->x = this->x - s;
                 this->y = this->y - s;
@@ -518,7 +532,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator*=(T const &s)
+        ART_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator*=(T const &s)
         {
                 this->x = this->x * s;
                 this->y = this->y * s;
@@ -527,7 +541,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator/=(T const &s)
+        ART_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator/=(T const &s)
         {
                 this->x = this->x / s;
                 this->y = this->y / s;
@@ -536,7 +550,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator+=(const vec<3, T> &v)
+        ART_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator+=(const vec<3, T> &v)
         {
                 this->x = this->x + v.x;
                 this->y = this->y + v.y;
@@ -545,7 +559,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator-=(const vec<3, T> &v)
+        ART_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator-=(const vec<3, T> &v)
         {
                 this->x = this->x - v.x;
                 this->y = this->y - v.y;
@@ -554,7 +568,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator*=(const vec<3, T> &v)
+        ART_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator*=(const vec<3, T> &v)
         {
                 this->x = this->x * v.x;
                 this->y = this->y * v.y;
@@ -563,7 +577,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator/=(const vec<3, T> &v)
+        ART_FUNC_CONSTEXPR vec<3, T> &vec<3, T>::operator/=(const vec<3, T> &v)
         {
                 this->x = this->x / v.x;
                 this->y = this->y / v.y;
@@ -578,49 +592,49 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> operator+(vec<3, T> const& v, T const& s)
+        ART_FUNC_CONSTEXPR vec<3, T> operator+(vec<3, T> const& v, T const& s)
         {
                 return vec<3, T>(v.x + s, v.y + s, v.z + s);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> operator-(vec<3, T> const& v, T const& s)
+        ART_FUNC_CONSTEXPR vec<3, T> operator-(vec<3, T> const& v, T const& s)
         {
                 return vec<3, T>(v.x - s, v.y - s, v.z - s);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> operator*(vec<3, T> const& v, T const& s)
+        ART_FUNC_CONSTEXPR vec<3, T> operator*(vec<3, T> const& v, T const& s)
         {
                 return vec<3, T>(v.x * s, v.y * s, v.z * s);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> operator/(vec<3, T> const& v, T const& s)
+        ART_FUNC_CONSTEXPR vec<3, T> operator/(vec<3, T> const& v, T const& s)
         {
                 return vec<3, T>(v.x / s, v.y / s, v.z / s);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> operator+(vec<3, T> const& v1, vec<3, T> const& v2)
+        ART_FUNC_CONSTEXPR vec<3, T> operator+(vec<3, T> const& v1, vec<3, T> const& v2)
         {
                 return vec<3, T>(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> operator-(vec<3, T> const& v1, vec<3, T> const& v2)
+        ART_FUNC_CONSTEXPR vec<3, T> operator-(vec<3, T> const& v1, vec<3, T> const& v2)
         {
                 return vec<3, T>(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> operator*(vec<3, T> const& v1, vec<3, T> const& v2)
+        ART_FUNC_CONSTEXPR vec<3, T> operator*(vec<3, T> const& v1, vec<3, T> const& v2)
         {
                 return vec<3, T>(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<3, T> operator/(vec<3, T> const& v1, vec<3, T> const& v2)
+        ART_FUNC_CONSTEXPR vec<3, T> operator/(vec<3, T> const& v1, vec<3, T> const& v2)
         {
                 return vec<3, T>(v1.x / v2.x, v1.y / v2.y, v1.z / v2.z);
         }
@@ -631,20 +645,20 @@ namespace alg
         vec<4, T>::vec(T s) : vec(s, s, s, s) {}
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T>::vec(vec<2, T> const& v, T z, T w) : vec(v.x, v.y, z, w) {}
+        ART_FUNC_CONSTEXPR vec<4, T>::vec(vec<2, T> const& v, T z, T w) : vec(v.x, v.y, z, w) {}
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T>::vec(vec<3, T> const& v, T w) : vec(v.x, v.y, v.z, w) {}
+        ART_FUNC_CONSTEXPR vec<4, T>::vec(vec<3, T> const& v, T w) : vec(v.x, v.y, v.z, w) {}
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T>::vec(T x, T y, T z, T w) 
+        ART_FUNC_CONSTEXPR vec<4, T>::vec(T x, T y, T z, T w) 
                 : r(static_cast<T>(x)), g(static_cast<T>(y))
                 , b(static_cast<T>(z)), a(static_cast<T>(w))
         {}
 
         template<typename T>
         template<typename U>
-        ALG_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator=(vec<4, U> const& v)
+        ART_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator=(vec<4, U> const& v)
         {
                 this->x = static_cast<T>(v.x);
                 this->y = static_cast<T>(v.y);
@@ -655,7 +669,7 @@ namespace alg
         }
                 
         template<typename T>
-        ALG_FUNC_CONSTEXPR T& vec<4, T>::operator[](size_t n)
+        ART_FUNC_CONSTEXPR T& vec<4, T>::operator[](size_t n)
         {
                 switch (n) {
                         case 0: return x;
@@ -667,7 +681,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR T const& vec<4, T>::operator[](size_t n) const
+        ART_FUNC_CONSTEXPR T const& vec<4, T>::operator[](size_t n) const
         {
                 switch (n) {
                         case 0: return x;
@@ -679,7 +693,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator+=(T const &s)
+        ART_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator+=(T const &s)
         {
                 this->x = this->x + s;
                 this->y = this->y + s;
@@ -689,7 +703,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator-=(T const &s)
+        ART_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator-=(T const &s)
         {
                 this->x = this->x - s;
                 this->y = this->y - s;
@@ -699,7 +713,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator*=(T const &s)
+        ART_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator*=(T const &s)
         {
                 this->x = this->x * s;
                 this->y = this->y * s;
@@ -709,7 +723,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator/=(T const &s)
+        ART_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator/=(T const &s)
         {
                 this->x = this->x / s;
                 this->y = this->y / s;
@@ -719,7 +733,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator+=(const vec<4, T> &v2)
+        ART_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator+=(const vec<4, T> &v2)
         {
                 this->x = this->x + v2.x;
                 this->y = this->y + v2.y;
@@ -729,7 +743,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator-=(const vec<4, T> &v2)
+        ART_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator-=(const vec<4, T> &v2)
         {
                 this->x = this->x - v2.x;
                 this->y = this->y - v2.y;
@@ -739,7 +753,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator*=(const vec<4, T> &v2)
+        ART_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator*=(const vec<4, T> &v2)
         {
                 this->x = this->x * v2.x;
                 this->y = this->y * v2.y;
@@ -749,7 +763,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator/=(const vec<4, T> &v2)
+        ART_FUNC_CONSTEXPR vec<4, T> & vec<4, T>::operator/=(const vec<4, T> &v2)
         {
                 this->x = this->x / v2.x;
                 this->y = this->y / v2.y;
@@ -771,49 +785,49 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> operator+(vec<4, T> const& v, T const &s)
+        ART_FUNC_CONSTEXPR vec<4, T> operator+(vec<4, T> const& v, T const &s)
         {
                 return vec<4, T>(v.x + s, v.y + s, v.z + s, v.w + s);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> operator-(vec<4, T> const& v, T const &s)
+        ART_FUNC_CONSTEXPR vec<4, T> operator-(vec<4, T> const& v, T const &s)
         {
                 return vec<4, T>(v.x - s, v.y - s, v.z - s, v.w - s);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v, T const &s)
+        ART_FUNC_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v, T const &s)
         {
                 return vec<4, T>(v.x * s, v.y * s, v.z * s, v.w * s);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> operator/(vec<4, T> const& v, T const &s)
+        ART_FUNC_CONSTEXPR vec<4, T> operator/(vec<4, T> const& v, T const &s)
         {
                 return vec<4, T>(v.x / s, v.y / s, v.z / s, v.w / s);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> operator+(vec<4, T> const& v1, const vec<4, T> &v2)
+        ART_FUNC_CONSTEXPR vec<4, T> operator+(vec<4, T> const& v1, const vec<4, T> &v2)
         {
                 return vec<4, T>(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> operator-(vec<4, T> const& v1, const vec<4, T> &v2)
+        ART_FUNC_CONSTEXPR vec<4, T> operator-(vec<4, T> const& v1, const vec<4, T> &v2)
         {
                 return vec<4, T>(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v1, const vec<4, T> &v2)
+        ART_FUNC_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v1, const vec<4, T> &v2)
         {
                 return vec<4, T>(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z, v1.w * v2.w);
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> operator/(vec<4, T> const& v1, const vec<4, T> &v2)
+        ART_FUNC_CONSTEXPR vec<4, T> operator/(vec<4, T> const& v1, const vec<4, T> &v2)
         {
                 return vec<4, T>(v1.x / v2.x, v1.y / v2.y, v1.z / v2.z, v1.w / v2.w);
         }
@@ -821,7 +835,7 @@ namespace alg
         // -- struct mat<4, T> --
 
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T>::mat(T const& s)
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR mat<4, T>::mat(T const& s)
                 : mat(vec<4, T>(s, 0, 0, 0),
                       vec<4, T>(0, s, 0, 0),
                       vec<4, T>(0, 0, s, 0),
@@ -829,7 +843,7 @@ namespace alg
         {}
 
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T>::mat(
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR mat<4, T>::mat(
                 T const& x1, T y1, T const& z1, T const& w1,
                 T const& x2, T y2, T const& z2, T const& w2,
                 T const& x3, T y3, T const& z3, T const& w3,
@@ -841,7 +855,7 @@ namespace alg
         {}
 
         template<typename T>
-        ALG_FUNC_DECL ALG_FUNC_CONSTEXPR mat<4, T>::mat(
+        ART_FUNC_DECL ART_FUNC_CONSTEXPR mat<4, T>::mat(
                 vec<4, T> const& c1,
                 vec<4, T> const& c2,
                 vec<4, T> const& c3,
@@ -854,19 +868,19 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T>& mat<4, T>::operator[](size_t n)
+        ART_FUNC_CONSTEXPR vec<4, T>& mat<4, T>::operator[](size_t n)
         {
                 return data[n];
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> const& mat<4, T>::operator[](size_t n) const
+        ART_FUNC_CONSTEXPR vec<4, T> const& mat<4, T>::operator[](size_t n) const
         {
                 return data[n];
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR mat<4, T> operator*(mat<4, T> const& m, T const& v)
+        ART_FUNC_CONSTEXPR mat<4, T> operator*(mat<4, T> const& m, T const& v)
         {
                 mat<4, T> Result;
 
@@ -877,7 +891,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR mat<4, T> operator*(mat<4, T> const& m1, mat<4, T> const& m2)
+        ART_FUNC_CONSTEXPR mat<4, T> operator*(mat<4, T> const& m1, mat<4, T> const& m2)
         {
                 using namespace std::experimental;
 
@@ -897,7 +911,7 @@ namespace alg
         }
 
         template<typename T>
-        ALG_FUNC_CONSTEXPR vec<4, T> operator*(mat<4, T> const& m, vec<4, T> const& v)
+        ART_FUNC_CONSTEXPR vec<4, T> operator*(mat<4, T> const& m, vec<4, T> const& v)
         {
                 using namespace std::experimental;
 
@@ -917,48 +931,48 @@ namespace alg
         // -- tools define --
 
         template<typename T>
-        ALG_FUNC_DECL ALG_INLINE T* value_ptr(vec<2, T> &v);
+        ART_FUNC_DECL ART_INLINE T* value_ptr(vec<2, T> &v);
 
         template<typename T>
-        ALG_FUNC_DECL ALG_INLINE T* value_ptr(vec<3, T> &v);
+        ART_FUNC_DECL ART_INLINE T* value_ptr(vec<3, T> &v);
 
         template<typename T>
-        ALG_FUNC_DECL ALG_INLINE T* value_ptr(vec<4, T> &v);
+        ART_FUNC_DECL ART_INLINE T* value_ptr(vec<4, T> &v);
 
         template<typename T>
-        ALG_FUNC_DECL ALG_INLINE T* value_ptr(mat<4, T> &v);
+        ART_FUNC_DECL ART_INLINE T* value_ptr(mat<4, T> &v);
 
         template<typename T>
-        ALG_FUNC_DECL ALG_INLINE bool equals(T const* m1, T const* m2);
+        ART_FUNC_DECL ART_INLINE bool equals(T const* m1, T const* m2);
         
         // -- tools implements --
         
         template<typename T>
-        ALG_FUNC_DECL ALG_INLINE T* value_ptr(vec<2, T> &v)
+        ART_FUNC_DECL ART_INLINE T* value_ptr(vec<2, T> &v)
         {
                 return &(v.x);
         }
 
         template<typename T>
-        ALG_FUNC_DECL ALG_INLINE T* value_ptr(vec<3, T> &v)
+        ART_FUNC_DECL ART_INLINE T* value_ptr(vec<3, T> &v)
         {
                 return &(v.x);
         }
 
         template<typename T>
-        ALG_FUNC_DECL ALG_INLINE T* value_ptr(vec<4, T> &v)
+        ART_FUNC_DECL ART_INLINE T* value_ptr(vec<4, T> &v)
         {
                 return &(v.x);
         }
 
         template<typename T>
-        ALG_FUNC_DECL ALG_INLINE T* value_ptr(mat<4, T> &m)
+        ART_FUNC_DECL ART_INLINE T* value_ptr(mat<4, T> &m)
         {
                 return &(m[0].x);
         }
 
         template<typename T>
-        ALG_FUNC_DECL ALG_INLINE bool equals(T const* m1, T const* m2)
+        ART_FUNC_DECL ART_INLINE bool equals(T const* m1, T const* m2)
         {
                 for (int i = 0; i < 16; i++)
                         if (m1[i] != m2[i])
@@ -969,25 +983,25 @@ namespace alg
 
 }
 
-#define ALG_PRINT_FORMAT_VECTOR2(v)                                                             \
+#define ART_PRINT_FORMAT_VECTOR2(v)                                                             \
         do {                                                                                    \
             printf("[%.2f, %.2f]\n", v[0], v[1]);                                               \
         } while(0)
 
-#define ALG_PRINT_FORMAT_VECTOR3(v)                                                             \
+#define ART_PRINT_FORMAT_VECTOR3(v)                                                             \
         do {                                                                                    \
             printf("[%.2f, %.2f, %.2f]\n", v[0], v[1], v[2]);                                   \
         } while(0)
 
-#define ALG_PRINT_FORMAT_VECTOR4(v)                                                             \
+#define ART_PRINT_FORMAT_VECTOR4(v)                                                             \
         do {                                                                                    \
             printf("[%.2f, %.2f, %.2f, %.2f]\n", v[0], v[1], v[2], v[3]);                       \
         } while(0)
 
-#define ALG_PRINT_FORMAT_MATRIX4(m)                                                             \
+#define ART_PRINT_FORMAT_MATRIX4(m)                                                             \
         do {                                                                                    \
             for (int i = 0; i < 4; i++)                                                         \
                 printf("(%.2f, %.2f, %.2f, %.2f)\n", m[0][i], m[1][i], m[2][i], m[3][i]);       \
         } while(0)
         
-#endif /* ALG_VEC_H_ */
+#endif /* ART_VEC_H_ */
