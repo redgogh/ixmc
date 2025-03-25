@@ -2,7 +2,7 @@
 
 针对图形学中所需要用到的三角函数、线性代数等数学、模拟计算所提供的数学基础库。
 
-# 示例
+**示例**
 
 计算两个向量之间的夹角（弧度）
 ```c++
@@ -10,8 +10,8 @@
 
 int main()
 {
-        vrt::vec3 v1(0,  1);
-        vrt::vec3 v2(0, -1);
+        vrt::vec3 v1(0, 1);
+        vrt::vec3 v2(1, 0);
         
         float a = vrt::angle(v1, v2);
         
@@ -39,3 +39,9 @@ int main()
         std::cout << vrt::degress(a) << std::endl;
 }
 ```
+
+弧度转角度公式：
+
+$$
+\theta = \frac{\text{弧度}}{\pi / 180}
+$$
