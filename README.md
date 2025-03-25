@@ -4,6 +4,7 @@
 
 # 示例
 
+计算两个向量之间的夹角（弧度）
 ```c++
 #include <vrt.h>
 
@@ -12,14 +13,29 @@ int main()
         vrt::vec3 v1(0,  1);
         vrt::vec3 v2(0, -1);
         
-        std::cout << vrt::angle(v1, v2) << std::endl;
+        float a = vrt::angle(v1, v2);
+        
+        ......
 }
 ```
 
-结果: $\cos \theta$ = 0，计算公式：
+计算公式：
 
 $$
-\cos \theta = \frac{\alpha \cdot \upsilon}{{\lVert\alpha\rVert}{\lVert\upsilon\rVert}}
+\theta = \arccos \left( \frac{\alpha \cdot \upsilon}{{\lVert\alpha\rVert}{\lVert\upsilon\rVert}} \right)
 $$
 
-通过反余弦函数得弧度后转角度得到结果为： **90°**
+通过反余弦函数得弧度后转角度得到结果为：**90°**，代码演示：
+
+```c++
+#include <vrt.h>
+
+int main()
+{
+        ......
+        
+        float a = vrt::angle(v1, v2);
+        
+        std::cout << vrt::degress(a) << std::endl;
+}
+```
