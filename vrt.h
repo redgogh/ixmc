@@ -188,7 +188,7 @@ namespace vrt {
         ///
         template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T sqrt(T x);
-
+        
         ///
         /// @brief 计算 4个 浮点数的平方根。
         ///
@@ -207,6 +207,135 @@ namespace vrt {
         template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<4, T> sqrt(vec<4, T> const& v);
 
+        ///
+        /// @brief 计算二维向量的规约和
+        ///
+        /// 对二维向量的所有分量进行求和操作，返回标量结果。
+        /// 对于向量 v = (x,y)，计算结果为 x + y。
+        ///
+        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @param v 输入向量
+        /// @return T 返回向量各分量的总和
+        ///
+        /// @note 典型应用场景：
+        ///  1. 计算向量分量总和
+        ///  2. 简化向量运算
+        ///  3. 作为更复杂运算的中间步骤
+        ///
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T reduce(vec<2, T> const& v);
+
+        ///
+        /// @brief 计算三维向量的规约和 
+        ///
+        /// 对三维向量的所有分量进行求和操作，返回标量结果。
+        /// 对于向量 v = (x,y,z)，计算结果为 x + y + z。
+        ///
+        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @param v 输入向量
+        /// @return T 返回向量各分量的总和
+        ///
+        /// @note 典型应用场景：
+        ///  1. 计算空间坐标总和
+        ///  2. 物理模拟中的量值汇总
+        ///  3. 图形学中的简化计算
+        ///
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T reduce(vec<3, T> const& v);
+
+        ///
+        /// @brief 计算四维向量的规约和
+        ///
+        /// 对四维向量的所有分量进行求和操作，返回标量结果。
+        /// 对于向量 v = (x,y,z,w)，计算结果为 x + y + z + w。
+        ///
+        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @param v 输入向量
+        /// @return T 返回向量各分量的总和
+        ///
+        /// @note 典型应用场景：
+        ///  1. 齐次坐标计算
+        ///  2. 高维数据聚合
+        ///  3. 复杂变换的中间计算
+        ///
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T reduce(vec<4, T> const& v);
+
+        ///
+        /// @brief 计算两个二维向量的点积
+        ///
+        /// 点积（又称内积）用于衡量两个向量的相似程度。
+        /// 对于向量 v1 = (x1,y1) 和 v2 = (x2,y2)，点积计算公式为 x1*x2 + y1*y2。
+        ///
+        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @param v1 第一个输入向量
+        /// @param v2 第二个输入向量
+        /// @return T 返回两个向量的点积结果
+        ///
+        /// @note 点积的重要特性：
+        ///   - 当向量方向相近时结果为正
+        ///   - 当向量方向相反时结果为负
+        ///   - 当向量垂直时结果为0
+        ///
+        /// @note 典型应用场景：
+        ///  1. 计算向量间夹角的余弦值（cosθ = (a·b)/(|a||b|)）
+        ///  2. 计算向量投影
+        ///  3. 判断向量是否正交
+        ///  4. 计算向量长度的平方（dot(v,v) = |v|²）
+        ///
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<2, T> const& v1, vec<2, T> const& v2);
+
+        ///
+        /// @brief 计算两个三维向量的点积
+        ///
+        /// 点积用于衡量两个向量的相似程度。
+        /// 对于向量 v1 = (x1,y1,z1) 和 v2 = (x2,y2,z2)，点积计算公式为 x1*x2 + y1*y2 + z1*z2。
+        ///
+        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @param v1 第一个输入向量
+        /// @param v2 第二个输入向量
+        /// @return T 返回两个向量的点积结果
+        ///
+        /// @note 点积的重要特性：
+        ///   - 与向量夹角相关（a·b = |a||b|cosθ）
+        ///   - 符号表示方向相似性
+        ///   - 常用于光照计算（如兰伯特余弦定律）
+        ///
+        /// @note 典型应用场景：
+        ///  1. 图形学中的光照计算
+        ///  2. 物理模拟（功、投影等计算）
+        ///  3. 碰撞检测
+        ///  4. 方向分析
+        ///
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<3, T> const& v1, vec<3, T> const& v2);
+
+        ///
+        /// @brief 计算两个四维向量的点积
+        ///
+        /// 点积用于衡量两个向量的相似程度。
+        /// 对于向量 v1 = (x1,y1,z1,w1) 和 v2 = (x2,y2,z2,w2)，点积计算公式为 x1*x2 + y1*y2 + z1*z2 + w1*w2。
+        ///
+        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @param v1 第一个输入向量
+        /// @param v2 第二个输入向量
+        /// @return T 返回两个向量的点积结果
+        ///
+        /// @note 重要特性：
+        ///   - 将三维点积概念扩展到四维空间
+        ///   - 适用于齐次坐标计算
+        ///   - 在投影几何中非常重要
+        ///
+        /// @note 典型应用场景：
+        ///  1. 齐次坐标计算
+        ///  2. 四维几何运算
+        ///  3. 高级图形算法
+        ///  4. 高维物理/数学计算
+        ///
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<4, T> const& v1, vec<4, T> const& v2);
+        
         /// 
         /// @brief 计算二维向量的长度（模）。
         /// 
@@ -404,6 +533,42 @@ namespace vrt {
         }
 
         template<typename T>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T reduce(vec<2, T> const& v)
+        {
+                return (v.x + v.y);
+        }
+
+        template<typename T>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T reduce(vec<3, T> const& v)
+        {
+                return (v.x + v.y + v.z);
+        }
+
+        template<typename T>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T reduce(vec<4, T> const& v)
+        {
+                return (v.x + v.y + v.z + v.w);
+        }
+
+        template<typename T>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<2, T> const& v1, vec<2, T> const& v2)
+        {
+                return reduce(v1 * v2);
+        }
+
+        template<typename T>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<3, T> const& v1, vec<3, T> const& v2)
+        {
+                return reduce(v1 * v2);
+        }
+
+        template<typename T>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<4, T> const& v1, vec<4, T> const& v2)
+        {
+                return reduce(v1 * v2);
+        }
+
+        template<typename T>
         VRT_FUNC_CONSTEXPR T length(vec<2, T> const& v)
         {
                 return sqrt((v.x * v.x) + (v.y * v.y));
@@ -422,13 +587,13 @@ namespace vrt {
         }
 
         template<typename T>
-        VRT_FUNC_CONSTEXPR T normalize(vec3 const& v)
+        VRT_FUNC_CONSTEXPR vec<3, T> normalize(vec<3, T> const& v)
         {
                 return v / length(v);
         }
 
         template<typename T>
-        VRT_FUNC_CONSTEXPR T normalize(vec4 const& v)
+        VRT_FUNC_CONSTEXPR vec<4, T> normalize(vec<4, T> const& v)
         {
                 return v / length(v);
         }
