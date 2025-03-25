@@ -24,10 +24,8 @@
 #include <cmath>
 #include <stdexcept>
 
-#define VRT_TEMPLATE_TYPE_INT32   int
-#define VRT_TEMPLATE_TYPE_INT64   long
-#define VRT_TEMPLATE_TYPE_FLOAT32 float
-#define VRT_TEMPLATE_TYPE_FLOAT64 double
+#define VRT_INT32   int
+#define VRT_FLOAT32 float
 
 namespace vrt {
         // -- define --
@@ -49,7 +47,7 @@ namespace vrt {
         ///  2. 处理周期性计算，如波形生成、动画循环等。
         ///  3. 保留小数部分，例如 fmod(5.75, 1.0) 结果为 0.75。
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR int mod(T x, T y);
 
         ///
@@ -69,7 +67,7 @@ namespace vrt {
         ///  2. 在需要忽略符号的场合，如计算误差、比较大小等。
         ///  3. 在数学运算中，确保某些值始终为正数，例如向量的模长计算。
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         T
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR abs(T x);
 
@@ -94,7 +92,7 @@ namespace vrt {
         /// @warning 当 `x` 为负数且 `a` 为非整数时，结果可能为 NaN（未定义）。
         ///          当 `x` 为 0 且 `a` 为负数时，结果可能为无穷大（inf）。
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T pow(T x, T a);
 
         ///
@@ -114,7 +112,7 @@ namespace vrt {
         ///  2. 在物理仿真中处理角度相关的计算。
         ///  3. 在游戏开发中处理角色的旋转和方向。
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_INT32>
+        template<typename T = VRT_INT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR int degrees(T angrad);
 
         ///
@@ -134,7 +132,7 @@ namespace vrt {
         ///  2. 在物理仿真中处理弧度相关的计算。
         ///  3. 在游戏开发中处理角色的旋转和方向。
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T radians(int angdeg);
 
         ///
@@ -151,7 +149,7 @@ namespace vrt {
         ///  2. 在物理仿真中模拟周期性运动，如弹簧振动。
         ///  3. 在信号处理中分析周期性信号。
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T sin(T x);
 
         ///
@@ -168,7 +166,7 @@ namespace vrt {
         ///  2. 在物理仿真中模拟周期性运动，如弹簧振动。
         ///  3. 在信号处理中分析周期性信号。
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T cos(T x);
 
         ///
@@ -193,7 +191,7 @@ namespace vrt {
         ///  3. 计算机图形学中的角度计算
         ///  4. 机器人运动学中的关节角度计算
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T arccos(T x);
         
         ///
@@ -211,7 +209,7 @@ namespace vrt {
         ///
         /// @warning 当 `x` 为负数时，结果可能为 NaN（未定义）。
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T sqrt(T x);
 
         ///
@@ -229,7 +227,7 @@ namespace vrt {
         ///
         /// @warning 当 `x` 为负数时，结果可能为 NaN（未定义）。
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> sqrt(vec<4, T> const& v);
 
         ///
@@ -247,7 +245,7 @@ namespace vrt {
         ///
         /// @warning 当 `x` 为负数时，结果可能为 NaN（未定义）。
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> sqrt(vec<4, T> const& v);
         
         ///
@@ -265,7 +263,7 @@ namespace vrt {
         ///
         /// @warning 当 `x` 为负数时，结果可能为 NaN（未定义）。
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<4, T> sqrt(vec<4, T> const& v);
 
         ///
@@ -274,7 +272,7 @@ namespace vrt {
         /// 对二维向量的所有分量进行求和操作，返回标量结果。
         /// 对于向量 v = (x,y)，计算结果为 x + y。
         ///
-        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @tparam T 向量元素类型（默认为 VRT_FLOAT32）
         /// @param v 输入向量
         /// @return T 返回向量各分量的总和
         ///
@@ -283,7 +281,7 @@ namespace vrt {
         ///  2. 简化向量运算
         ///  3. 作为更复杂运算的中间步骤
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T reduce(vec<2, T> const& v);
 
         ///
@@ -292,7 +290,7 @@ namespace vrt {
         /// 对三维向量的所有分量进行求和操作，返回标量结果。
         /// 对于向量 v = (x,y,z)，计算结果为 x + y + z。
         ///
-        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @tparam T 向量元素类型（默认为 VRT_FLOAT32）
         /// @param v 输入向量
         /// @return T 返回向量各分量的总和
         ///
@@ -301,7 +299,7 @@ namespace vrt {
         ///  2. 物理模拟中的量值汇总
         ///  3. 图形学中的简化计算
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T reduce(vec<3, T> const& v);
 
         ///
@@ -310,7 +308,7 @@ namespace vrt {
         /// 对四维向量的所有分量进行求和操作，返回标量结果。
         /// 对于向量 v = (x,y,z,w)，计算结果为 x + y + z + w。
         ///
-        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @tparam T 向量元素类型（默认为 VRT_FLOAT32）
         /// @param v 输入向量
         /// @return T 返回向量各分量的总和
         ///
@@ -319,7 +317,7 @@ namespace vrt {
         ///  2. 高维数据聚合
         ///  3. 复杂变换的中间计算
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T reduce(vec<4, T> const& v);
 
         ///
@@ -328,7 +326,7 @@ namespace vrt {
         /// 点积（又称内积）用于衡量两个向量的相似程度。
         /// 对于向量 v1 = (x1,y1) 和 v2 = (x2,y2)，点积计算公式为 x1*x2 + y1*y2。
         ///
-        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @tparam T 向量元素类型（默认为 VRT_FLOAT32）
         /// @param v1 第一个输入向量
         /// @param v2 第二个输入向量
         /// @return T 返回两个向量的点积结果
@@ -344,7 +342,7 @@ namespace vrt {
         ///  3. 判断向量是否正交
         ///  4. 计算向量长度的平方（dot(v,v) = |v|²）
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<2, T> const& v1, vec<2, T> const& v2);
 
         ///
@@ -353,7 +351,7 @@ namespace vrt {
         /// 点积用于衡量两个向量的相似程度。
         /// 对于向量 v1 = (x1,y1,z1) 和 v2 = (x2,y2,z2)，点积计算公式为 x1*x2 + y1*y2 + z1*z2。
         ///
-        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @tparam T 向量元素类型（默认为 VRT_FLOAT32）
         /// @param v1 第一个输入向量
         /// @param v2 第二个输入向量
         /// @return T 返回两个向量的点积结果
@@ -369,7 +367,7 @@ namespace vrt {
         ///  3. 碰撞检测
         ///  4. 方向分析
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<3, T> const& v1, vec<3, T> const& v2);
 
         ///
@@ -378,7 +376,7 @@ namespace vrt {
         /// 点积用于衡量两个向量的相似程度。
         /// 对于向量 v1 = (x1,y1,z1,w1) 和 v2 = (x2,y2,z2,w2)，点积计算公式为 x1*x2 + y1*y2 + z1*z2 + w1*w2。
         ///
-        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @tparam T 向量元素类型（默认为 VRT_FLOAT32）
         /// @param v1 第一个输入向量
         /// @param v2 第二个输入向量
         /// @return T 返回两个向量的点积结果
@@ -394,7 +392,7 @@ namespace vrt {
         ///  3. 高级图形算法
         ///  4. 高维物理/数学计算
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<4, T> const& v1, vec<4, T> const& v2);
         
         /// 
@@ -414,7 +412,7 @@ namespace vrt {
         ///  2. 在物理仿真中计算速度、力的强度等。
         ///  3. 在游戏开发中计算距离或范围。
         /// 
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T length(vec<2, T> const& v);
 
         /// 
@@ -434,7 +432,7 @@ namespace vrt {
         ///  2. 在物理仿真中计算速度、力的强度等。
         ///  3. 在游戏开发中计算距离或范围。
         /// 
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T length(vec<3, T> const& v);
 
         /// 
@@ -454,7 +452,7 @@ namespace vrt {
         ///  2. 在物理仿真中计算速度、力的强度等。
         ///  3. 在游戏开发中计算距离或范围。
         /// 
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T length(vec<4, T> const& v);
 
         ///
@@ -463,7 +461,7 @@ namespace vrt {
         /// 将输入的二维向量转换为单位向量（长度为1），保持原方向不变。
         /// 归一化公式为 v' = v / ||v||，其中 ||v|| 为向量的欧几里得范数。
         ///
-        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @tparam T 向量元素类型（默认为 VRT_FLOAT32）
         /// @param v 待归一化的二维向量
         /// @return vec<2, T> 返回归一化后的单位向量
         ///
@@ -478,7 +476,7 @@ namespace vrt {
         ///  3. 游戏开发中的移动方向处理
         ///  4. 机器学习中的特征向量归一化
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> normalize(vec<2, T> const& v);
         
         ///
@@ -487,7 +485,7 @@ namespace vrt {
         /// 将输入的三维向量 `v` 转换为单位向量（长度为1），保持原方向不变。
         /// 归一化操作常用于方向向量的标准化处理。
         ///
-        /// @tparam T 浮点数类型，默认为 VRT_TEMPLATE_TYPE_FLOAT32
+        /// @tparam T 浮点数类型，默认为 VRT_FLOAT32
         /// @param v 输入的三维向量
         /// @return vec<3, T> 返回归一化后的单位向量
         ///
@@ -496,7 +494,7 @@ namespace vrt {
         ///  2. 物理引擎中的方向向量标准化
         ///  3. 相机和视角控制
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> normalize(vec<3, T> const& v);
 
         ///
@@ -505,7 +503,7 @@ namespace vrt {
         /// 将输入的四维向量 `v` 转换为单位向量（长度为1），保持原方向不变。
         /// 适用于齐次坐标或四元数的归一化处理。
         ///
-        /// @tparam T 浮点数类型，默认为 VRT_TEMPLATE_TYPE_FLOAT32
+        /// @tparam T 浮点数类型，默认为 VRT_FLOAT32
         /// @param v 输入的四维向量
         /// @return vec<4, T> 返回归一化后的单位向量
         ///
@@ -514,7 +512,7 @@ namespace vrt {
         ///  2. 齐次坐标系的规范化
         ///  3. 投影空间计算
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<4, T> normalize(vec<4, T> const& v);
 
         ///
@@ -523,7 +521,7 @@ namespace vrt {
         /// 在现有4x4变换矩阵 `m` 基础上，应用由三维向量 `v` 指定的平移变换。
         /// 返回新的变换矩阵，保持原矩阵的其他变换不变。
         ///
-        /// @tparam T 浮点数类型，默认为 VRT_TEMPLATE_TYPE_FLOAT32
+        /// @tparam T 浮点数类型，默认为 VRT_FLOAT32
         /// @param m 输入的4x4变换矩阵
         /// @param v 平移向量(x,y,z分量分别对应各轴平移量)
         /// @return mat<4, T> 返回应用平移后的新变换矩阵
@@ -533,7 +531,7 @@ namespace vrt {
         ///  2. 相机视图矩阵构造
         ///  3. 场景图节点变换
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<4, T> translate(mat<4, T> const& m, vec<3, T> const& v);
 
         ///
@@ -542,7 +540,7 @@ namespace vrt {
         /// 在现有4x4变换矩阵 `m` 基础上，应用由三维向量 `v` 指定的缩放变换。
         /// 返回新的变换矩阵，保持原矩阵的其他变换不变。
         ///
-        /// @tparam T 浮点数类型，默认为 VRT_TEMPLATE_TYPE_FLOAT32
+        /// @tparam T 浮点数类型，默认为 VRT_FLOAT32
         /// @param m 输入的4x4变换矩阵
         /// @param v 缩放向量(x,y,z分量分别对应各轴缩放比例)
         /// @return mat<4, T> 返回应用缩放后的新变换矩阵
@@ -552,7 +550,7 @@ namespace vrt {
         ///  2. 非均匀缩放效果实现
         ///  3. 模型空间变换
         ///
-        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<4, T> scale(mat<4, T> const& m, vec<3, T> const& v);
 
         // -- implements --
