@@ -172,6 +172,31 @@ namespace vrt {
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T cos(T x);
 
         ///
+        /// @brief 计算反余弦函数值
+        ///
+        /// 计算给定值x的反余弦(arccosine)值，返回对应的弧度值。
+        /// 反余弦函数是余弦函数的逆运算，返回给定余弦值对应的角度。
+        ///
+        /// @tparam T 输入输出类型（默认为VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @param x 输入值，范围必须在[-1.0, 1.0]之间
+        /// @return T 返回对应的弧度值，范围[0, π]
+        ///
+        /// @note 数学特性：
+        ///   - 定义域：x ∈ [-1, 1]
+        ///   - 值域：结果 ∈ [0, π] 弧度
+        ///   - 单调递减函数
+        ///   - 满足 cos(arccos(x)) = x，当x ∈ [-1, 1]
+        ///
+        /// @note 典型应用场景：
+        ///  1. 计算两个向量间的夹角
+        ///  2. 解决三角方程
+        ///  3. 计算机图形学中的角度计算
+        ///  4. 机器人运动学中的关节角度计算
+        ///
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T arccos(T x);
+        
+        ///
         /// @brief 计算浮点数的平方根。
         ///
         /// sqrt 函数用于计算给定浮点数 `x` 的平方根。
@@ -574,6 +599,12 @@ namespace vrt {
                 return std::cos(x);
         }
 
+        template<typename T>
+        VRT_FUNC_CONSTEXPR T arccos(T x)
+        {
+                return std::acos(x);
+        }
+        
         template<typename T>
         VRT_FUNC_CONSTEXPR T sqrt(T x)
         {

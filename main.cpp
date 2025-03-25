@@ -22,9 +22,17 @@
 
 int main()
 {
-        vrt::vec2 v(9, 256);
-        v = vrt::sqrt(v);
-        VRT_PRINT_FORMAT_VECTOR2(v);
+        using namespace vrt;
+
+        float a;
+
+        vec2 v1(0,  1);
+        vec2 v2(0, -1);
+        
+        a = dot(v1, v2) / length(v1) * length(v2);
+        
+        std::cout << vrt::degrees(vrt::arccos(a)) << std::endl;
+        
 }
 
 #pragma clang diagnostic pop
