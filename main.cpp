@@ -24,14 +24,10 @@ int main()
 {
         using namespace vrt;
 
-        float a;
-
-        vec2 v1(0,  1);
-        vec2 v2(0, -1);
+        vec2 v1(0, 0);
+        vec2 v2(0, 1);
         
-        a = dot(v1, v2) / length(v1) * length(v2);
-        
-        std::cout << vrt::degrees(vrt::arccos(a)) << std::endl;
+        std::cout << vrt::degrees(v1, v2) << std::endl;
         
 }
 
