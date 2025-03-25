@@ -188,6 +188,42 @@ namespace vrt {
         ///
         template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T sqrt(T x);
+
+        ///
+        /// @brief 计算 2个 浮点数的平方根。
+        ///
+        /// sqrt 函数用于计算给定浮点数 `x` 的平方根。
+        /// 平方根是数学中的基本运算，常用于几何、物理和工程计算中。
+        ///
+        /// @param v 输入的浮点数向量（必须为非负数）
+        /// @return vec<4, T> 返回 `v` 向量的平方根，结果为非负数。
+        ///
+        /// @note sqrt 的常见用途：
+        ///  1. 计算几何中的距离或长度，如欧几里得距离。
+        ///  2. 在物理中计算速度、加速度等。
+        ///
+        /// @warning 当 `x` 为负数时，结果可能为 NaN（未定义）。
+        ///
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> sqrt(vec<4, T> const& v);
+
+        ///
+        /// @brief 计算 3个浮点数的平方根。
+        ///
+        /// sqrt 函数用于计算给定浮点数 `x` 的平方根。
+        /// 平方根是数学中的基本运算，常用于几何、物理和工程计算中。
+        ///
+        /// @param v 输入的浮点数向量（必须为非负数）
+        /// @return vec<4, T> 返回 `v` 向量的平方根，结果为非负数。
+        ///
+        /// @note sqrt 的常见用途：
+        ///  1. 计算几何中的距离或长度，如欧几里得距离。
+        ///  2. 在物理中计算速度、加速度等。
+        ///
+        /// @warning 当 `x` 为负数时，结果可能为 NaN（未定义）。
+        ///
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> sqrt(vec<4, T> const& v);
         
         ///
         /// @brief 计算 4个 浮点数的平方根。
@@ -545,6 +581,30 @@ namespace vrt {
         }
 
         template<typename T>
+        VRT_FUNC_CONSTEXPR vec<2, T> sqrt(vec<2, T> const& v)
+        {
+                using namespace std::experimental;
+
+                std::experimental::native_simd<T> data;
+                data.copy_from(&v[0], element_aligned);
+                auto Result = std::experimental::sqrt(data);
+
+                return vec<2, T>(Result[0], Result[1]);
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR vec<3, T> sqrt(vec<3, T> const& v)
+        {
+                using namespace std::experimental;
+
+                std::experimental::native_simd<T> data;
+                data.copy_from(&v[0], element_aligned);
+                auto Result = std::experimental::sqrt(data);
+
+                return vec<3, T>(Result[0], Result[1], Result[2]);
+        }
+        
+        template<typename T>
         VRT_FUNC_CONSTEXPR vec<4, T> sqrt(vec<4, T> const& v)
         {
                 using namespace std::experimental;
@@ -595,19 +655,19 @@ namespace vrt {
         template<typename T>
         VRT_FUNC_CONSTEXPR T length(vec<2, T> const& v)
         {
-                return sqrt((v.x * v.x) + (v.y * v.y));
+                return sqrt(reduce(v * v));
         }
 
         template<typename T>
         VRT_FUNC_CONSTEXPR T length(vec<3, T> const& v)
         {
-                return sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
+                return sqrt(reduce(v * v));
         }
 
         template<typename T>
         VRT_FUNC_CONSTEXPR T length(vec<4, T> const& v)
         {
-                return sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
+                return sqrt(reduce(v * v));
         }
 
         template<typename T>

@@ -22,12 +22,9 @@
 
 int main()
 {
-        vrt::vec2 P1(0,  1);
-        vrt::vec2 P2(0, -1);
-        
-        float theta = vrt::dot(P1, P2) / (vrt::length(P1) * vrt::length(P2));
-        
-        std::cout << "theta = " << theta << std::endl;
+        vrt::vec2 v(9, 256);
+        v = vrt::sqrt(v);
+        VRT_PRINT_FORMAT_VECTOR2(v);
 }
 
 #pragma clang diagnostic pop
