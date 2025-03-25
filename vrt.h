@@ -433,6 +433,9 @@ namespace vrt {
         template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<4, T> translate(mat<4, T> const& m, vec<3, T> const& v);
 
+        template<typename T = VRT_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR mat<4, T> rotate(mat<4, T> const& m, T angle, vec<3, T> const& v);
+        
         ///
         /// @brief 创建缩放变换矩阵。
         ///
@@ -602,6 +605,30 @@ namespace vrt {
                 t[3][2] = v[2];
                 
                 return m * t;
+        }
+
+        template<typename T>
+        VRT_FUNC_CONSTEXPR mat<4, T> rotate(mat<4, T> const& m, T angle, vec<3, T> const& v)
+        {
+                T a = radians(-angle) / 2; /* 使用右手坐标系 */
+                
+                T w = cos(a);
+                T s = sin(a);
+                
+                vec<3, T> axis = normalize(v);
+                
+                T x = axis.x * s;
+                T y = axis.y * s;
+                T z = axis.z * s;
+                
+                mat4 r = {
+                    1 - 2 * (y * y + z * z), 2 * (x * y - w * z), 2 * (x * z + w * y), 0,
+                    2 * (x * y + w * z), 1 - 2 * (x * x + z * z), 2 * (y * z - w * x), 0,
+                    2 * (x * z - w * y), 2 * (y * z + w * x), 1 - 2 * (x * x + y * y), 0,
+                    0, 0, 0, 1
+                };
+                
+                return m * r;
         }
 
         template<typename T>

@@ -20,34 +20,64 @@
 
 #include "main.h"
 
+typedef void (*FN_PERFORMANCE)();
+
+void performance(const char *name, FN_PERFORMANCE fn_performance_ptr)
+{
+        auto start = std::chrono::high_resolution_clock::now();
+        fn_performance_ptr();
+        auto end = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+        std::cout << "Run task (" << name << "): " << duration.count() << "ms" << std::endl;
+}
+
+void *call(void *ptr)
+{
+        return ptr;
+}
+
 int main()
 {
-        {
+        static std::vector<std::array<float, 3>> numbers;
+        
+        for (int i =0; i < 10000; i++)
+                numbers.push_back(random_float3());
+        
+        performance("vrt", []{
                 using namespace vrt;
-        
-                vec2 v2(3, 6);
-                vec3 v3(3, 6, 9);
-                vec4 v4(3, 6, 9, 12);
-        
-                VRT_PRINT_FORMAT_VECTOR2(normalize(v2));
-                VRT_PRINT_FORMAT_VECTOR3(normalize(v3));
-                VRT_PRINT_FORMAT_VECTOR4(normalize(v4));
-        }
-        
-        std::cout << std::endl;
 
-        {
+                mat4 m(1.0f);
+                // vec3 v(0.0f, 1.0f, 5.0f);
+
+                for (const auto &f3 : numbers) {
+                        vec3 v(f3[0], f3[1], f3[2]);
+        
+                        // m = translate(m, vec3(2.0f, 0.0f, 0.0f));
+                        // m = rotate(m, 90.0f, vec3(0.0f, 1.0f, 1.0f));
+        
+                        v = m * vec4(v, 1.0f);
+
+                        call(&v);
+                }
+        });
+
+        performance("glm", []{
                 using namespace glm;
 
-                vec2 v2(3, 6);
-                vec3 v3(3, 6, 9);
-                vec4 v4(3, 6, 9, 12);
+                mat4 m(1.0f);
+                // vec3 v(0.0f, 1.0f, 5.0f);
 
-                VRT_PRINT_FORMAT_VECTOR2(normalize(v2));
-                VRT_PRINT_FORMAT_VECTOR3(normalize(v3));
-                VRT_PRINT_FORMAT_VECTOR4(normalize(v4));
-        }
-        
+                for (const auto &f3 : numbers) {
+                        vec3 v(f3[0], f3[1], f3[2]);
+
+                        // m = translate(m, vec3(2.0f, 0.0f, 0.0f));
+                        // m = rotate(m, 90.0f, vec3(0.0f, 1.0f, 1.0f));
+
+                        v = m * vec4(v, 1.0f);
+
+                        call(&v);
+                }
+        });
 }
 
 #pragma clang diagnostic pop

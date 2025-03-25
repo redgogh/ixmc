@@ -27,6 +27,7 @@
 #include <random>
 #include <tuple>
 #include <array>
+#include <chrono>
 
 float rdf32()
 {
