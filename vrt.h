@@ -424,15 +424,13 @@ namespace vrt {
         template<typename T>
         VRT_FUNC_CONSTEXPR T normalize(vec3 const& v)
         {
-                T len = length(v);
-                return vec3(v.x / len, v.y / len, v.z / len);
+                return v / length(v);
         }
 
         template<typename T>
         VRT_FUNC_CONSTEXPR T normalize(vec4 const& v)
         {
-                T len = length(v);
-                return vec3(v.x / len, v.y / len, v.z / len, v.w / len);
+                return v / length(v);
         }
 
         template<typename T>

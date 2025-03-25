@@ -93,7 +93,7 @@ int main()
 {
         vrt::vec2 V(0.0f, 1.0f);
 
-        V *= -1;
+        V -= -1;
         
         VRT_PRINT_FORMAT_VECTOR2(V);
 }
