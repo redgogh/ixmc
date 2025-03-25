@@ -91,43 +91,11 @@ void vrt_test_vec3()
 
 int main()
 {
-        {
-                vrt::vec3 p(5.23f, 1.32f, 6.0f);
-                vrt::mat3 m(1.0f);
+        vrt::vec2 V(0.0f, 1.0f);
 
-                m[0][0] = 2235433.02f;
-                m[0][1] = 43.02f;
-
-                m[1][0] = 93345.02f;
-                m[1][1] = 156724.02f;
-
-                m[2][0] = 90323.02f;
-                m[2][1] = 9954534.02f;
-                
-                p = m * p;
-
-                VRT_PRINT_FORMAT_VECTOR3(p);
-        }
-
-        std::cout << std::endl;
-
-        {
-                glm::vec3 p(5.23f, 1.32f, 6.0f);
-                glm::mat3 m(1.0f);
-
-                m[0][0] = 2235433.02f;
-                m[0][1] = 43.02f;
-
-                m[1][0] = 93345.02f;
-                m[1][1] = 156724.02f;
-
-                m[2][0] = 90323.02f;
-                m[2][1] = 9954534.02f;
-
-                p = m * p;
-
-                VRT_PRINT_FORMAT_VECTOR3(p);
-        }
+        V *= -1;
+        
+        VRT_PRINT_FORMAT_VECTOR2(V);
 }
 
 #pragma clang diagnostic pop

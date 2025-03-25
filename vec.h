@@ -143,6 +143,24 @@ namespace vrt
         template<typename T>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> operator/(vec<2, T> const& v1, vec<2, T> const &v2);
 
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> operator+(vec<2, T> const& v1, U const& u);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> operator-(vec<2, T> const& v1, U const& u);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> operator*(vec<2, T> const& v1, U const& u);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> operator/(vec<2, T> const& v1, U const& u);
+
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> operator+(U const& u, vec<2, T> const& v1);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> operator-(U const& u, vec<2, T> const& v1);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> operator*(U const& u, vec<2, T> const& v1);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> operator/(U const& u, vec<2, T> const& v1);
+        
         // -- struct vec<3, T> --
 
         template<typename T>
@@ -207,6 +225,24 @@ namespace vrt
         template<typename T>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> operator/(vec<3, T> const& v1, vec<3, T> const &v2);
 
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> operator+(vec<3, T> const& v1, U const& u);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> operator-(vec<3, T> const& v1, U const& u);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> operator*(vec<3, T> const& v1, U const& u);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> operator/(vec<3, T> const& v1, U const& u);
+
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> operator+(U const& u, vec<3, T> const& v1);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> operator-(U const& u, vec<3, T> const& v1);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> operator*(U const& u, vec<3, T> const& v1);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> operator/(U const& u, vec<3, T> const& v1);
+        
         // -- struct vec<4, T> --
 
         template<typename T>
@@ -270,6 +306,15 @@ namespace vrt
         template<typename T>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<4, T> operator/(vec<4, T> const& v1, vec<4, T> const &v2);
 
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<4, T> operator+(U const& u, vec<4, T> const& v1);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<4, T> operator-(U const& u, vec<4, T> const& v1);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<4, T> operator*(U const& u, vec<4, T> const& v1);
+        template<typename T, typename U>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<4, T> operator/(U const& u, vec<4, T> const& v1);
+        
         // -- struct mat<2, T> --
 
         template<typename T>
@@ -524,6 +569,54 @@ namespace vrt
         {
                 return vec<2, T>(v1.x / v2.x, v1.y / v2.y);
         }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<2, T> operator+(vec<2, T> const& v, U const& u)
+        {
+                return vec<2, T>(v.x + u, v.y + u);
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<2, T> operator-(vec<2, T> const& v, U const& u)
+        {
+                return vec<2, T>(v.x - u, v.y - u);
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<2, T> operator*(vec<2, T> const& v, U const& u)
+        {
+                return vec<2, T>(v.x * u, v.y * u);
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<2, T> operator/(vec<2, T> const& v, U const& u)
+        {
+                return vec<2, T>(v.x / u, v.y / u);
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<2, T> operator+(U const& u, vec<2, T> const& v)
+        {
+                return v + u;
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<2, T> operator-(U const& u, vec<2, T> const& v)
+        {
+                return v - u;
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<2, T> operator*(U const& u, vec<2, T> const& v)
+        {
+                return v * u;
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<2, T> operator/(U const& u, vec<2, T> const& v)
+        {
+                return v / u;
+        }
         
         // -- struct vec<3, T>: implements --
 
@@ -706,6 +799,54 @@ namespace vrt
                 return vec<3, T>(v1.x / v2.x, v1.y / v2.y, v1.z / v2.z);
         }
 
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<3, T> operator+(vec<3, T> const& v, U const& u)
+        {
+                return vec<3, T>(v.x + u, v.y + u, v.z + u);
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<3, T> operator-(vec<3, T> const& v, U const& u)
+        {
+                return vec<3, T>(v.x - u, v.y - u, v.z - u);
+        }
+        
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<3, T> operator*(vec<3, T> const& v, U const& u)
+        {
+                return vec<3, T>(v.x * u, v.y * u, v.z * u);
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<3, T> operator/(vec<3, T> const& v, U const& u)
+        {
+                return vec<3, T>(v.x / u, v.y / u, v.z / u);
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<3, T> operator+(U const& u, vec<3, T> const& v)
+        {
+                return v + u;
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<3, T> operator-(U const& u, vec<3, T> const& v)
+        {
+                return v - u;
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<3, T> operator*(U const& u, vec<3, T> const& v)
+        {
+                return v * u;
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<3, T> operator/(U const& u, vec<3, T> const& v)
+        {
+                return v / u;
+        }
+        
         // -- struct vec<4, T>: implements --
 
         template<typename T>
@@ -897,6 +1038,54 @@ namespace vrt
         VRT_FUNC_CONSTEXPR vec<4, T> operator/(vec<4, T> const& v1, const vec<4, T> &v2)
         {
                 return vec<4, T>(v1.x / v2.x, v1.y / v2.y, v1.z / v2.z, v1.w / v2.w);
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<4, T> operator+(vec<4, T> const& v, U const& u)
+        {
+                return vec<4, T>(v.x + u, v.y + u, v.z + u, v.w + u);
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<4, T> operator-(vec<4, T> const& v, U const& u)
+        {
+                return vec<4, T>(v.x - u, v.y - u, v.z - u, v.w - u);
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<4, T> operator*(vec<4, T> const& v, U const& u)
+        {
+                return vec<4, T>(v.x * u, v.y * u, v.z * u, v.w * u);
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<4, T> operator/(vec<4, T> const& v, U const& u)
+        {
+                return vec<4, T>(v.x / u, v.y / u, v.z / u, v.w / u);
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<4, T> operator+(U const& u, vec<4, T> const& v)
+        {
+                return v + u;
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<4, T> operator-(U const& u, vec<4, T> const& v)
+        {
+                return v - u;
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<4, T> operator*(U const& u, vec<4, T> const& v)
+        {
+                return v * u;
+        }
+
+        template<typename T, typename U>
+        VRT_FUNC_CONSTEXPR vec<4, T> operator/(U const& u, vec<4, T> const& v)
+        {
+                return v / u;
         }
 
         // -- struct mat<2, T> --
