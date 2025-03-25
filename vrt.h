@@ -814,37 +814,37 @@ namespace vrt {
         }
 
         template<typename T>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T reduce(vec<2, T> const& v)
+        VRT_FUNC_CONSTEXPR T reduce(vec<2, T> const& v)
         {
                 return (v.x + v.y);
         }
 
         template<typename T>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T reduce(vec<3, T> const& v)
+        VRT_FUNC_CONSTEXPR T reduce(vec<3, T> const& v)
         {
                 return (v.x + v.y + v.z);
         }
 
         template<typename T>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T reduce(vec<4, T> const& v)
+        VRT_FUNC_CONSTEXPR T reduce(vec<4, T> const& v)
         {
                 return (v.x + v.y + v.z + v.w);
         }
 
         template<typename T>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<2, T> const& v1, vec<2, T> const& v2)
+        VRT_FUNC_CONSTEXPR T dot(vec<2, T> const& v1, vec<2, T> const& v2)
         {
                 return reduce(v1 * v2);
         }
 
         template<typename T>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<3, T> const& v1, vec<3, T> const& v2)
+        VRT_FUNC_CONSTEXPR T dot(vec<3, T> const& v1, vec<3, T> const& v2)
         {
                 return reduce(v1 * v2);
         }
 
         template<typename T>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<4, T> const& v1, vec<4, T> const& v2)
+        VRT_FUNC_CONSTEXPR T dot(vec<4, T> const& v1, vec<4, T> const& v2)
         {
                 return reduce(v1 * v2);
         }
