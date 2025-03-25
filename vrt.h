@@ -114,69 +114,6 @@ namespace vrt {
         ///
         template<typename T = VRT_INT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR int degrees(T angrad);
-
-        ///
-        /// @brief 计算二维向量间的角度（度数）
-        ///
-        /// 计算两个二维向量之间的夹角，返回角度值（0-180度）。
-        /// 通过点积公式计算：θ = arccos((v1·v2)/(|v1||v2|))，然后转换为度数。
-        ///
-        /// @tparam T 向量元素类型（默认为VRT_FLOAT32）
-        /// @param v1 第一个二维向量
-        /// @param v2 第二个二维向量
-        /// @return int 两向量间的夹角度数[0,180]
-        ///
-        /// @note 特性：
-        ///   - 结果总为正数
-        ///   - 0度表示两向量同向
-        ///   - 180度表示两向量反向
-        ///   - 90度表示两向量正交
-        ///
-        /// @note 应用场景：
-        ///  1. 游戏开发中的角色转向计算
-        ///  2. 图形学中的法线夹角检测
-        ///  3. 物理模拟中的力方向分析
-        ///
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR int degrees(vec<2, T> const& v1, vec<2, T> const& v2);
-
-        ///
-        /// @brief 计算三维向量间的角度（度数）
-        ///
-        /// 计算两个三维向量之间的夹角，返回角度值（0-180度）。
-        /// 通过点积公式计算：θ = arccos((v1·v2)/(|v1||v2|))，然后转换为度数。
-        ///
-        /// @tparam T 向量元素类型（默认为VRT_FLOAT32）
-        /// @param v1 第一个三维向量
-        /// @param v2 第二个三维向量
-        /// @return int 两向量间的夹角度数[0,180]
-        ///
-        /// @note 典型应用：
-        ///  1. 三维模型的面片夹角计算
-        ///  2. 摄像机视角分析
-        ///  3. 机械臂关节角度计算
-        ///
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR int degrees(vec<3, T> const& v1, vec<3, T> const& v2);
-
-        ///
-        /// @brief 计算四维向量间的角度（度数） 
-        ///
-        /// 计算两个四维向量之间的夹角，返回角度值（0-180度）。
-        /// 通过点积公式计算：θ = arccos((v1·v2)/(|v1||v2|))，然后转换为度数。
-        ///
-        /// @tparam T 向量元素类型（默认为VRT_FLOAT32）
-        /// @param v1 第一个四维向量
-        /// @param v2 第二个四维向量
-        /// @return int 两向量间的夹角度数[0,180]
-        ///
-        /// @note 特殊用途：
-        ///  1. 四维空间几何计算
-        ///  2. 齐次坐标系下的角度分析
-        ///  3. 高维数据相似度测量
-        ///
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR int degrees(vec<4, T> const& v1, vec<4, T> const& v2);
         
         ///
         /// @brief 将角度值转换为弧度值。
@@ -197,75 +134,6 @@ namespace vrt {
         ///
         template<typename T = VRT_FLOAT32>
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T radians(int angdeg);
-
-        ///
-        /// @brief 计算二维向量间的夹角弧度值
-        ///
-        /// 计算两个二维向量之间的最小夹角，返回弧度值而非度数。
-        /// 使用点积公式计算：θ = arccos(dot(v1, v2) / (length(v1) * length(v2)))
-        /// 结果范围为[0, π]弧度
-        ///
-        /// @tparam T 向量元素类型（默认为VRT_FLOAT32）
-        /// @param v1 第一个输入向量
-        /// @param v2 第二个输入向量 
-        /// @return T 两向量间的弧度值，范围[0, π]
-        ///
-        /// @note 特性：
-        ///   - 精确计算向量间最小夹角
-        ///   - 返回弧度值而非度数
-        ///   - 0表示同向，π表示反向，π/2表示正交
-        ///
-        /// @note 应用场景：
-        ///  1. 物理引擎中的精确角度计算
-        ///  2. 图形学着色器中的光照计算
-        ///  3. 需要弧度值的数学运算
-        ///
-        /// @warning
-        ///   - 零向量输入将导致未定义行为
-        ///   - 对于边界情况建议先归一化向量
-        ///
-        /// @see degrees(), dot(), length(), normalize()
-        ///
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T radians(vec<2, T> const& v1, vec<2, T> const& v2);
-
-        ///
-        /// @brief 计算三维向量间的夹角弧度值
-        ///
-        /// 计算两个三维向量之间的最小夹角，返回弧度值。
-        /// 使用点积公式计算，结果范围为[0, π]弧度。
-        ///
-        /// @tparam T 向量元素类型（默认为VRT_FLOAT32）
-        /// @param v1 第一个输入向量
-        /// @param v2 第二个输入向量
-        /// @return T 两向量间的弧度值，范围[0, π] 
-        ///
-        /// @note 典型应用：
-        ///  1. 三维空间中的精确角度测量
-        ///  2. 摄像机视野计算
-        ///  3. 碰撞检测中的角度判断
-        ///
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T radians(vec<3, T> const& v1, vec<3, T> const& v2);
-        
-        ///
-        /// @brief 计算四维向量间的夹角弧度值
-        ///
-        /// 计算两个四维向量之间的最小夹角，返回弧度值。
-        /// 使用点积公式计算，结果范围为[0, π]弧度。
-        ///
-        /// @tparam T 向量元素类型（默认为VRT_FLOAT32）
-        /// @param v1 第一个输入向量
-        /// @param v2 第二个输入向量
-        /// @return T 两向量间的弧度值，范围[0, π]
-        ///
-        /// @note 特殊用途：
-        ///  1. 四维空间几何计算
-        ///  2. 齐次坐标系下的精确角度测量
-        ///  3. 高维数据分析
-        ///
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T radians(vec<4, T> const& v1, vec<4, T> const& v2);
         
         ///
         /// @brief 计算浮点数的正弦值。
@@ -453,10 +321,41 @@ namespace vrt {
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T reduce(vec<4, T> const& v);
 
         ///
-        /// @brief 计算两个二维向量的点积
+        /// @brief 计算向量间的夹角弧度值
+        ///
+        /// 计算两个向量之间的最小夹角，返回弧度值而非度数。
+        /// 使用点积公式计算：θ = arccos(dot(v1, v2) / (length(v1) * length(v2)))
+        /// 结果范围为[0, π]弧度
+        ///
+        /// @tparam T 向量元素类型（默认为VRT_FLOAT32）
+        /// @param v1 第一个输入向量
+        /// @param v2 第二个输入向量 
+        /// @return T 两向量间的弧度值，范围[0, π]
+        ///
+        /// @note 特性：
+        ///   - 精确计算向量间最小夹角
+        ///   - 返回弧度值而非度数
+        ///   - 0表示同向，π表示反向，π/2表示正交
+        ///
+        /// @note 应用场景：
+        ///  1. 物理引擎中的精确角度计算
+        ///  2. 图形学着色器中的光照计算
+        ///  3. 需要弧度值的数学运算
+        ///
+        /// @warning
+        ///   - 零向量输入将导致未定义行为
+        ///   - 对于边界情况建议先归一化向量
+        ///
+        /// @see degrees(), dot(), length(), normalize()
+        ///
+        template<size_t L, typename T = VRT_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T angle(vec<L, T> const& v1, vec<L, T> const& v2);
+
+        ///
+        /// @brief 计算两个向量的点积
         ///
         /// 点积（又称内积）用于衡量两个向量的相似程度。
-        /// 对于向量 v1 = (x1,y1) 和 v2 = (x2,y2)，点积计算公式为 x1*x2 + y1*y2。
+        /// 对于向量 v1 = (x1,y1) 和 v2 = (x2,y2)，点积计算公式为 x1*x2 + y1*y2...
         ///
         /// @tparam T 向量元素类型（默认为 VRT_FLOAT32）
         /// @param v1 第一个输入向量
@@ -474,103 +373,13 @@ namespace vrt {
         ///  3. 判断向量是否正交
         ///  4. 计算向量长度的平方（dot(v,v) = |v|²）
         ///
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<2, T> const& v1, vec<2, T> const& v2);
-
-        ///
-        /// @brief 计算两个三维向量的点积
-        ///
-        /// 点积用于衡量两个向量的相似程度。
-        /// 对于向量 v1 = (x1,y1,z1) 和 v2 = (x2,y2,z2)，点积计算公式为 x1*x2 + y1*y2 + z1*z2。
-        ///
-        /// @tparam T 向量元素类型（默认为 VRT_FLOAT32）
-        /// @param v1 第一个输入向量
-        /// @param v2 第二个输入向量
-        /// @return T 返回两个向量的点积结果
-        ///
-        /// @note 点积的重要特性：
-        ///   - 与向量夹角相关（a·b = |a||b|cosθ）
-        ///   - 符号表示方向相似性
-        ///   - 常用于光照计算（如兰伯特余弦定律）
-        ///
-        /// @note 典型应用场景：
-        ///  1. 图形学中的光照计算
-        ///  2. 物理模拟（功、投影等计算）
-        ///  3. 碰撞检测
-        ///  4. 方向分析
-        ///
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<3, T> const& v1, vec<3, T> const& v2);
-
-        ///
-        /// @brief 计算两个四维向量的点积
-        ///
-        /// 点积用于衡量两个向量的相似程度。
-        /// 对于向量 v1 = (x1,y1,z1,w1) 和 v2 = (x2,y2,z2,w2)，点积计算公式为 x1*x2 + y1*y2 + z1*z2 + w1*w2。
-        ///
-        /// @tparam T 向量元素类型（默认为 VRT_FLOAT32）
-        /// @param v1 第一个输入向量
-        /// @param v2 第二个输入向量
-        /// @return T 返回两个向量的点积结果
-        ///
-        /// @note 重要特性：
-        ///   - 将三维点积概念扩展到四维空间
-        ///   - 适用于齐次坐标计算
-        ///   - 在投影几何中非常重要
-        ///
-        /// @note 典型应用场景：
-        ///  1. 齐次坐标计算
-        ///  2. 四维几何运算
-        ///  3. 高级图形算法
-        ///  4. 高维物理/数学计算
-        ///
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<4, T> const& v1, vec<4, T> const& v2);
-        
-        /// 
-        /// @brief 计算二维向量的长度（模）。
-        /// 
-        /// length 函数用于计算给定二维向量 `vec` 的长度（模）。
-        /// 向量的长度是从原点到向量点的欧几里得距离。
-        /// 
-        /// 计算公式如下：
-        ///   length(vec) = sqrt(vec.x * vec.x + vec.y * vec.y)
-        /// 
-        /// @param vec 输入的二维向量（vec2 类型）
-        /// @return float 返回向量的长度，结果为非负数。
-        /// 
-        /// @note length 的常见用途：
-        ///  1. 在图形学中计算向量的长度，用于光照、反射等计算。
-        ///  2. 在物理仿真中计算速度、力的强度等。
-        ///  3. 在游戏开发中计算距离或范围。
-        /// 
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T length(vec<2, T> const& v);
+        template<size_t L, typename T = VRT_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T dot(vec<L, T> const& v1, vec<L, T> const& v2);
 
         /// 
-        /// @brief 计算三维向量的长度（模）。
+        /// @brief 计算向量的长度（模）。
         /// 
-        /// length 函数用于计算给定二维向量 `vec` 的长度（模）。
-        /// 向量的长度是从原点到向量点的欧几里得距离。
-        /// 
-        /// 计算公式如下：
-        ///   length(vec) = sqrt(vec.x * vec.x + vec.y * vec.y)
-        /// 
-        /// @param vec 输入的二维向量（vec3 类型）
-        /// @return float 返回向量的长度，结果为非负数。
-        /// 
-        /// @note length 的常见用途：
-        ///  1. 在图形学中计算向量的长度，用于光照、反射等计算。
-        ///  2. 在物理仿真中计算速度、力的强度等。
-        ///  3. 在游戏开发中计算距离或范围。
-        /// 
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T length(vec<3, T> const& v);
-
-        /// 
-        /// @brief 计算四维向量的长度（模）。
-        /// 
-        /// length 函数用于计算给定二维向量 `vec` 的长度（模）。
+        /// length 函数用于计算给定向量 `vec` 的长度（模）。
         /// 向量的长度是从原点到向量点的欧几里得距离。
         /// 
         /// 计算公式如下：
@@ -584,55 +393,13 @@ namespace vrt {
         ///  2. 在物理仿真中计算速度、力的强度等。
         ///  3. 在游戏开发中计算距离或范围。
         /// 
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T length(vec<4, T> const& v);
+        template<size_t L, typename T = VRT_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T length(vec<L, T> const& v);
 
         ///
-        /// @brief 二维向量归一化
+        /// @brief 归一化向量。
         ///
-        /// 将输入的二维向量转换为单位向量（长度为1），保持原方向不变。
-        /// 归一化公式为 v' = v / ||v||，其中 ||v|| 为向量的欧几里得范数。
-        ///
-        /// @tparam T 向量元素类型（默认为 VRT_FLOAT32）
-        /// @param v 待归一化的二维向量
-        /// @return vec<2, T> 返回归一化后的单位向量
-        ///
-        /// @note 特性：
-        ///   - 结果向量方向与输入向量相同
-        ///   - 结果向量长度为1（单位向量）
-        ///   - 输入零向量将导致未定义行为
-        ///
-        /// @note 典型应用场景：
-        ///  1. 图形学中的法线向量处理
-        ///  2. 物理引擎中的方向向量标准化
-        ///  3. 游戏开发中的移动方向处理
-        ///  4. 机器学习中的特征向量归一化
-        ///
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> normalize(vec<2, T> const& v);
-        
-        ///
-        /// @brief 归一化三维向量。
-        ///
-        /// 将输入的三维向量 `v` 转换为单位向量（长度为1），保持原方向不变。
-        /// 归一化操作常用于方向向量的标准化处理。
-        ///
-        /// @tparam T 浮点数类型，默认为 VRT_FLOAT32
-        /// @param v 输入的三维向量
-        /// @return vec<3, T> 返回归一化后的单位向量
-        ///
-        /// @note 使用场景：
-        ///  1. 光照计算中的法线向量处理
-        ///  2. 物理引擎中的方向向量标准化
-        ///  3. 相机和视角控制
-        ///
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<3, T> normalize(vec<3, T> const& v);
-
-        ///
-        /// @brief 归一化四维向量。
-        ///
-        /// 将输入的四维向量 `v` 转换为单位向量（长度为1），保持原方向不变。
+        /// 将输入的向量 `v` 转换为单位向量（长度为1），保持原方向不变。
         /// 适用于齐次坐标或四元数的归一化处理。
         ///
         /// @tparam T 浮点数类型，默认为 VRT_FLOAT32
@@ -644,8 +411,8 @@ namespace vrt {
         ///  2. 齐次坐标系的规范化
         ///  3. 投影空间计算
         ///
-        template<typename T = VRT_FLOAT32>
-        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<4, T> normalize(vec<4, T> const& v);
+        template<size_t L, typename T = VRT_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<L, T> normalize(vec<L, T> const& v);
 
         ///
         /// @brief 创建平移变换矩阵。
@@ -712,45 +479,9 @@ namespace vrt {
         }
 
         template<typename T>
-        VRT_FUNC_CONSTEXPR int degrees(vec<2, T> const& v1, vec<2, T> const& v2)
-        {
-                return degrees(radians(v1, v2));
-        }
-
-        template<typename T>
-        VRT_FUNC_CONSTEXPR int degrees(vec<3, T> const& v1, vec<3, T> const& v2)
-        {
-                return degrees(radians(v1, v2));
-        }
-
-        template<typename T>
-        VRT_FUNC_CONSTEXPR int degrees(vec<4, T> const& v1, vec<4, T> const& v2)
-        {
-                return degrees(radians(v1, v2));
-        }
-
-        template<typename T>
         VRT_FUNC_CONSTEXPR T radians(int angdeg)
         {
                 return angdeg / (180 / M_PI);
-        }
-
-        template<typename T>
-        VRT_FUNC_CONSTEXPR T radians(vec<2, T> const& v1, vec<2, T> const& v2)
-        {
-                return arccos(dot(v1, v2) / (length(v1) * length(v2)));
-        }
-
-        template<typename T>
-        VRT_FUNC_CONSTEXPR T radians(vec<3, T> const& v1, vec<3, T> const& v2)
-        {
-                return arccos(dot(v1, v2) / (length(v1) * length(v2)));
-        }
-
-        template<typename T>
-        VRT_FUNC_CONSTEXPR T radians(vec<4, T> const& v1, vec<4, T> const& v2)
-        {
-                return arccos(dot(v1, v2) / (length(v1) * length(v2)));
         }
 
         template<typename T>
@@ -831,56 +562,32 @@ namespace vrt {
                 return (v.x + v.y + v.z + v.w);
         }
 
-        template<typename T>
-        VRT_FUNC_CONSTEXPR T dot(vec<2, T> const& v1, vec<2, T> const& v2)
+        template<size_t L, typename T>
+        VRT_FUNC_CONSTEXPR T angle(vec<L, T> const& v1, vec<L, T> const& v2)
+        {
+                T lv1 = length(v1);
+                T lv2 = length(v2);
+
+                if (!lv1 || !lv2)
+                        return T(0);
+
+                return arccos(dot(v1, v2) / (lv1 * lv2));
+        }
+
+        template<size_t L, typename T>
+        VRT_FUNC_CONSTEXPR T dot(vec<L, T> const& v1, vec<L, T> const& v2)
         {
                 return reduce(v1 * v2);
         }
 
-        template<typename T>
-        VRT_FUNC_CONSTEXPR T dot(vec<3, T> const& v1, vec<3, T> const& v2)
-        {
-                return reduce(v1 * v2);
-        }
-
-        template<typename T>
-        VRT_FUNC_CONSTEXPR T dot(vec<4, T> const& v1, vec<4, T> const& v2)
-        {
-                return reduce(v1 * v2);
-        }
-
-        template<typename T>
-        VRT_FUNC_CONSTEXPR T length(vec<2, T> const& v)
+        template<size_t L, typename T>
+        VRT_FUNC_CONSTEXPR T length(vec<L, T> const& v)
         {
                 return sqrt(reduce(v * v));
         }
 
-        template<typename T>
-        VRT_FUNC_CONSTEXPR T length(vec<3, T> const& v)
-        {
-                return sqrt(reduce(v * v));
-        }
-
-        template<typename T>
-        VRT_FUNC_CONSTEXPR T length(vec<4, T> const& v)
-        {
-                return sqrt(reduce(v * v));
-        }
-
-        template<typename T>
-        VRT_FUNC_CONSTEXPR vec<2, T> normalize(vec<2, T> const& v)
-        {
-                return v / length(v);
-        }
-        
-        template<typename T>
-        VRT_FUNC_CONSTEXPR vec<3, T> normalize(vec<3, T> const& v)
-        {
-                return v / length(v);
-        }
-
-        template<typename T>
-        VRT_FUNC_CONSTEXPR vec<4, T> normalize(vec<4, T> const& v)
+        template<size_t L, typename T>
+        VRT_FUNC_CONSTEXPR vec<L, T> normalize(vec<L, T> const& v)
         {
                 return v / length(v);
         }

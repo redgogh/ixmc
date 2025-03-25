@@ -22,12 +22,31 @@
 
 int main()
 {
-        using namespace vrt;
-
-        vec2 v1(0, 0);
-        vec2 v2(0, 1);
+        {
+                using namespace vrt;
         
-        std::cout << vrt::degrees(v1, v2) << std::endl;
+                vec2 v2(3, 6);
+                vec3 v3(3, 6, 9);
+                vec4 v4(3, 6, 9, 12);
+        
+                VRT_PRINT_FORMAT_VECTOR2(normalize(v2));
+                VRT_PRINT_FORMAT_VECTOR3(normalize(v3));
+                VRT_PRINT_FORMAT_VECTOR4(normalize(v4));
+        }
+        
+        std::cout << std::endl;
+
+        {
+                using namespace glm;
+
+                vec2 v2(3, 6);
+                vec3 v3(3, 6, 9);
+                vec4 v4(3, 6, 9, 12);
+
+                VRT_PRINT_FORMAT_VECTOR2(normalize(v2));
+                VRT_PRINT_FORMAT_VECTOR3(normalize(v3));
+                VRT_PRINT_FORMAT_VECTOR4(normalize(v4));
+        }
         
 }
 
