@@ -397,6 +397,30 @@ namespace vrt {
         VRT_FUNC_DECL VRT_FUNC_CONSTEXPR T length(vec<4, T> const& v);
 
         ///
+        /// @brief 二维向量归一化
+        ///
+        /// 将输入的二维向量转换为单位向量（长度为1），保持原方向不变。
+        /// 归一化公式为 v' = v / ||v||，其中 ||v|| 为向量的欧几里得范数。
+        ///
+        /// @tparam T 向量元素类型（默认为 VRT_TEMPLATE_TYPE_FLOAT32）
+        /// @param v 待归一化的二维向量
+        /// @return vec<2, T> 返回归一化后的单位向量
+        ///
+        /// @note 特性：
+        ///   - 结果向量方向与输入向量相同
+        ///   - 结果向量长度为1（单位向量）
+        ///   - 输入零向量将导致未定义行为
+        ///
+        /// @note 典型应用场景：
+        ///  1. 图形学中的法线向量处理
+        ///  2. 物理引擎中的方向向量标准化
+        ///  3. 游戏开发中的移动方向处理
+        ///  4. 机器学习中的特征向量归一化
+        ///
+        template<typename T = VRT_TEMPLATE_TYPE_FLOAT32>
+        VRT_FUNC_DECL VRT_FUNC_CONSTEXPR vec<2, T> normalize(vec<2, T> const& v);
+        
+        ///
         /// @brief 归一化三维向量。
         ///
         /// 将输入的三维向量 `v` 转换为单位向量（长度为1），保持原方向不变。
@@ -586,6 +610,12 @@ namespace vrt {
                 return sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w * v.w));
         }
 
+        template<typename T>
+        VRT_FUNC_CONSTEXPR vec<2, T> normalize(vec<2, T> const& v)
+        {
+                return v / length(v);
+        }
+        
         template<typename T>
         VRT_FUNC_CONSTEXPR vec<3, T> normalize(vec<3, T> const& v)
         {
