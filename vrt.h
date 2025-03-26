@@ -621,7 +621,7 @@ namespace vrt {
                 T y = axis.y * s;
                 T z = axis.z * s;
                 
-                mat4 r = {
+                mat<4, T> r = {
                     1 - 2 * (y * y + z * z), 2 * (x * y - w * z), 2 * (x * z + w * y), 0,
                     2 * (x * y + w * z), 1 - 2 * (x * x + z * z), 2 * (y * z - w * x), 0,
                     2 * (x * z - w * y), 2 * (y * z + w * x), 1 - 2 * (x * x + y * y), 0,

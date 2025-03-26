@@ -33,6 +33,7 @@ void performance(const char *name, FN_PERFORMANCE fn_performance_ptr)
 
 void *call(void *ptr)
 {
+        VRT_PRINT_FORMAT_VECTOR3(((float *) ptr));
         return ptr;
 }
 
@@ -40,9 +41,9 @@ int main()
 {
         static std::vector<std::array<float, 3>> numbers;
         
-        for (int i =0; i < 10000; i++)
+        for (int i =0; i < 3; i++)
                 numbers.push_back(random_float3());
-        
+
         performance("vrt", []{
                 using namespace vrt;
 
@@ -52,8 +53,8 @@ int main()
                 for (const auto &f3 : numbers) {
                         vec3 v(f3[0], f3[1], f3[2]);
         
-                        // m = translate(m, vec3(2.0f, 0.0f, 0.0f));
-                        // m = rotate(m, 90.0f, vec3(0.0f, 1.0f, 1.0f));
+                        m = translate(m, vec3(2.0f, 0.0f, 0.0f));
+                        m = rotate(m, 90.0f, vec3(0.0f, 1.0f, 1.0f));
         
                         v = m * vec4(v, 1.0f);
 
@@ -70,8 +71,8 @@ int main()
                 for (const auto &f3 : numbers) {
                         vec3 v(f3[0], f3[1], f3[2]);
 
-                        // m = translate(m, vec3(2.0f, 0.0f, 0.0f));
-                        // m = rotate(m, 90.0f, vec3(0.0f, 1.0f, 1.0f));
+                        m = translate(m, vec3(2.0f, 0.0f, 0.0f));
+                        m = rotate(m, radians(90.0f), vec3(0.0f, 1.0f, 1.0f));
 
                         v = m * vec4(v, 1.0f);
 
